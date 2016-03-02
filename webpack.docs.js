@@ -1,4 +1,5 @@
 import path from 'path';
+import autoprefixer from 'autoprefixer';
 import webpack from 'webpack';
 import marked from 'marked';
 import hl from 'highlight.js';
@@ -89,7 +90,7 @@ export default {
         loaders: [
           'style',
           'css?minimize',
-          'autoprefixer',
+          'postcss',
           'less'
         ],
         include: [
@@ -116,5 +117,7 @@ export default {
 
   markdownLoader: {
     renderer: renderer
-  }
+  },
+
+  postcss: [autoprefixer({browsers: ['> 1%', 'last 2 versions']})]
 };
