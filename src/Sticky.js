@@ -60,7 +60,7 @@ var Sticky = React.createClass({
   },
 
   _init: function() {
-    if (this.state.initialized || !this.isMounted || !this.checkMedia()) {
+    if (this.state.initialized || !this.isMounted() || !this.checkMedia()) {
       return;
     }
 
