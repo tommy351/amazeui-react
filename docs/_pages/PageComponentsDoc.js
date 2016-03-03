@@ -55,12 +55,6 @@ var EmptyComponent = React.createClass({
 });
 
 var PageComponentsDoc = React.createClass({
-  mixins: [StateMixin],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-
   render: function() {
     var component = this.props.params.component;
     var Doc = Docs[component] || EmptyComponent;

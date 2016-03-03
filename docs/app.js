@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactRouter, {
+import {
   Router,
   Route,
   IndexRoute,
+  hashHistory,
 } from 'react-router';
-import History, {
+import {
   createHistory,
   useBasename,
 } from 'history';
@@ -50,7 +51,7 @@ import PageComponentsIndex from './_pages/PageComponentsIndex';
 import PageComponentsDoc from './_pages/PageComponentsDoc';
 
 const routes = (
-  <Router history={production ? history : null}>
+  <Router history={production ? history : hashHistory}>
     <Route path="/" component={App}>
       <Route path="getting-started" component={PageGettingStarted} />
       <Route path="components" component={PageComponents}>
