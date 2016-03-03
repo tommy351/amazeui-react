@@ -46,7 +46,7 @@ var ScrollSpy = React.createClass({
       debounced);
   },
 
-  componentWillMount: function() {
+  componentWillUnmount: function() {
     this._removeEventLister();
   },
 
@@ -61,8 +61,8 @@ var ScrollSpy = React.createClass({
     if (!TransitionEvents.support.animationend) {
       return;
     }
-
-    if (this.isMounted) {
+    
+    if (this.isMounted()) {
       var isInView = isInViewport(ReactDOM.findDOMNode(this));
 
       if (isInView && !this.state.inViewport) {

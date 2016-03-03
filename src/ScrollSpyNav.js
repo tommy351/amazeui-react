@@ -40,8 +40,8 @@ var ScrollSpyNav = React.createClass({
     this._orientationListener = Events.on(window, 'orientationchange',
       debounced);
   },
-
-  componentWillMount: function() {
+  
+  componentWillUnmount: function() {
     this._scrollListener && this._scrollListener.off();
     this._resizeListener && this._resizeListener.off();
     this._orientationListener && this._orientationListener.off();
@@ -61,7 +61,7 @@ var ScrollSpyNav = React.createClass({
   },
 
   checkIsInView: function() {
-    if (this.isMounted) {
+    if (this.isMounted()) {
       var inViewsNodes = [];
 
       this._anchorNodes.forEach(function(anchor) {
