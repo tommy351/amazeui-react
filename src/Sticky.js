@@ -54,7 +54,7 @@ var Sticky = React.createClass({
       debounce(this.checkPosition, 50).bind(this));
   },
 
-  componentWillMount: function() {
+  componentWillUnmount: function() {
     this._scrollListener && this._scrollListener.off();
     this._resizeListener && this._resizeListener.off();
   },
