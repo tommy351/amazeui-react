@@ -2,7 +2,6 @@
 
 var React = require('react');
 var Link = require('react-router').Link;
-var StateMixin = require('react-router').State;
 
 var Grid = require('../../src/Grid');
 var Col = require('../../src/Col');
@@ -13,12 +12,6 @@ var DocMain = require('./DocMain');
 var Banner = require('./DocBanner');
 
 var PageComponents = React.createClass({
-  mixins: [StateMixin],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-
   getInitialState: function() {
     return {
       activeIndex: null
