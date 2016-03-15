@@ -24,7 +24,7 @@ console.log(__dirname);
 
 module.exports = {
   debug: true,
-  devtool: '#eval-source-map',
+  devtool: '#cheap-eval-source-map',
   // context: path.join(__dirname, 'app', 'js'),
 
   entry: entries,

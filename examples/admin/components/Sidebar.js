@@ -73,8 +73,7 @@ const Siderbar = React.createClass({
           key={`subNav-${i}`}
         >
           <Link
-            to={`page-${i}`}
-            query={{breadcrumb: `子页面 ${i}`}}
+            to={{pathname: `page-${i}`, query: {breadcrumb: `子页面 ${i}`}}}
             activeClassName="active"
           >
             <Icon icon="angle-right" />
@@ -110,8 +109,7 @@ const Siderbar = React.createClass({
         >
           <Link
             activeClassName="active"
-            to={`/${id}`}
-            query={{breadcrumb: title}}
+            to={{pathname: `/${id}`, query: {breadcrumb: title}}}
             onClick={subNav ? this.handleClick.bind(this, i) : null}
           >
             <Icon icon={subActive ? 'folder-open' : icon} />

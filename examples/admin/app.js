@@ -4,6 +4,7 @@ import {
   Router,
   Route,
   IndexRoute,
+  hashHistory,
 } from 'react-router';
 import {
   Icon,
@@ -97,12 +98,9 @@ const Page = React.createClass({
 });
 
 const routes = (
-  <Router>
+  <Router history={hashHistory}>
     <Route path="/" component={App}>
       <Route path="messages" component={Messages}>
-        {/* add some nested routes where we want the UI to nest */}
-        {/* render the stats page when at `/inbox` */}
-        {/* render the message component at /inbox/messages/123 */}
         <Route path=":id" component={Message} />
         <IndexRoute component={NoMessage} />
       </Route>

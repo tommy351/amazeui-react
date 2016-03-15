@@ -33,7 +33,7 @@ const Header = React.createClass({
               <Dropdown.Item
                 closeOnClick
                 linkComponent={Link}
-                linkProps={{to: '/profile', query: {breadcrumb: '个人资料'}}}
+                linkProps={{to: {pathname: '/profile', query: {breadcrumb: '个人资料'}}}}
               >
                 <Icon icon="user" /> {' 个人资料'}
               </Dropdown.Item>
@@ -44,8 +44,10 @@ const Header = React.createClass({
             <NavItem
               linkComponent={Link}
               linkProps={{
-                to: '/messages',
-                query: {breadcrumb: '通知'}
+                to: {
+                  pathname: '/messages',
+                  query: {breadcrumb: '通知'}
+                }
               }}
             >
               <Icon icon="envelope-o" />
