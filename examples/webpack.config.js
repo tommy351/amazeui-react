@@ -6,6 +6,7 @@ var fs = require('fs');
 // For instructions about this file refer to
 // webpack and webpack-hot-middleware documentation
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 
 var entryBase = [
   'webpack/hot/dev-server',
@@ -66,7 +67,7 @@ module.exports = {
         loaders: [
           'style',
           'css',
-          'autoprefixer',
+          'postcss',
           'less'
         ],
         include: [
@@ -74,5 +75,7 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  
+  postcss: [autoprefixer({browsers: ['> 1%', 'last 2 versions']})]
 };
