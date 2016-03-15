@@ -1,12 +1,19 @@
 'use strict';
 
-var bind = window.addEventListener ? 'addEventListener' : 'attachEvent';
-var unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent';
-var prefix = bind !== 'addEventListener' ? 'on' : '';
+var canUseDOM = require('./canUseDOM');
+var one = function() {
+};
+var on = function() {
+};
+var off = function() {
+};
 
+if (canUseDOM) {
+  var bind = window.addEventListener ? 'addEventListener' : 'attachEvent';
+  var unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent';
+  var prefix = bind !== 'addEventListener' ? 'on' : '';
 
-var events = {
-  one: function(node, eventNames, eventListener) {
+  one = function(node, eventNames, eventListener) {
     var typeArray = eventNames.split(' ');
     var recursiveFunction = function(e) {
       e.target.removeEventListener(e.type, recursiveFunction);
@@ -16,7 +23,7 @@ var events = {
     for (var i = typeArray.length - 1; i >= 0; i--) {
       this.on(node, typeArray[i], recursiveFunction);
     }
-  },
+  };
 
 
   /**
@@ -30,7 +37,7 @@ var events = {
    * @api public
    */
 
-  on: function(node, eventName, eventListener, capture) {
+  on = function(node, eventName, eventListener, capture) {
     node[bind](prefix + eventName, eventListener, capture || false);
 
     return {
@@ -38,7 +45,7 @@ var events = {
         node[unbind](prefix + eventName, eventListener, capture || false);
       }
     };
-  },
+  }
 
 
   /**
@@ -52,10 +59,14 @@ var events = {
    * @api public
    */
 
-  off: function(node, eventName, eventListener, capture) {
+  off = function(node, eventName, eventListener, capture) {
     node[unbind](prefix + eventName, eventListener, capture || false);
     return eventListener;
-  }
-};
+  };
+}
 
-module.exports = events;
+module.exports = {
+  one: one,
+  on: on,
+  off: off
+};

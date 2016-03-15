@@ -8,16 +8,13 @@
  *
  * modified version of:
  * https://github.com/facebook/react/blob/0.13-stable/src/addons/transitions/ReactTransitionEvents.js
+ * https://github.com/facebook/react/blob/5696ccfcd72189f4fea13d8b0f084a0e3c9b8147/src/renderers/dom/client/utils/getVendorPrefixedEventName.js
  */
 
 'use strict';
 
 var CSSCore = require('./CSSCore');
-
-var canUseDOM = !!(
-typeof window !== 'undefined' &&
-window.document &&
-window.document.createElement);
+var canUseDOM = require('./canUseDOM');
 
 /**
  * EVENT_NAME_MAP is used to determine which event fired when a
