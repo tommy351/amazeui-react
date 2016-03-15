@@ -13,6 +13,12 @@ import {
 } from 'amazeui-react';
 
 const Header = React.createClass({
+  handleClick() {
+    if (matchMedia && matchMedia('(max-width: 640px)').matches) {
+      this.refs.topbar.handleToggle();
+    }
+  },
+
   render() {
     return (
       <Topbar
@@ -20,8 +26,11 @@ const Header = React.createClass({
         toggleNavKey="nav"
         inverse
         fluid
+        ref="topbar"
       >
-        <CollapsibleNav eventKey="nav">
+        <CollapsibleNav
+          eventKey="nav"
+        >
           <Nav
             className="am-topbar-right"
             topbar
@@ -33,7 +42,10 @@ const Header = React.createClass({
               <Dropdown.Item
                 closeOnClick
                 linkComponent={Link}
-                linkProps={{to: {pathname: '/profile', query: {breadcrumb: '个人资料'}}}}
+                linkProps={{
+                  to: {pathname: '/profile', query: {breadcrumb: '个人资料'}},
+                  onClick: this.handleClick
+                }}
               >
                 <Icon icon="user" /> {' 个人资料'}
               </Dropdown.Item>
@@ -47,7 +59,8 @@ const Header = React.createClass({
                 to: {
                   pathname: '/messages',
                   query: {breadcrumb: '通知'}
-                }
+                },
+                onClick: this.handleClick
               }}
             >
               <Icon icon="envelope-o" />

@@ -27,19 +27,26 @@ var DocHeader = React.createClass({
   },
 
   handleClick: function(e) {
-    e.preventDefault();
+    e && e.preventDefault();
     this.setState({
       menuActive: !this.state.menuActive
     });
   },
 
+  handleDropdownClick: function() {
+    if (matchMedia && matchMedia('(max-width: 640px)').matches) {
+      this.handleClick();
+    }
+  },
+
   render: function() {
-    var linkElements = links.map(function(link) {
+    var linkElements = links.map((link) => {
       return (
         <NavItem
           component={LinkItem}
           key={link.name}
           to={link.name}
+          onClick={this.handleDropdownClick}
         >
           {link.title}
         </NavItem>
@@ -70,8 +77,20 @@ var DocHeader = React.createClass({
             className={'am-collapse am-topbar-collapse' + menuClass} >
             <Nav pills topbar>
               {linkElements}
-              <NavItem href="http://amazeui.org" target="_blank">jQuery 版</NavItem>
-              <NavItem href="http://t.amazeui.org" target="_blank">Touch</NavItem>
+              <NavItem
+                href="http://amazeui.org"
+                target="_blank"
+                onClick={this.handleDropdownClick}
+              >
+                jQuery 版
+              </NavItem>
+              <NavItem
+                href="http://t.amazeui.org"
+                target="_blank"
+                onClick={this.handleDropdownClick}
+              >
+                Touch
+                </NavItem>
             </Nav>
           </div>
         </Container>
