@@ -55,6 +55,12 @@ var Selected = React.createClass({
     this.setDropdownWidth();
   },
 
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      value: nextProps.value
+    });
+  },
+
   setDropdownWidth: function() {
     if (this.isMounted()) {
       var toggleButton = ReactDOM.findDOMNode(this.refs.dropdown.
