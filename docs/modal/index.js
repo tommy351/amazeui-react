@@ -45,7 +45,7 @@ module.exports = React.createClass({
         <h3>Popup</h3>
         <ReactBin code={examples.popup} />
 
-        <h3>show & onClose props</h3>
+        <h3>默认显示属性和关闭回调</h3>
         <ReactBin code={examples.show} />
       </Doc>
     );
