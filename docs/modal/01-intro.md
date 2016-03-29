@@ -12,4 +12,6 @@
 
 - `modal`: `node` - 要控制的 `<Modal>` 实例，**必需**；
 - `onConfirm`: `func` - `<Modal>` 点击「确定」时的回调函数（适用于 Alert、Confirm、Prompt）；
-- `onCancel`: `func` - `<Modal>` 点击「取消」时的回调函数（适用于 Confirm、Prompt）。
+- `onCancel`: `func` - `<Modal>` 点击「取消」时的回调函数（适用于 Confirm、Prompt）；
+- `show`: `bool` - 是否显示`<Modal>`；
+- `onHide`: `func` - `<Modal>`关闭时调用的回调函数。

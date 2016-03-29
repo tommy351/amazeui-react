@@ -13,7 +13,9 @@ var ModalTrigger = React.createClass({
     modal: React.PropTypes.node.isRequired,
     onConfirm: React.PropTypes.func,
     onCancel: React.PropTypes.func,
-    title: React.PropTypes.string
+    title: React.PropTypes.string,
+    show: React.PropTypes.bool,
+    onHide: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -26,6 +28,18 @@ var ModalTrigger = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    if (this.props.show) {
+      this.open();
+    }
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if (nextProps.show && nextProps.show !== this.props.show) {
+      this.open();
+    }
+  },
+
   open: function() {
     this.setState({
       isModalActive: true
@@ -36,6 +50,10 @@ var ModalTrigger = React.createClass({
     this.setState({
       isModalActive: false
     });
+
+    if (this.props.onHide) {
+      this.props.onHide();
+    }
   },
 
   toggle: function() {
@@ -97,6 +115,11 @@ var ModalTrigger = React.createClass({
   },
 
   render: function() {
+    // if "show" is defined, use "show" to control the modal
+    if (typeof this.props.show !== 'undefined') {
+      return <div> {this.props.children} </div>;
+    }
+
     var child = React.Children.only(this.props.children);
     var props = {};
 

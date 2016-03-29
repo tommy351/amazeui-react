@@ -11,7 +11,8 @@ var examples = {
   prompt: require('fs').readFileSync(__dirname + '/04-prompt.js', 'utf-8'),
   loading: require('fs').readFileSync(__dirname + '/05-loading.js', 'utf-8'),
   actions: require('fs').readFileSync(__dirname + '/06-actions.js', 'utf-8'),
-  popup: require('fs').readFileSync(__dirname + '/07-popup.js', 'utf-8')
+  popup: require('fs').readFileSync(__dirname + '/07-popup.js', 'utf-8'),
+  show: require('fs').readFileSync(__dirname + '/08-show-props.js', 'utf-8')
 };
 
 module.exports = React.createClass({
@@ -43,6 +44,9 @@ module.exports = React.createClass({
 
         <h3>Popup</h3>
         <ReactBin code={examples.popup} />
+
+        <h3>show & onHide props</h3>
+        <ReactBin code={examples.show} />
       </Doc>
     );
   }
