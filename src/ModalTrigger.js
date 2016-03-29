@@ -15,7 +15,7 @@ var ModalTrigger = React.createClass({
     onCancel: React.PropTypes.func,
     title: React.PropTypes.string,
     show: React.PropTypes.bool,
-    onHide: React.PropTypes.func
+    onClose: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -51,8 +51,8 @@ var ModalTrigger = React.createClass({
       isModalActive: false
     });
 
-    if (this.props.onHide) {
-      this.props.onHide();
+    if (this.props.onClose) {
+      this.props.onClose();
     }
   },
 

@@ -13,14 +13,14 @@ const Example = React.createClass({
   },
 
   render() {
-    const modal = <Modal title="Amaze UI Modal">通过ModalTrigger的props控制Modal</Modal>;
+    const modal = <Modal title="Amaze UI Modal">通过ModalTrigger的props打开Modal</Modal>;
 
     return (
       <div>
         <Button amStyle="primary" onClick={this.open}>
           Launch modal
         </Button>
-        <ModalTrigger modal={modal} show={this.state.showModal} onHide={this.close}/>
+        <ModalTrigger modal={modal} show={this.state.showModal} onClose={this.close}/>
       </div>
     );
   }
