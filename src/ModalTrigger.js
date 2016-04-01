@@ -80,14 +80,18 @@ var ModalTrigger = React.createClass({
 
     if (this.props.modalHeight) {
       style.modalHeight = this.props.modalHeight;
-      style.modalMarginTop = -this.props.height / 2;
-    } else {
+      // @since 1.1.0, requires Amaze UI 2.6.0+
+      // style.modalMarginTop = -this.props.height / 2;
+    }
+    /*
+    else {
       style.modalMarginTop = -modal.offsetHeight / 2;
     }
+    */
 
     if (this.props.modalWidth) {
       style.modalWidth = this.props.modalWidth;
-      style.modalMarginLeft = -this.props.modalWidth / 2;
+      // style.modalMarginLeft = -this.props.modalWidth / 2;
     }
 
     this.setState(style);

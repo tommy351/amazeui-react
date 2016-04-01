@@ -38,7 +38,7 @@ const basePlugins = [
     title: 'Amaze UI React',
     template: 'docs/index.html',
     inject: false,
-    UICDN: isProduction ? 'http://cdn.amazeui.org/amazeui/2.5.1/' : '',
+    UICDN: isProduction ? 'http://cdn.amazeui.org/amazeui/2.6.0/' : '',
     assets: isProduction ? 'http://s.amazeui.org/assets/react' : '',
     stat: isProduction,
     minify: isProduction ? {

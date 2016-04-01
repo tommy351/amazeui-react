@@ -226,11 +226,13 @@ var Modal = React.createClass({
     var footer = this.renderFooter();
     var style = {
         display: 'block',
-        width: props.modalWidth,
-        height: props.modalHeight,
-        marginLeft: props.marginLeft,
-        marginTop: props.marginTop
+        // marginLeft: props.marginLeft,
+        // marginTop: props.marginTop
       };
+    var dialogDimension = {
+      width: props.modalWidth,
+      height: props.modalHeight,
+    };
 
     classSet[this.prefixClass('active')] = this.state.transitioning;
 
@@ -246,7 +248,10 @@ var Modal = React.createClass({
         title={null}
         className={classNames(classSet, props.className)}
       >
-        <div className={this.prefixClass('dialog')}>
+        <div
+          className={this.prefixClass('dialog')}
+          style={dialogDimension}
+        >
           {this.renderHeader()}
           <div
             className={this.prefixClass('bd')}
