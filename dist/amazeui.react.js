@@ -1,4 +1,4 @@
-/*! Amaze UI React v1.0.0 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-01-25T14:40:15+0800 */
+/*! Amaze UI React v1.1.0 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-04-05T15:41:26+0800 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = {
-	  VERSION: '1.0.0',
+	  VERSION: '1.1.0',
 
 	  // layout
 	  Grid: __webpack_require__(2),
@@ -100,47 +100,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	  Tabs: __webpack_require__(36),
 	  CollapsibleNav: __webpack_require__(37),
 
-	  Article: __webpack_require__(40),
-	  Badge: __webpack_require__(41),
-	  Close: __webpack_require__(42),
+	  Article: __webpack_require__(41),
+	  Badge: __webpack_require__(42),
+	  Close: __webpack_require__(43),
 	  Icon: __webpack_require__(23),
-	  List: __webpack_require__(43),
-	  ListItem: __webpack_require__(44),
-	  Panel: __webpack_require__(45),
-	  PanelGroup: __webpack_require__(46),
-	  Progress: __webpack_require__(47),
+	  List: __webpack_require__(44),
+	  ListItem: __webpack_require__(45),
+	  Panel: __webpack_require__(46),
+	  PanelGroup: __webpack_require__(47),
+	  Progress: __webpack_require__(48),
 
-	  Alert: __webpack_require__(48),
+	  Alert: __webpack_require__(49),
 	  // DatePicker: require('./DateTimePicker'),
 	  // TimePicker: require('./DateTimePicker'),
-	  DateTimeInput: __webpack_require__(49).DateTimeInput,
-	  DateTimePicker: __webpack_require__(49).DateTimePicker,
-	  Dropdown: __webpack_require__(58),
-	  Modal: __webpack_require__(59),
-	  ModalTrigger: __webpack_require__(63),
-	  Popover: __webpack_require__(65),
-	  PopoverTrigger: __webpack_require__(66),
-	  NProgress: __webpack_require__(67),
-	  ScrollSpy: __webpack_require__(68),
-	  ScrollSpyNav: __webpack_require__(72),
-	  Selected: __webpack_require__(74),
-	  Slider: __webpack_require__(75),
-	  Sticky: __webpack_require__(76),
+	  DateTimeInput: __webpack_require__(50).DateTimeInput,
+	  DateTimePicker: __webpack_require__(50).DateTimePicker,
+	  Dropdown: __webpack_require__(59),
+	  Modal: __webpack_require__(60),
+	  ModalTrigger: __webpack_require__(64),
+	  Popover: __webpack_require__(66),
+	  PopoverTrigger: __webpack_require__(67),
+	  NProgress: __webpack_require__(68),
+	  ScrollSpy: __webpack_require__(69),
+	  ScrollSpyNav: __webpack_require__(73),
+	  Selected: __webpack_require__(75),
+	  Slider: __webpack_require__(76),
+	  Sticky: __webpack_require__(77),
 
 	  // widgets
-	  Accordion: __webpack_require__(77),
-	  Divider: __webpack_require__(78),
-	  Footer: __webpack_require__(79),
-	  Gallery: __webpack_require__(80),
-	  GoTop: __webpack_require__(81),
-	  Header: __webpack_require__(82),
-	  ListNews: __webpack_require__(83),
-	  Menu: __webpack_require__(84),
-	  Navbar: __webpack_require__(85),
-	  Titlebar: __webpack_require__(86),
+	  Accordion: __webpack_require__(78),
+	  Divider: __webpack_require__(79),
+	  Footer: __webpack_require__(80),
+	  Gallery: __webpack_require__(81),
+	  GoTop: __webpack_require__(82),
+	  Header: __webpack_require__(83),
+	  ListNews: __webpack_require__(84),
+	  Menu: __webpack_require__(85),
+	  Navbar: __webpack_require__(86),
+	  Titlebar: __webpack_require__(87),
 
 	  // mixins
-	  mixins: __webpack_require__(87)
+	  mixins: __webpack_require__(88)
 	};
 
 /***/ },
@@ -208,7 +208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2015 Jed Watson.
+	  Copyright (c) 2016 Jed Watson.
 	  Licensed under the MIT License (MIT), see
 	  http://jedwatson.github.io/classnames
 	*/
@@ -220,7 +220,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		var hasOwn = {}.hasOwnProperty;
 
 		function classNames () {
-			var classes = '';
+			var classes = [];
 
 			for (var i = 0; i < arguments.length; i++) {
 				var arg = arguments[i];
@@ -229,19 +229,19 @@ return /******/ (function(modules) { // webpackBootstrap
 				var argType = typeof arg;
 
 				if (argType === 'string' || argType === 'number') {
-					classes += ' ' + arg;
+					classes.push(arg);
 				} else if (Array.isArray(arg)) {
-					classes += ' ' + classNames.apply(null, arg);
+					classes.push(classNames.apply(null, arg));
 				} else if (argType === 'object') {
 					for (var key in arg) {
 						if (hasOwn.call(arg, key) && arg[key]) {
-							classes += ' ' + key;
+							classes.push(key);
 						}
 					}
 				}
 			}
 
-			return classes.substr(1);
+			return classes.join(' ');
 		}
 
 		if (typeof module !== 'undefined' && module.exports) {
@@ -730,7 +730,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*!
 	 * for-own <https://github.com/jonschlinkert/for-own>
 	 *
-	 * Copyright (c) 2014-2015, Jon Schlinkert.
+	 * Copyright (c) 2014-2016, Jon Schlinkert.
 	 * Licensed under the MIT License.
 	 */
 
@@ -740,7 +740,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var hasOwn = Object.prototype.hasOwnProperty;
 
 	module.exports = function forOwn(o, fn, thisArg) {
-	  forIn(o, function (val, key) {
+	  forIn(o, function(val, key) {
 	    if (hasOwn.call(o, key)) {
 	      return fn.call(thisArg, o[key], key, o);
 	    }
@@ -755,7 +755,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/*!
 	 * for-in <https://github.com/jonschlinkert/for-in>
 	 *
-	 * Copyright (c) 2014-2015, Jon Schlinkert.
+	 * Copyright (c) 2014-2016, Jon Schlinkert.
 	 * Licensed under the MIT License.
 	 */
 
@@ -768,6 +768,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	};
+
 
 /***/ },
 /* 14 */
@@ -2138,6 +2139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 
+
 	  renderAnchor: function renderAnchor(classes) {
 	    var Component = this.props.component;
 	    var linkComponent = this.props.linkComponent || 'a';
@@ -2257,7 +2259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            );
 	          })
 	        )
-	      ) : data.pages.map((function (page, i) {
+	      ) : data.pages.map(function (page, i) {
 	        return React.createElement(
 	          Pagination.Item,
 	          {
@@ -2269,7 +2271,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          },
 	          page.title
 	        );
-	      }).bind(this));
+	      }.bind(this));
 	    }
 	  },
 
@@ -2661,7 +2663,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  renderNav: function renderNav() {
 	    var activeKey = this.state.activeKey;
 
-	    return React.Children.map(this.props.children, (function (child, index) {
+	    return React.Children.map(this.props.children, function (child, index) {
 	      var key = child.props.key || child.props.eventKey || index;
 	      var disabled = child.props.disabled;
 
@@ -2677,7 +2679,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        child.props.title
 	      );
-	    }).bind(this));
+	    }.bind(this));
 	  },
 
 	  renderTabPanels: function renderTabPanels() {
@@ -2701,7 +2703,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var navs = [];
 	    var panels = [];
 
-	    this.props.data.forEach((function (item, key) {
+	    this.props.data.forEach(function (item, key) {
 	      navs.push(React.createElement(
 	        NavItem,
 	        {
@@ -2724,7 +2726,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          key: key },
 	        item.content
 	      ));
-	    }).bind(this));
+	    }.bind(this));
 
 	    return {
 	      navs: navs,
@@ -3034,7 +3036,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var node = this.getCollapsibleDOMNode();
 	    var dimension = this.dimension();
 
-	    var complete = (function () {
+	    var complete = function () {
 	      this._removeEndEventListener(node, complete);
 	      // remove dimension value - this ensures the collapsible item can grow
 	      // in dimension after initial display (such as an image loading)
@@ -3042,7 +3044,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.setState({
 	        collapsing: false
 	      });
-	    }).bind(this);
+	    }.bind(this);
 
 	    this._addEndEventListener(node, complete);
 
@@ -3121,13 +3123,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 * modified version of:
 	 * https://github.com/facebook/react/blob/0.13-stable/src/addons/transitions/ReactTransitionEvents.js
+	 * https://github.com/facebook/react/blob/5696ccfcd72189f4fea13d8b0f084a0e3c9b8147/src/renderers/dom/client/utils/getVendorPrefixedEventName.js
 	 */
 
 	'use strict';
 
 	var CSSCore = __webpack_require__(16);
-
-	var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+	var canUseDOM = __webpack_require__(40);
 
 	/**
 	 * EVENT_NAME_MAP is used to determine which event fired when a
@@ -3236,6 +3238,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 40 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/***/ },
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3347,7 +3357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Article;
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3414,7 +3424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Badge;
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3474,7 +3484,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Close;
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3532,7 +3542,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = List;
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3608,7 +3618,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = ListItem;
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3729,7 +3739,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    if (Array.isArray(bodyChildren)) {
-	      bodyChildren.forEach((function (child) {
+	      bodyChildren.forEach(function (child) {
 	        // props fill and isValidElement
 	        if (this.shouldRenderFill(child)) {
 	          maybeRenderPanelBody();
@@ -3738,7 +3748,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else {
 	          panelBodyChildren.push(child);
 	        }
-	      }).bind(this));
+	      }.bind(this));
 
 	      maybeRenderPanelBody();
 	    } else {
@@ -3802,7 +3812,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Panel;
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3895,7 +3905,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = PanelGroup;
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3999,7 +4009,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//     : key ref 处理问题
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4063,18 +4073,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Alert;
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	module.exports = {
-	  DateTimeInput: __webpack_require__(50),
-	  DateTimePicker: __webpack_require__(54)
+	  DateTimeInput: __webpack_require__(51),
+	  DateTimePicker: __webpack_require__(55)
 	};
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4083,11 +4093,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
-	var fecha = __webpack_require__(51);
-	var Events = __webpack_require__(52);
-	var isNodeInTree = __webpack_require__(53);
+	var fecha = __webpack_require__(52);
+	var Events = __webpack_require__(53);
+	var isNodeInTree = __webpack_require__(54);
 	var Input = __webpack_require__(21);
-	var DateTimePicker = __webpack_require__(54);
+	var DateTimePicker = __webpack_require__(55);
 
 	var DateTimeInput = React.createClass({
 	  displayName: 'DateTimeInput',
@@ -4220,7 +4230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// TODO: 动画
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;(function (main) {
@@ -4489,17 +4499,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 52 */
-/***/ function(module, exports) {
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var bind = window.addEventListener ? 'addEventListener' : 'attachEvent';
-	var unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent';
-	var prefix = bind !== 'addEventListener' ? 'on' : '';
+	var canUseDOM = __webpack_require__(40);
+	var one = function one() {};
+	var on = function on() {};
+	var off = function off() {};
 
-	var events = {
-	  one: function one(node, eventNames, eventListener) {
+	if (canUseDOM) {
+	  var bind = window.addEventListener ? 'addEventListener' : 'attachEvent';
+	  var unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent';
+	  var prefix = bind !== 'addEventListener' ? 'on' : '';
+
+	  one = function one(node, eventNames, eventListener) {
 	    var typeArray = eventNames.split(' ');
 	    var recursiveFunction = function recursiveFunction(e) {
 	      e.target.removeEventListener(e.type, recursiveFunction);
@@ -4509,7 +4524,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    for (var i = typeArray.length - 1; i >= 0; i--) {
 	      this.on(node, typeArray[i], recursiveFunction);
 	    }
-	  },
+	  };
 
 	  /**
 	   * Bind `node` event `eventName` to `eventListener`.
@@ -4522,7 +4537,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * @api public
 	   */
 
-	  on: function on(node, eventName, eventListener, capture) {
+	  on = function on(node, eventName, eventListener, capture) {
 	    node[bind](prefix + eventName, eventListener, capture || false);
 
 	    return {
@@ -4530,7 +4545,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        node[unbind](prefix + eventName, eventListener, capture || false);
 	      }
 	    };
-	  },
+	  };
 
 	  /**
 	   * Unbind `node` event `eventName`'s callback `eventListener`.
@@ -4543,16 +4558,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * @api public
 	   */
 
-	  off: function off(node, eventName, eventListener, capture) {
+	  off = function off(node, eventName, eventListener, capture) {
 	    node[unbind](prefix + eventName, eventListener, capture || false);
 	    return eventListener;
-	  }
+	  };
+	}
+
+	module.exports = {
+	  one: one,
+	  on: on,
+	  off: off
 	};
 
-	module.exports = events;
-
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4569,7 +4588,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4578,11 +4597,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var fecha = __webpack_require__(51);
+	var fecha = __webpack_require__(52);
 	var ClassNameMixin = __webpack_require__(4);
 	var Icon = __webpack_require__(23);
-	var DatePicker = __webpack_require__(55);
-	var TimePicker = __webpack_require__(57);
+	var DatePicker = __webpack_require__(56);
+	var TimePicker = __webpack_require__(58);
 
 	var DateTimePicker = React.createClass({
 	  displayName: 'DateTimePicker',
@@ -4777,16 +4796,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = DateTimePicker;
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var fecha = __webpack_require__(51);
+	var fecha = __webpack_require__(52);
 	var ClassNameMixin = __webpack_require__(4);
-	var dateUtils = __webpack_require__(56);
+	var dateUtils = __webpack_require__(57);
 
 	var DatePicker = React.createClass({
 	  displayName: 'DatePicker',
@@ -5497,7 +5516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = DatePicker;
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5546,7 +5565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = dateUtils;
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5953,7 +5972,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = TimePicker;
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5968,9 +5987,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var constants = __webpack_require__(5);
 	var Button = __webpack_require__(9);
 	var Icon = __webpack_require__(23);
-	var Events = __webpack_require__(52);
-	var isNodeInTree = __webpack_require__(53);
+	var Events = __webpack_require__(53);
+	var isNodeInTree = __webpack_require__(54);
 	var createChainedFunction = __webpack_require__(35);
+	var canUseDOM = __webpack_require__(40);
 
 	var Dropdown = React.createClass({
 	  displayName: 'Dropdown',
@@ -6051,13 +6071,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  bindOuterHandlers: function bindOuterHandlers() {
-	    Events.on(document, 'click', this.handleOuterClick);
-	    Events.on(document, 'keyup', this.handleKeyup);
+	    if (canUseDOM) {
+	      Events.on(document, 'click', this.handleOuterClick);
+	      Events.on(document, 'keyup', this.handleKeyup);
+	    }
 	  },
 
 	  unbindOuterHandlers: function unbindOuterHandlers() {
-	    Events.off(document, 'click', this.handleOuterClick);
-	    Events.off(document, 'keyup', this.handleKeyup);
+	    if (canUseDOM) {
+	      Events.off(document, 'click', this.handleOuterClick);
+	      Events.off(document, 'keyup', this.handleKeyup);
+	    }
 	  },
 
 	  handleDropdownClick: function handleDropdownClick(e) {
@@ -6195,7 +6219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	* */
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6206,9 +6230,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
 	var ClassNameMixin = __webpack_require__(4);
-	var DimmerMixin = __webpack_require__(60);
-	var Events = __webpack_require__(52);
-	var Close = __webpack_require__(42);
+	var DimmerMixin = __webpack_require__(61);
+	var Events = __webpack_require__(53);
+	var Close = __webpack_require__(43);
 	var Icon = __webpack_require__(23);
 
 	var Modal = React.createClass({
@@ -6393,7 +6417,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        break;
 	      case 'confirm':
 	      case 'prompt':
-	        buttons = [props.cancelText, props.confirmText].map((function (text, i) {
+	        buttons = [props.cancelText, props.confirmText].map(function (text, i) {
 	          return React.createElement(
 	            'span',
 	            {
@@ -6403,7 +6427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            },
 	            text
 	          );
-	        }).bind(this));
+	        }.bind(this));
 	        break;
 	      default:
 	        buttons = null;
@@ -6429,11 +6453,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var props = this.props;
 	    var footer = this.renderFooter();
 	    var style = {
-	      display: 'block',
+	      display: 'block'
+	    };
+	    // marginLeft: props.marginLeft,
+	    // marginTop: props.marginTop
+	    var dialogDimension = {
 	      width: props.modalWidth,
-	      height: props.modalHeight,
-	      marginLeft: props.marginLeft,
-	      marginTop: props.marginTop
+	      height: props.modalHeight
 	    };
 
 	    classSet[this.prefixClass('active')] = this.state.transitioning;
@@ -6452,7 +6478,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }),
 	      React.createElement(
 	        'div',
-	        { className: this.prefixClass('dialog') },
+	        {
+	          className: this.prefixClass('dialog'),
+	          style: dialogDimension
+	        },
 	        this.renderHeader(),
 	        React.createElement(
 	          'div',
@@ -6477,7 +6506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// -> 关闭 Modal 以后窗口滚动会原来滚动条所在位置
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6485,8 +6514,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var getScrollbarWidth = __webpack_require__(61);
-	var ownerDocument = __webpack_require__(62).ownerDocument;
+	var getScrollbarWidth = __webpack_require__(62);
+	var ownerDocument = __webpack_require__(63).ownerDocument;
 	var CSSCore = __webpack_require__(16);
 
 	module.exports = {
@@ -6547,7 +6576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -6582,7 +6611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = getScrollbarWidth;
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6659,15 +6688,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 	var cloneElement = React.cloneElement;
-	var OverlayMixin = __webpack_require__(64);
-	var DimmerMixin = __webpack_require__(60);
+	var OverlayMixin = __webpack_require__(65);
+	var DimmerMixin = __webpack_require__(61);
 	var createChainedFunction = __webpack_require__(35);
 
 	var ModalTrigger = React.createClass({
@@ -6679,7 +6708,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    modal: React.PropTypes.node.isRequired,
 	    onConfirm: React.PropTypes.func,
 	    onCancel: React.PropTypes.func,
-	    title: React.PropTypes.string
+	    title: React.PropTypes.string,
+	    show: React.PropTypes.bool,
+	    onClose: React.PropTypes.func
 	  },
 
 	  getInitialState: function getInitialState() {
@@ -6692,6 +6723,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 
+	  componentDidMount: function componentDidMount() {
+	    if (this.props.show) {
+	      this.open();
+	    }
+	  },
+
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    if (nextProps.show && nextProps.show !== this.props.show) {
+	      this.open();
+	    }
+	  },
+
 	  open: function open() {
 	    this.setState({
 	      isModalActive: true
@@ -6702,6 +6745,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.setState({
 	      isModalActive: false
 	    });
+
+	    if (this.props.onClose) {
+	      this.props.onClose();
+	    }
 	  },
 
 	  toggle: function toggle() {
@@ -6728,14 +6775,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (this.props.modalHeight) {
 	      style.modalHeight = this.props.modalHeight;
-	      style.modalMarginTop = -this.props.height / 2;
-	    } else {
+	      // @since 1.1.0, requires Amaze UI 2.6.0+
+	      // style.modalMarginTop = -this.props.height / 2;
+	    }
+	    /*
+	    else {
 	      style.modalMarginTop = -modal.offsetHeight / 2;
 	    }
+	    */
 
 	    if (this.props.modalWidth) {
 	      style.modalWidth = this.props.modalWidth;
-	      style.modalMarginLeft = -this.props.modalWidth / 2;
+	      // style.modalMarginLeft = -this.props.modalWidth / 2;
 	    }
 
 	    this.setState(style);
@@ -6760,6 +6811,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  render: function render() {
+	    // if "show" is defined, use "show" to control the modal
+	    if (typeof this.props.show !== 'undefined') {
+	      return React.createElement(
+	        'div',
+	        null,
+	        ' ',
+	        this.props.children,
+	        ' '
+	      );
+	    }
+
 	    var child = React.Children.only(this.props.children);
 	    var props = {};
 
@@ -6776,7 +6838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = ModalTrigger;
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6859,7 +6921,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6920,7 +6982,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Popover;
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6928,9 +6990,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var cloneElement = React.cloneElement;
-	var OverlayMixin = __webpack_require__(64);
+	var OverlayMixin = __webpack_require__(65);
 	var assign = __webpack_require__(31);
-	var dom = __webpack_require__(62);
+	var dom = __webpack_require__(63);
 	var createChainedFunction = __webpack_require__(35);
 
 	function isOneOf(one, of) {
@@ -7012,10 +7074,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return;
 	    }
 
-	    this._hoverDelay = setTimeout((function () {
+	    this._hoverDelay = setTimeout(function () {
 	      this._hoverDelay = null;
 	      this.open();
-	    }).bind(this), delay);
+	    }.bind(this), delay);
 	  },
 
 	  handleDelayedClose: function handleDelayedClose() {
@@ -7032,10 +7094,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return;
 	    }
 
-	    this._hoverDelay = setTimeout((function () {
+	    this._hoverDelay = setTimeout(function () {
 	      this._hoverDelay = null;
 	      this.close();
-	    }).bind(this), delay);
+	    }.bind(this), delay);
 	  },
 
 	  updatePopoverPosition: function updatePopoverPosition() {
@@ -7142,7 +7204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = PopoverTrigger;
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7312,7 +7374,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = NProgress;
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7323,11 +7385,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var assign = __webpack_require__(31);
 	var classNames = __webpack_require__(3);
 	var ClassNameMixin = __webpack_require__(4);
-	var isInViewport = __webpack_require__(69);
-	var Events = __webpack_require__(52);
+	var isInViewport = __webpack_require__(70);
+	var Events = __webpack_require__(53);
 	var TransitionEvents = __webpack_require__(39);
-	var requestAnimationFrame = __webpack_require__(70);
-	var debounce = __webpack_require__(71);
+	var requestAnimationFrame = __webpack_require__(71);
+	var debounce = __webpack_require__(72);
+	var canUseDOM = __webpack_require__(40);
+	var domUtils = __webpack_require__(63);
 
 	var ScrollSpy = React.createClass({
 	  displayName: 'ScrollSpy',
@@ -7337,7 +7401,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  propTypes: {
 	    animation: React.PropTypes.string,
 	    delay: React.PropTypes.number,
-	    repeat: React.PropTypes.bool
+	    repeat: React.PropTypes.bool,
+	    // container which has scrollbar
+	    container: React.PropTypes.any
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7355,16 +7421,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    this.checkRAF();
+	    if (canUseDOM) {
+	      this.checkRAF();
 
-	    var debounced = debounce(this.checkRAF, 60).bind(this);
+	      var node = ReactDOM.findDOMNode(this);
+	      var doc = domUtils.ownerDocument(node);
+	      // var scrollContainer = ReactDOM.findDOMNode(this.props.container || doc.body);
+	      var debounced = debounce(this.checkRAF, 100).bind(this);
 
-	    this._scrollListener = Events.on(window, 'scroll', this.checkRAF);
-	    this._resizeListener = Events.on(window, 'resize', debounced);
-	    this._orientationListener = Events.on(window, 'orientationchange', debounced);
+	      this._scrollListener = Events.on(doc, 'scroll', debounced);
+	      this._resizeListener = Events.on(window, 'resize', debounced);
+	      this._orientationListener = Events.on(window, 'orientationchange', debounced);
+	    }
 	  },
 
-	  componentWillMount: function componentWillMount() {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this._removeEventLister();
 	  },
 
@@ -7380,7 +7451,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return;
 	    }
 
-	    if (this.isMounted) {
+	    if (this.isMounted()) {
 	      var isInView = isInViewport(ReactDOM.findDOMNode(this));
 
 	      if (isInView && !this.state.inViewport) {
@@ -7388,11 +7459,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	          clearTimeout(this._timer);
 	        }
 
-	        this._timer = setTimeout((function () {
+	        this._timer = setTimeout(function () {
 	          this.setState({
 	            inViewport: true
 	          });
-	        }).bind(this), this.props.delay);
+	        }.bind(this), this.props.delay);
 	      }
 
 	      if (this.props.repeat && !isInView) {
@@ -7424,7 +7495,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = ScrollSpy;
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7434,6 +7505,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 * @desc determine if any part of the element is visible in the viewport
 	 * @reference https://github.com/Josh-Miller/isInViewport
+	 * @see http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
 	 * @param {HTMLElement} element
 	 * @returns {boolean}
 	 */
@@ -7455,8 +7527,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = isInViewport;
 
+	// TODO: 考虑滚动条不在窗口上的情形
+
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -7494,7 +7568,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7534,7 +7608,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7544,14 +7618,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cloneElement = React.cloneElement;
 	var assign = __webpack_require__(31);
 	var classNames = __webpack_require__(3);
-	var SmoothScrollMixin = __webpack_require__(73);
-	var isInViewport = __webpack_require__(69);
-	var Events = __webpack_require__(52);
-	var requestAnimationFrame = __webpack_require__(70);
-	var debounce = __webpack_require__(71);
+	var SmoothScrollMixin = __webpack_require__(74);
+	var isInViewport = __webpack_require__(70);
+	var Events = __webpack_require__(53);
+	var requestAnimationFrame = __webpack_require__(71);
+	var debounce = __webpack_require__(72);
 	var CSSCore = __webpack_require__(16);
-	var domUtils = __webpack_require__(62);
+	var domUtils = __webpack_require__(63);
 	var createChainedFunction = __webpack_require__(35);
+	var canUseDOM = __webpack_require__(40);
 	var constants = __webpack_require__(5);
 
 	var ScrollSpyNav = React.createClass({
@@ -7561,7 +7636,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  propTypes: {
 	    activeClass: React.PropTypes.string,
-	    offsetTop: React.PropTypes.number
+	    offsetTop: React.PropTypes.number,
+	    container: React.PropTypes.any
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7571,17 +7647,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    this._init();
-	    this.checkRAF();
+	    if (canUseDOM) {
+	      this._init();
+	      this.checkRAF();
 
-	    var debounced = debounce(this.checkRAF, 100).bind(this);
+	      var debounced = debounce(this.checkRAF, 100).bind(this);
 
-	    this._scrollListener = Events.on(window, 'scroll', this.checkRAF);
-	    this._resizeListener = Events.on(window, 'resize', debounced);
-	    this._orientationListener = Events.on(window, 'orientationchange', debounced);
+	      this._scrollListener = Events.on(window, 'scroll', this.checkRAF);
+	      this._resizeListener = Events.on(window, 'resize', debounced);
+	      this._orientationListener = Events.on(window, 'orientationchange', debounced);
+	    }
 	  },
 
-	  componentWillMount: function componentWillMount() {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this._scrollListener && this._scrollListener.off();
 	    this._resizeListener && this._resizeListener.off();
 	    this._orientationListener && this._orientationListener.off();
@@ -7591,17 +7669,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._linkNodes = ReactDOM.findDOMNode(this).querySelectorAll('a[href^="#"]');
 	    this._anchorNodes = [];
 
-	    Array.prototype.forEach.call(this._linkNodes, (function (link) {
+	    Array.prototype.forEach.call(this._linkNodes, function (link) {
 	      var anchor = document.getElementById(link.getAttribute('href').substr(1));
 
 	      if (anchor) {
 	        this._anchorNodes.push(anchor);
 	      }
-	    }).bind(this));
+	    }.bind(this));
 	  },
 
 	  checkIsInView: function checkIsInView() {
-	    if (this.isMounted) {
+	    if (this.isMounted()) {
 	      var inViewsNodes = [];
 
 	      this._anchorNodes.forEach(function (anchor) {
@@ -7625,9 +7703,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	          return;
 	        }
 
-	        Array.prototype.forEach.call(this._linkNodes, (function (link) {
+	        Array.prototype.forEach.call(this._linkNodes, function (link) {
 	          CSSCore.removeClass(link, this.props.activeClass);
-	        }).bind(this));
+	        }.bind(this));
 
 	        var targetLink = ReactDOM.findDOMNode(this).querySelector('a[href="#' + targetNode.id + '"]');
 
@@ -7647,6 +7725,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (e.target && e.target.nodeName === 'A') {
 	      var targetNode = document.getElementById(e.target.getAttribute('href').substr(1));
 
+	      // TODO: set scroll element if `container` prop set
 	      targetNode && this.smoothScroll(window, {
 	        position: domUtils.offset(targetNode).top - this.props.offsetTop || 0
 	      });
@@ -7669,7 +7748,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// TODO: improve in view logic
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7680,9 +7759,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Events = __webpack_require__(52);
-	var dom = __webpack_require__(62);
-	var rAF = __webpack_require__(70);
+	var Events = __webpack_require__(53);
+	var dom = __webpack_require__(63);
+	var rAF = __webpack_require__(71);
 	var scrollInProgress = false;
 
 	var SmoothScrollMixin = {
@@ -7707,7 +7786,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    // abort if already in progress or nothing to scroll
 	    if (scrollInProgress) {
-	      console.log(scrollInProgress);
+	      // console.log(scrollInProgress);
 	      return;
 	    }
 
@@ -7778,7 +7857,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = SmoothScrollMixin;
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7787,7 +7866,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
 	var ClassNameMixin = __webpack_require__(4);
-	var Dropdown = __webpack_require__(58);
+	var Dropdown = __webpack_require__(59);
 	var Icon = __webpack_require__(23);
 	var Input = __webpack_require__(21);
 
@@ -7840,8 +7919,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.setDropdownWidth();
 	  },
 
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    this.setState({
+	      value: nextProps.value
+	    });
+	  },
+
 	  setDropdownWidth: function setDropdownWidth() {
-	    if (this.isMounted) {
+	    if (this.isMounted()) {
 	      var toggleButton = ReactDOM.findDOMNode(this.refs.dropdown.refs.dropdownToggle);
 
 	      toggleButton && this.setState({ dropdownWidth: toggleButton.offsetWidth });
@@ -7917,7 +8002,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var filterText = this.state.filterText;
 	    var groupHeader;
 
-	    this.props.data.forEach((function (option, i) {
+	    this.props.data.forEach(function (option, i) {
 	      var checked = this.hasValue(option.value);
 	      var checkedClass = checked ? this.setClassNamespace('checked') : null;
 	      var checkedIcon = checked ? React.createElement(Icon, { icon: 'check' }) : null;
@@ -7955,7 +8040,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        ),
 	        checkedIcon
 	      ));
-	    }).bind(this));
+	    }.bind(this));
 
 	    var status = React.createElement(
 	      'span',
@@ -8025,7 +8110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Selected;
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8254,7 +8339,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  renderControlNav: function renderControlNav() {
 	    if (this.props.controlNav) {
 	      var isThumbnailNav = false;
-	      var children = React.Children.map(this.props.children, (function (child, i) {
+	      var children = React.Children.map(this.props.children, function (child, i) {
 	        var className = i === this.getActiveIndex() ? this.setClassNamespace('active') : null;
 
 	        if (!isThumbnailNav) {
@@ -8272,7 +8357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          thumb ? React.createElement('img', { className: className, src: thumb }) : React.createElement('a', { href: '#' + i, className: className }),
 	          React.createElement('i', null)
 	        );
-	      }).bind(this));
+	      }.bind(this));
 	      var controlClass = this.setClassNamespace('control-' + (isThumbnailNav ? 'thumbs' : 'paging'));
 
 	      return React.createElement(
@@ -8423,23 +8508,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Slider;
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var assign = __webpack_require__(31);
 	var classNames = __webpack_require__(3);
 	var ClassNameMixin = __webpack_require__(4);
-	var Events = __webpack_require__(52);
-	var debounce = __webpack_require__(71);
-	var domUtils = __webpack_require__(62);
+	var Events = __webpack_require__(53);
+	var debounce = __webpack_require__(72);
+	var domUtils = __webpack_require__(63);
+	var canUseDOM = __webpack_require__(40);
 
 	var Sticky = React.createClass({
 	  displayName: 'Sticky',
@@ -8471,21 +8557,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    this._init();
-	    this.checkPosition();
-	    var ownerWindow = domUtils.ownerWindow(ReactDOM.findDOMNode(this.refs.sticker));
+	    if (canUseDOM) {
+	      this._init();
+	      this.checkPosition();
+	      var ownerWindow = domUtils.ownerWindow(ReactDOM.findDOMNode(this.refs.sticker));
 
-	    this._scrollListener = Events.on(ownerWindow, 'scroll', debounce(this.checkPosition, 10).bind(this));
-	    this._resizeListener = Events.on(ownerWindow, 'resize', debounce(this.checkPosition, 50).bind(this));
+	      this._scrollListener = Events.on(ownerWindow, 'scroll', debounce(this.checkPosition, 10).bind(this));
+	      this._resizeListener = Events.on(ownerWindow, 'resize', debounce(this.checkPosition, 50).bind(this));
+	    }
 	  },
 
-	  componentWillMount: function componentWillMount() {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this._scrollListener && this._scrollListener.off();
 	    this._resizeListener && this._resizeListener.off();
 	  },
 
 	  _init: function _init() {
-	    if (this.state.initialized || !this.isMounted || !this.checkMedia()) {
+	    if (this.state.initialized || !this.isMounted() || !this.checkMedia()) {
 	      return;
 	    }
 
@@ -8616,7 +8704,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Sticky;
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8753,7 +8841,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Accordion;
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8794,7 +8882,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Divider;
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8888,7 +8976,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Footer;
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8975,13 +9063,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(this.props.className, classSet)
 	      }),
-	      this.props.data.map((function (item, i) {
+	      this.props.data.map(function (item, i) {
 	        return React.createElement(
 	          'li',
 	          { key: i },
 	          this.renderItem(item)
 	        );
-	      }).bind(this))
+	      }.bind(this))
 	    );
 	  }
 	});
@@ -8989,7 +9077,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Gallery;
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9000,10 +9088,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
 	var ClassNameMixin = __webpack_require__(4);
-	var SmoothScrollMixin = __webpack_require__(73);
-	var Events = __webpack_require__(52);
-	var debounce = __webpack_require__(71);
-	var dom = __webpack_require__(62);
+	var SmoothScrollMixin = __webpack_require__(74);
+	var Events = __webpack_require__(53);
+	var debounce = __webpack_require__(72);
+	var dom = __webpack_require__(63);
 	var CSSCore = __webpack_require__(16);
 	var Icon = __webpack_require__(23);
 
@@ -9101,7 +9189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = GoTop;
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9157,7 +9245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  renderNav: function renderNav(position) {
 	    var data = this.props.data;
-	    var renderItem = (function (item, i) {
+	    var renderItem = function (item, i) {
 	      var handleClick = item.onSelect || this.props.onSelect;
 
 	      return React.createElement(
@@ -9176,7 +9264,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          icon: item.icon
 	        }) : null
 	      );
-	    }).bind(this);
+	    }.bind(this);
 
 	    return data && data[position] ? React.createElement(
 	      'div',
@@ -9211,7 +9299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Header;
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9311,14 +9399,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  renderList: function renderList() {
 	    var position = this.props.thumbPosition;
-	    var orderChildren = (function (item, i) {
+	    var orderChildren = function (item, i) {
 	      var thumb = this.renderItemThumb(item, i);
 	      var main = this.renderItemMain(item, i);
 
 	      return position === 'right' || position === 'bottom-right' ? [main, thumb] : [thumb, main];
-	    }).bind(this);
+	    }.bind(this);
 
-	    return this.props.data.main.map((function (item, i) {
+	    return this.props.data.main.map(function (item, i) {
 	      return React.createElement(
 	        'li',
 	        {
@@ -9328,7 +9416,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        position === 'bottom-left' || position === 'bottom-right' ? this.renderThumbItemTitle(item) : null,
 	        orderChildren(item, i)
 	      );
-	    }).bind(this));
+	    }.bind(this));
 	  },
 
 	  renderItemMisc: function renderItemMisc(item, type) {
@@ -9443,7 +9531,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = ListNews;
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9526,9 +9614,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    e && e.preventDefault();
 	    this.setState({
 	      expanded: !this.state.expanded
-	    }, (function () {
+	    }, function () {
 	      !this.state.expanded && this.closeAll();
-	    }).bind(this));
+	    }.bind(this));
 	  },
 
 	  isDropdown: function isDropdown() {
@@ -9642,7 +9730,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Menu;
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9690,7 +9778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      React.createElement(
 	        'ul',
 	        { className: this.prefixClass('nav') },
-	        this.props.data.map((function (item, i) {
+	        this.props.data.map(function (item, i) {
 	          var Link = item.component || 'a';
 	          var LinkProps = item.props || {};
 
@@ -9716,7 +9804,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              ) : null
 	            )
 	          );
-	        }).bind(this))
+	        }.bind(this))
 	      )
 	    );
 	  }
@@ -9725,7 +9813,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Navbar;
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9795,7 +9883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Titlebar;
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9803,9 +9891,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = {
 	  ClassNameMixin: __webpack_require__(4),
 	  CollapseMixin: __webpack_require__(38),
-	  DimmerMixin: __webpack_require__(60),
-	  OverlayMixin: __webpack_require__(64),
-	  SmoothScrollMixin: __webpack_require__(73)
+	  DimmerMixin: __webpack_require__(61),
+	  OverlayMixin: __webpack_require__(65),
+	  SmoothScrollMixin: __webpack_require__(74)
 	};
 
 /***/ }

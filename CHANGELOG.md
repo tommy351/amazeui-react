@@ -1,6 +1,16 @@
 ## Change Log
 
-### v1.0.0 (2016/01/25 14:40 +08:00)
+### v1.1.0 (2016/04/05)
+
+- [0e60c18](https://github.com/amazeui/amazeui-react/commit/0e60c18641f3745625fcb69601e8ea80e9a3fd38) #68, 后端渲染支持，增加后端渲染示例 (@minwe)
+- [77c1adb](https://github.com/amazeui/amazeui-react/commit/77c1adb6fb8fb1f10f8c76b53800471b822c4ae2) #56, 处理 Modal 内容超出窗口高度时的显示问题（需配合 Amaze UI v2.6.0 使用） (@minwe)
+- [197974f](https://github.com/amazeui/amazeui-react/commit/197974f05fefbccd696c8fa7320bea15185e71d2) #83, Modal 添加默认显示的属性 (@zhang-z)
+- [166c918](https://github.com/amazeui/amazeui-react/commit/166c918ab076ad7db68a3f99aacc7d796445323d) #106, Selected 组件在 value 属性发生变化后没有正确渲染 (@minwe)
+- [807ce2e](https://github.com/amazeui/amazeui-react/commit/807ce2e2d262cc50a2c4b06ce0efa7a572b295a4) 使用 `postcss-loader` 替换 `autoprefixer-loader` (@minwe)
+- [1aba0a4](https://github.com/amazeui/amazeui-react/commit/1aba0a4d7be1d47de4469853a7c686bb0dedc968) [fixed] remove scroll event listener when unmount (@minwe)
+- [8291b25](https://github.com/amazeui/amazeui-react/commit/8291b251547d5f3f6b1e2bda3de9f53fbd4f3442) 升级文档及示例中 react-router 至 v2.0.0 (@minwe)
+
+### v1.0.1 (2016/01/25 14:40 +08:00)
 
 - [df31b13](https://github.com/amazeui/amazeui-react/commit/df31b13fb0bcbff6ab481152b698151d9f6407cc) [fixed] Selected method reference error, resolved #93
 
