@@ -20,11 +20,8 @@ var entries = fs.readdirSync(__dirname).reduce(function(entries, dir) {
   return entries;
 }, {});
 
-console.log(__dirname);
-
 module.exports = {
-  debug: true,
-  devtool: '#cheap-eval-source-map',
+  devtool: 'eval',
   // context: path.join(__dirname, 'app', 'js'),
 
   entry: entries,
@@ -76,6 +73,6 @@ module.exports = {
       }
     ]
   },
-  
+
   postcss: [autoprefixer({browsers: ['> 1%', 'last 2 versions']})]
 };

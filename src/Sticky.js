@@ -8,6 +8,7 @@ var ClassNameMixin = require('./mixins/ClassNameMixin');
 var Events = require('./utils/Events');
 var debounce = require('./utils/debounce');
 var domUtils = require('./utils/domUtils');
+var canUseDOM = require('./utils/canUseDOM');
 
 var Sticky = React.createClass({
   mixins: [ClassNameMixin],
@@ -43,15 +44,16 @@ var Sticky = React.createClass({
   },
 
   componentDidMount: function() {
-    this._init();
-    this.checkPosition();
-    var ownerWindow = domUtils.ownerWindow(ReactDOM.
-      findDOMNode(this.refs.sticker));
+    if (canUseDOM) {
+      this._init();
+      this.checkPosition();
+      var ownerWindow = domUtils.ownerWindow(ReactDOM.findDOMNode(this.refs.sticker));
 
-    this._scrollListener = Events.on(ownerWindow, 'scroll',
-      debounce(this.checkPosition, 10).bind(this));
-    this._resizeListener = Events.on(ownerWindow, 'resize',
-      debounce(this.checkPosition, 50).bind(this));
+      this._scrollListener = Events.on(ownerWindow, 'scroll',
+        debounce(this.checkPosition, 10).bind(this));
+      this._resizeListener = Events.on(ownerWindow, 'resize',
+        debounce(this.checkPosition, 50).bind(this));
+    }
   },
 
   componentWillUnmount: function() {

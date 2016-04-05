@@ -6,6 +6,7 @@
  *
  * @desc determine if any part of the element is visible in the viewport
  * @reference https://github.com/Josh-Miller/isInViewport
+ * @see http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
  * @param {HTMLElement} element
  * @returns {boolean}
  */
@@ -31,3 +32,5 @@ function isInViewport(element) {
 }
 
 module.exports = isInViewport;
+
+// TODO: 考虑滚动条不在窗口上的情形

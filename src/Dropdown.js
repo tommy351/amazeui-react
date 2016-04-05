@@ -11,6 +11,7 @@ var Icon = require('./Icon');
 var Events = require('./utils/Events');
 var isNodeInTree = require('./utils/isNodeInTree');
 var createChainedFunction = require('./utils/createChainedFunction');
+var canUseDOM = require('./utils/canUseDOM');
 
 var Dropdown = React.createClass({
   mixins: [ClassNameMixin],
@@ -89,13 +90,17 @@ var Dropdown = React.createClass({
   },
 
   bindOuterHandlers: function() {
-    Events.on(document, 'click', this.handleOuterClick);
-    Events.on(document, 'keyup', this.handleKeyup);
+    if (canUseDOM) {
+      Events.on(document, 'click', this.handleOuterClick);
+      Events.on(document, 'keyup', this.handleKeyup);
+    }
   },
 
   unbindOuterHandlers: function() {
-    Events.off(document, 'click', this.handleOuterClick);
-    Events.off(document, 'keyup', this.handleKeyup);
+    if (canUseDOM) {
+      Events.off(document, 'click', this.handleOuterClick);
+      Events.off(document, 'keyup', this.handleKeyup);
+    }
   },
 
   handleDropdownClick: function(e) {

@@ -13,6 +13,7 @@ var debounce = require('./utils/debounce');
 var CSSCore = require('./utils/CSSCore');
 var domUtils = require('./utils/domUtils');
 var createChainedFunction = require('./utils/createChainedFunction');
+var canUseDOM = require('./utils/canUseDOM');
 var constants = require('./constants');
 
 var ScrollSpyNav = React.createClass({
@@ -20,7 +21,8 @@ var ScrollSpyNav = React.createClass({
 
   propTypes: {
     activeClass: React.PropTypes.string,
-    offsetTop: React.PropTypes.number
+    offsetTop: React.PropTypes.number,
+    container: React.PropTypes.any
   },
 
   getDefaultProps: function() {
@@ -30,17 +32,19 @@ var ScrollSpyNav = React.createClass({
   },
 
   componentDidMount: function() {
-    this._init();
-    this.checkRAF();
+    if (canUseDOM) {
+      this._init();
+      this.checkRAF();
 
-    var debounced = debounce(this.checkRAF, 100).bind(this);
+      var debounced = debounce(this.checkRAF, 100).bind(this);
 
-    this._scrollListener = Events.on(window, 'scroll', this.checkRAF);
-    this._resizeListener = Events.on(window, 'resize', debounced);
-    this._orientationListener = Events.on(window, 'orientationchange',
-      debounced);
+      this._scrollListener = Events.on(window, 'scroll', this.checkRAF);
+      this._resizeListener = Events.on(window, 'resize', debounced);
+      this._orientationListener = Events.on(window, 'orientationchange',
+        debounced);
+    }
   },
-  
+
   componentWillUnmount: function() {
     this._scrollListener && this._scrollListener.off();
     this._resizeListener && this._resizeListener.off();
@@ -109,6 +113,7 @@ var ScrollSpyNav = React.createClass({
       var targetNode = document.getElementById(e.target.getAttribute('href').
         substr(1));
 
+      // TODO: set scroll element if `container` prop set
       targetNode && this.smoothScroll(window, {
         position: domUtils.offset(targetNode).top - this.props.offsetTop || 0
       });

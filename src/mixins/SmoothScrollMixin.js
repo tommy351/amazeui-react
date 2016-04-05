@@ -34,7 +34,7 @@ var SmoothScrollMixin = {
 
     // abort if already in progress or nothing to scroll
     if (scrollInProgress) {
-      console.log(scrollInProgress);
+      // console.log(scrollInProgress);
       return;
     }
 

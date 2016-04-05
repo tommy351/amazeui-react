@@ -33,6 +33,7 @@
   "homepage": "https://github.com/amazeui/amazeui-react",
   "dependencies": {
     "classnames": "^2.2.3",
+    "express-handlebars": "^3.0.0",
     "fecha": "^0.2.2",
     "object-assign": "^4.0.1",
     "object.omit": "^2.0.0",
@@ -41,7 +42,7 @@
   },
   "devDependencies": {
     "amazeui": "^2.6.0",
-    "autoprefixer": "^6.3.5",
+    "autoprefixer": "^6.3.6",
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-object-rest-spread": "^6.5.0",
@@ -54,7 +55,7 @@
     "codemirror": "^5.13.2",
     "css-loader": "^0.23.1",
     "del": "^2.2.0",
-    "eslint": "^2.5.3",
+    "eslint": "^2.7.0",
     "eslint-plugin-react": "^4.2.3",
     "file-loader": "^0.8.5",
     "gulp": "^3.9.1",

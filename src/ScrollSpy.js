@@ -11,6 +11,8 @@ var Events = require('./utils/Events');
 var TransitionEvents = require('./utils/TransitionEvents');
 var requestAnimationFrame = require('./utils/requestAnimationFrame');
 var debounce = require('./utils/debounce');
+var canUseDOM = require('./utils/canUseDOM');
+var domUtils = require('./utils/domUtils');
 
 var ScrollSpy = React.createClass({
   mixins: [ClassNameMixin],
@@ -18,7 +20,9 @@ var ScrollSpy = React.createClass({
   propTypes: {
     animation: React.PropTypes.string,
     delay: React.PropTypes.number,
-    repeat: React.PropTypes.bool
+    repeat: React.PropTypes.bool,
+    // container which has scrollbar
+    container: React.PropTypes.any
   },
 
   getDefaultProps: function() {
@@ -36,14 +40,19 @@ var ScrollSpy = React.createClass({
   },
 
   componentDidMount: function() {
-    this.checkRAF();
+    if (canUseDOM) {
+      this.checkRAF();
 
-    var debounced = debounce(this.checkRAF, 60).bind(this);
+      var node = ReactDOM.findDOMNode(this);
+      var doc = domUtils.ownerDocument(node);
+      // var scrollContainer = ReactDOM.findDOMNode(this.props.container || doc.body);
+      var debounced = debounce(this.checkRAF, 100).bind(this);
 
-    this._scrollListener = Events.on(window, 'scroll', this.checkRAF);
-    this._resizeListener = Events.on(window, 'resize', debounced);
-    this._orientationListener = Events.on(window, 'orientationchange',
-      debounced);
+      this._scrollListener = Events.on(doc, 'scroll', debounced);
+      this._resizeListener = Events.on(window, 'resize', debounced);
+      this._orientationListener = Events.on(window, 'orientationchange',
+        debounced);
+    }
   },
 
   componentWillUnmount: function() {
@@ -61,7 +70,7 @@ var ScrollSpy = React.createClass({
     if (!TransitionEvents.support.animationend) {
       return;
     }
-    
+
     if (this.isMounted()) {
       var isInView = isInViewport(ReactDOM.findDOMNode(this));
 
