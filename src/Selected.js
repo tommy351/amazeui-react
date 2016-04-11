@@ -36,6 +36,7 @@ var Selected = React.createClass({
       classPrefix: 'selected',
       placeholder: '点击选择...',
       onChange: function() {},
+      value: '',
       delimiter: ',',
       optionFilter: function(filterText, option) {
         return (option.label.toLowerCase().indexOf(filterText) > -1);
