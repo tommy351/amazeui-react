@@ -34,13 +34,13 @@ var dateUtils = {
   },
 
   getLocale: function(locale) {
-    if (!locale) {
-      locale = navigator.language && navigator.language.split('-');
+    if (!locale && navigator && navigator.language) {
+      locale = navigator.language.split('-');
       locale[1] = locale[1].toUpperCase();
       locale = locale.join('_');
     }
 
-    return locales[locale] || locales['en_US'];
+    return locales[locale] || locales['zh_CN'];
   }
 };
 
