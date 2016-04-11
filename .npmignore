@@ -7,10 +7,11 @@
 /examples
 CONTRIBUTING.md
 .travis.yml
-gulpfile.js
 .gitignore
 .eslintrc
 .editorconfig
+.npmignore
+gulpfile*.js
 /bower.json
 preprocessor.js
 /webpack.*.js
