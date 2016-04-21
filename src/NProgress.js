@@ -57,12 +57,16 @@ var NProgress = React.createClass({
 
   start: function() {
     var _this = this;
-
-    !this.state.status && this.set(0);
+    var n = this.state.status;  // this.set() is not sync to affected this.state.status
+    
+    if (!this.state.status) {
+      this.set(this.props.minimum);
+      n = this.props.minimum;
+    }
 
     var work = function() {
       setTimeout(function() {
-        if (!_this.state.status || _this.state.status === 1) {
+        if (!n || n === 1) {
           return;
         }
 
