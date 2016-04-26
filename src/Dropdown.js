@@ -126,7 +126,7 @@ var Dropdown = React.createClass({
         return React.cloneElement(
           child,
           assign({}, child.props, {
-            key: child.props.key || `dropdownItem-${index}`,
+            key: `dropdownItem-${index}`,
             onClick: handleClick
           })
         )

@@ -95,7 +95,7 @@ var Tabs = React.createClass({
     var activeKey = this.state.activeKey;
 
     return React.Children.map(this.props.children, function(child, index) {
-      var key = child.props.key || child.props.eventKey || index;
+      var key = child.props.eventKey || index;
       var disabled = child.props.disabled;
 
       return (
@@ -120,7 +120,7 @@ var Tabs = React.createClass({
       return (
         <Tabs.Item
           active={child.props.eventKey === activeKey}
-          key={child.props.key ? child.props.key : index}
+          key={index}
         >
           {child.props.children}
         </Tabs.Item>
