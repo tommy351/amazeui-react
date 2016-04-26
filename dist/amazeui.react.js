@@ -1,4 +1,4 @@
-/*! Amaze UI React v1.1.0 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-04-05T15:41:26+0800 */
+/*! Amaze UI React v1.1.1 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-04-26T10:56:59+0800 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = {
-	  VERSION: '1.1.0',
+	  VERSION: '1.1.1',
 
 	  // layout
 	  Grid: __webpack_require__(2),
@@ -2664,7 +2664,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var activeKey = this.state.activeKey;
 
 	    return React.Children.map(this.props.children, function (child, index) {
-	      var key = child.props.key || child.props.eventKey || index;
+	      var key = child.props.eventKey || index;
 	      var disabled = child.props.disabled;
 
 	      return React.createElement(
@@ -2690,7 +2690,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        Tabs.Item,
 	        {
 	          active: child.props.eventKey === activeKey,
-	          key: child.props.key ? child.props.key : index
+	          key: index
 	        },
 	        child.props.children
 	      );
@@ -5552,13 +5552,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  getLocale: function getLocale(locale) {
-	    if (!locale) {
-	      locale = navigator.language && navigator.language.split('-');
+	    if (!locale && navigator && navigator.language) {
+	      locale = navigator.language.split('-');
 	      locale[1] = locale[1].toUpperCase();
 	      locale = locale.join('_');
 	    }
 
-	    return locales[locale] || locales['en_US'];
+	    return locales[locale] || locales['zh_CN'];
 	  }
 	};
 
@@ -5633,7 +5633,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // set Minutes
 	  setSelectedMinute: function setSelectedMinute(event) {
 	    var viewDate = this.state.viewDate;
-	    var minute = parseInt(event.target.innerHTML.substr(3));
+	    var minute = parseInt(event.target.innerHTML.split(':')[1]);
 
 	    viewDate.setMinutes(minute);
 	    this.setTime(viewDate);
@@ -5727,7 +5727,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      selectedDate: this.state.selectedDate,
 	      addHour: this.addHour,
 	      subtractHour: this.subtractHour,
-	      showTime: time });
+	      showTime: time
+	    });
 	  },
 
 	  renderMinutes: function renderMinutes() {
@@ -5739,7 +5740,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      selectedDate: this.state.selectedDate,
 	      addMinute: this.addMinute,
 	      subtractMinute: this.subtractMinute,
-	      showTime: time });
+	      showTime: time
+	    });
 	  },
 
 	  render: function render() {
@@ -5775,7 +5777,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        add: this.addMinute,
 	        subtract: this.subtractMinute,
 	        showFunc: this.props.showDate,
-	        showText: 'today' }),
+	        showText: 'today'
+	      }),
 	      this.renderHours(),
 	      this.renderMinutes()
 	    );
@@ -5817,7 +5820,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        {
 	          className: classNames(classes),
 	          onClick: this.props.setSelectedHour,
-	          key: i },
+	          key: i
+	        },
 	        i < 10 ? '0' + i + ':00' : i + ':00'
 	      ));
 
@@ -5834,7 +5838,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      subtract: this.props.subtractHour,
 	      add: this.props.addHour,
 	      showText: this.props.showTime,
-	      body: this.renderHour() });
+	      body: this.renderHour()
+	    });
 	  }
 	});
 
@@ -5894,7 +5899,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      subtract: this.props.subtractMinute,
 	      add: this.props.addMinute,
 	      showText: this.props.showTime,
-	      body: this.renderMinute() });
+	      body: this.renderMinute()
+	    });
 	  }
 	});
 
@@ -6102,7 +6108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }) : onClick;
 
 	        return React.cloneElement(child, assign({}, child.props, {
-	          key: child.props.key || 'dropdownItem-' + index,
+	          key: 'dropdownItem-' + index,
 	          onClick: handleClick
 	        }));
 	      }
@@ -7268,12 +7274,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  start: function start() {
 	    var _this = this;
+	    var n = this.state.status; // this.set() is not sync to affected this.state.status
 
-	    !this.state.status && this.set(0);
+	    if (!this.state.status) {
+	      this.set(this.props.minimum);
+	      n = this.props.minimum;
+	    }
 
 	    var work = function work() {
 	      setTimeout(function () {
-	        if (!_this.state.status || _this.state.status === 1) {
+	        if (!n || n === 1) {
 	          return;
 	        }
 
@@ -7900,6 +7910,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      classPrefix: 'selected',
 	      placeholder: '点击选择...',
 	      onChange: function onChange() {},
+	      value: '',
 	      delimiter: ',',
 	      optionFilter: function optionFilter(filterText, option) {
 	        return option.label.toLowerCase().indexOf(filterText) > -1;
