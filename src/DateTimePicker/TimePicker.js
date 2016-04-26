@@ -61,7 +61,7 @@ var TimePicker = React.createClass({
   // set Minutes
   setSelectedMinute: function(event) {
     var viewDate = this.state.viewDate;
-    var minute = parseInt(event.target.innerHTML.substr(3));
+    var minute = parseInt(event.target.innerHTML.split(':')[1]);
 
     viewDate.setMinutes(minute);
     this.setTime(viewDate);
@@ -156,7 +156,8 @@ var TimePicker = React.createClass({
         selectedDate={this.state.selectedDate}
         addHour={this.addHour}
         subtractHour={this.subtractHour}
-        showTime={time} />
+        showTime={time}
+      />
     );
   },
 
@@ -170,7 +171,8 @@ var TimePicker = React.createClass({
         selectedDate={this.state.selectedDate}
         addMinute={this.addMinute}
         subtractMinute={this.subtractMinute}
-        showTime={time} />
+        showTime={time}
+      />
     );
   },
 
@@ -195,7 +197,8 @@ var TimePicker = React.createClass({
           add={this.addMinute}
           subtract={this.subtractMinute}
           showFunc={this.props.showDate}
-          showText="today" />
+          showText="today"
+        />
         {this.renderHours()}
         {this.renderMinutes()}
       </div>
@@ -235,7 +238,8 @@ var HoursPicker = React.createClass({
         <span
           className={classNames(classes)}
           onClick={this.props.setSelectedHour}
-          key={i}>
+          key={i}
+        >
           {i < 10 ? '0' + i + ':00' : i + ':00'}
         </span>
       );
@@ -254,7 +258,8 @@ var HoursPicker = React.createClass({
         subtract={this.props.subtractHour}
         add={this.props.addHour}
         showText={this.props.showTime}
-        body={this.renderHour()} />
+        body={this.renderHour()}
+      />
     );
   }
 });
@@ -294,7 +299,7 @@ var MinutesPicker = React.createClass({
             className={classNames(classes)}
             onClick={this.props.setSelectedMinute}
             key={i}
-            >
+          >
           {i < 10 ? hour + ':0' + i : hour + ':' + i}
         </span>
         );
@@ -314,7 +319,8 @@ var MinutesPicker = React.createClass({
         subtract={this.props.subtractMinute}
         add={this.props.addMinute}
         showText={this.props.showTime}
-        body={this.renderMinute()} />
+        body={this.renderMinute()}
+      />
     );
   }
 });
@@ -339,19 +345,19 @@ var SubPicker = React.createClass({
           <thead>
           <tr className={prefixClass('header')}>
             <th className={prefixClass('prev')} onClick={this.props.subtract}>
-              <i className={prefixClass('prev-icon')}></i>
+              <i className={prefixClass('prev-icon')} />
             </th>
             <th
               className={prefixClass('switch')}
               colSpan="5"
               onClick={this.props.showFunc}
-              >
+            >
               <div className={this.prefixClass('select')}>
                 {this.props.showText}
               </div>
             </th>
             <th className={prefixClass('next')} onClick={this.props.add}>
-              <i className={prefixClass('next-icon')}></i>
+              <i className={prefixClass('next-icon')} />
             </th>
           </tr>
           </thead>
