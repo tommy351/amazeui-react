@@ -50,9 +50,8 @@
     "url": "git://github.com/amazeui/amazeui-react.git"
   },
   "dependencies": {
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "amazeui": "^2.5.0"
+    "react": "^15.0.2",
+    "amazeui": "^2.6.2"
   },
   "license": "MIT"
 }

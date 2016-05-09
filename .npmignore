@@ -6,6 +6,7 @@
 /src
 /examples
 CONTRIBUTING.md
+ISSUE_TEMPLATE.md
 .travis.yml
 .gitignore
 .eslintrc
