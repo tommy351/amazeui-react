@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.1.2 (2016/07/04 17:24 +08:00)
+
+- [43bed8b](https://github.com/amazeui/amazeui-react/commit/43bed8b4e6e859510a4cfea53ba3a27102cb73d4) #119 修复 DateTimeInput 输入日期无法解析时报错问题
+- [de93224](https://github.com/amazeui/amazeui-react/commit/de9322488faf79a6a67761f24ac31a77920827ef) 修复 CSSTransitionGroup 全局变量引用错误
+- [3eb8392](https://github.com/amazeui/amazeui-react/commit/3eb83926cb806a2216760b63308d4ed92cef6197) #117 修复 Bower 依赖错误
+
 ### v1.1.1 (2016/04/26 11:00 +08:00)
 - [728cc18](https://github.com/amazeui/amazeui-react/commit/728cc18a214cc81d4117058551844d5d6188cef2) #115 修复 TimePicker 小时小于 `10` 时，分钟截取错误问题 (@minwe)
 - [dd84d32](https://github.com/amazeui/amazeui-react/commit/dd84d328f7e89cf260c6f356bda578a933e75269) #112 解决 React 15.x 中读取 `key` 显示警告问题 (@minwe)
