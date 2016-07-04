@@ -21,8 +21,7 @@
     "node"
   ],
   "main": [
-    "dist/amazeui.react.js",
-    "dist/amazeui.react.min.js"
+    "dist/amazeui.react.js"
   ],
   "ignore": [
     "/.*",
@@ -32,7 +31,13 @@
     "node_modules",
     "src",
     "dist/docs",
-    "lib"
+    "lib",
+    "examples",
+    "CONTRIBUTING.md",
+    "gulpfile.babel.js",
+    "ISSUE_TEMPLATE.md",
+    "webpack.docs.js",
+    "webpack.build.js"
   ],
   "authors": [
     {
@@ -51,7 +56,7 @@
   },
   "dependencies": {
     "react": "^15.0.2",
-    "amazeui": "^2.6.2"
+    "amazeui": "^2.7.0"
   },
   "license": "MIT"
 }
