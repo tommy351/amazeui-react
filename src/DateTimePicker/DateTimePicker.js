@@ -53,12 +53,17 @@ var DateTimePicker = React.createClass({
       showTimePicker = true;
     }
 
+    // `fecha.parse` return `false` when passed invalid parameter
+    // fixes: https://github.com/amazeui/amazeui-react/issues/119
+    var date = fecha.parse(this.props.dateTime, this.props.format);
+    !date && (date = new Date());
+
     return {
       showTimePicker: showTimePicker,
       showDatePicker: this.props.showDatePicker,
       caretDisplayed: this.props.caretDisplayed,
       showToggle: showToggle,
-      date: fecha.parse(this.props.dateTime, this.props.format),
+      date: date,
       toggleDisplay: {
         toggleTime: {
           display: 'block'

@@ -461,7 +461,8 @@ var DaysPicker = React.createClass({
             <th
               className={prefixClass('switch')}
               colSpan="5"
-              onClick={this.props.showMonths}>
+              onClick={this.props.showMonths}
+            >
               <div className={this.prefixClass('select')}>
                 {locale.monthsShort[viewDate.getMonth()]}
                 {viewDate.getFullYear()}
