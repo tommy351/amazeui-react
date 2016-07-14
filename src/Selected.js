@@ -39,7 +39,7 @@ var Selected = React.createClass({
       value: '',
       delimiter: ',',
       optionFilter: function(filterText, option) {
-        return (option.label.toLowerCase().indexOf(filterText) > -1);
+        return (option.label.toLowerCase().indexOf(filterText.toLowerCase()) > -1);
       }
     };
   },
