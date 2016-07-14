@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Table = React.createClass({
@@ -26,6 +27,7 @@ var Table = React.createClass({
   render: function() {
     var classSet = this.getClassSet();
     var responsive = this.props.responsive;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.prefixClass('bordered')] = this.props.bordered;
     classSet[this.prefixClass('compact')] = this.props.compact;
@@ -38,7 +40,7 @@ var Table = React.createClass({
 
     var table = (
       <table
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, classSet)}
       >
         {this.props.children}

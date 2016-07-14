@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var TransitionEvents = require('./utils/TransitionEvents');
 
@@ -12,6 +13,7 @@ var Slider = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     theme: React.PropTypes.oneOf(['default', 'a1', 'a2', 'a3', 'a4', 'a5',
       'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3']),
     directionNav: React.PropTypes.bool,   // prev/next icon
@@ -286,13 +288,14 @@ var Slider = React.createClass({
       position: 'relative',
       width: '100%'
     };
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // React version slider style
     classSet[this.prefixClass('slide')] = true;
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         className={classNames(classSet, this.props.className)}
         onMouseOver={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}

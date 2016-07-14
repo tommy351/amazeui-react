@@ -2,12 +2,15 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var List = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
+    border: React.PropTypes.bool,
     bordered: React.PropTypes.bool,
     striped: React.PropTypes.bool,
     static: React.PropTypes.bool,
@@ -26,6 +29,7 @@ var List = React.createClass({
     var Component = this.props.component;
     var props = this.props;
     var prefixClass = this.prefixClass;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // am-list-border
     classes[prefixClass('border')] = props.border || props.bordered;
@@ -38,7 +42,7 @@ var List = React.createClass({
 
     return (
       <Component
-        {...props}
+        {...restProps}
         className={classNames(classes, props.className)}
       >
         {props.children}

@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Col = React.createClass({
@@ -37,6 +38,7 @@ var Col = React.createClass({
     var classSet = {};
     var props = this.props;
     var prefixClass = this.prefixClass;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     ['sm', 'md', 'lg'].forEach(function(size) {
       var prop = size;
@@ -49,16 +51,19 @@ var Col = React.createClass({
       if (props[prop] >= 0) {
         classSet[prefixClass(size + '-offset-') + props[prop]] = true;
       }
+      restProps = omit(restProps, prop);
 
       prop = size + 'Push';
       if (props[prop] >= 0) {
         classSet[prefixClass(size + '-push-') + props[prop]] = true;
       }
+      restProps = omit(restProps, prop);
 
       prop = size + 'Pull';
       if (props[prop] >= 0) {
         classSet[prefixClass(size + '-pull-') + props[prop]] = true;
       }
+      restProps = omit(restProps, prop);
 
       // `xxResetOrder` prop
       // - smResetOrder
@@ -67,6 +72,7 @@ var Col = React.createClass({
       if (props[size + 'ResetOrder']) {
         classSet[prefixClass(size + '-reset-order')] = true;
       }
+      restProps = omit(restProps, size + 'ResetOrder');
 
       // `xxCentered` prop
       // - smCentered
@@ -75,6 +81,7 @@ var Col = React.createClass({
       if (props[size + 'Centered']) {
         classSet[prefixClass(size + '-centered')] = true;
       }
+      restProps = omit(restProps, size + 'Centered');
 
       // `xxUnCentered` prop
       // - smUnCentered
@@ -83,6 +90,7 @@ var Col = React.createClass({
       if (props[size + 'UnCentered']) {
         classSet[prefixClass(size + '-uncentered')] = true;
       }
+      restProps = omit(restProps, size + 'UnCentered');
     });
 
     // `end` prop - end column
@@ -90,7 +98,7 @@ var Col = React.createClass({
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, classSet)}
       >
         {this.props.children}

@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var omit = require('object.omit');
 var CSSCore = require('./utils/CSSCore');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var ButtonGroup = require('./ButtonGroup');
@@ -51,9 +52,11 @@ var ButtonCheck = React.createClass({
   },
 
   render: function() {
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+
     return (
       <ButtonGroup
-        {...this.props}
+        {...restProps}
         onClick={this.handleClick}
         className={this.setClassNamespace('btn-group-check')}
       >

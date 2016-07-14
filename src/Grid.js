@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Grid = React.createClass({
@@ -25,6 +26,7 @@ var Grid = React.createClass({
     var Component = this.props.component;
     var classSet = this.getClassSet();
     var props = this.props;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // .am-g-fixed
     classSet[this.prefixClass('fixed')] = props.fixed;
@@ -34,7 +36,7 @@ var Grid = React.createClass({
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, classSet)}
       >
         {this.props.children}

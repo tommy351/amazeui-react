@@ -10,9 +10,13 @@ var ScrollTo = React.createClass({
   },
 
   render: function() {
+    var restProps = Object.assign({}, this.props);
+    delete restProps.position;
+    delete restProps.speed;
+
     return (
       <Button
-        {...this.props}
+        {...restProps}
         onClick={this.handleClick}>
         {this.props.children}
       </Button>

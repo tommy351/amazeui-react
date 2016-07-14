@@ -3,6 +3,7 @@
 var React = require('react');
 var classNames = require('classnames');
 var assign = require('object-assign');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var ListItem = React.createClass({
@@ -25,6 +26,7 @@ var ListItem = React.createClass({
   render: function() {
     var classes = {};
     var Component = this.props.component;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // set .am-text-truncate
     classes['am-text-truncate'] = this.props.truncate;
@@ -36,7 +38,7 @@ var ListItem = React.createClass({
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classNames(classes, this.props.className)}
       >
         {this.props.children}
@@ -49,10 +51,11 @@ var ListItem = React.createClass({
     var Component = props.component;
     var truncate = props.truncate ? 'am-text-truncate' : '';
     var linkComponent = this.props.linkComponent || 'a';
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <Component
-        {...props}
+        {...restProps}
         className={classNames(classes, this.props.className)}
       >
         {

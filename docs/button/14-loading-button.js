@@ -26,10 +26,13 @@ var LoadingButton = React.createClass({
 
   render: function() {
     var isLoading = this.state.isLoading;
+    var restProps = Object.assign({}, this.props);
+    delete restProps.clickHandler;
+    delete restProps.loadingText;
 
     return (
       <Button
-        {...this.props}
+        {...restProps}
         disabled={isLoading}
         onClick={!isLoading ? this.handleClick : null}>
         {isLoading ? this.props.loadingText : this.props.children}

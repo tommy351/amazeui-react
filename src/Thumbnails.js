@@ -21,11 +21,11 @@ var Thumbnails = React.createClass({
 
   render: function() {
     var classes = classNames(this.getClassSet(), this.props.className);
-    var props = omit(this.props, 'classPrefix');
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <AvgGrid
-        {...props}
+        {...restProps}
         className={classes}
       >
         {React.Children.map(this.props.children, function(child, i) {

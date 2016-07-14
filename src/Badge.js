@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Badge = React.createClass({
@@ -11,7 +12,9 @@ var Badge = React.createClass({
     component: React.PropTypes.node,
     href: React.PropTypes.string,
     round: React.PropTypes.bool,
-    radius: React.PropTypes.bool
+    radius: React.PropTypes.bool,
+    amStyle: React.PropTypes.string,
+    classPrefix: React.PropTypes.string
   },
 
   getDefaultProps: function () {
@@ -24,10 +27,11 @@ var Badge = React.createClass({
   renderAnchor: function (classSet) {
     var Component = this.props.component || 'a';
     var href = this.props.href || '#';
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         href={href}
         className={classNames(classSet, this.props.className)}
         role="badge"
@@ -41,6 +45,7 @@ var Badge = React.createClass({
     var classSet = this.getClassSet();
     var Component = this.props.component;
     var renderAnchor = this.props.href;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     if (renderAnchor) {
       return this.renderAnchor(classSet);
@@ -48,7 +53,7 @@ var Badge = React.createClass({
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classNames(classSet, this.props.className)}
       >
         {this.props.children}

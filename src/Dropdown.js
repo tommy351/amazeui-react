@@ -4,6 +4,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var assign = require('object-assign');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var constants = require('./constants');
 var Button = require('./Button');
@@ -155,7 +156,6 @@ var Dropdown = React.createClass({
 
     return (
       <Component
-        btnStyle={null}
         className={classNames(this.props.className, classSet)}
       >
         <Button
@@ -197,11 +197,13 @@ Dropdown.Item = React.createClass({
     header: React.PropTypes.bool,
     divider: React.PropTypes.bool,
     linkComponent: React.PropTypes.any,
-    linkProps: React.PropTypes.object
+    linkProps: React.PropTypes.object,
+    active: React.PropTypes.bool
   },
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
     var children = null;
 
     classSet[this.setClassNamespace('dropdown-header')] = this.props.header;
@@ -226,7 +228,7 @@ Dropdown.Item = React.createClass({
 
     return (
       <li
-        {...this.props}
+        {...restProps}
         title={null}
         href={null}
         className={classNames(this.props.className, classSet)}

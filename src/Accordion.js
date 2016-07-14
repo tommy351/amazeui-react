@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var CollapseMixin = require('./mixins/CollapseMixin');
 
@@ -10,6 +11,7 @@ var Accordion = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     theme: React.PropTypes.oneOf(['default', 'basic', 'gapped']),
     data: React.PropTypes.array,
     activeKey: React.PropTypes.any,
@@ -43,12 +45,13 @@ var Accordion = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.prefixClass(this.props.theme)] = true;
 
     return (
       <section
-        {...this.props}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
         className={classNames(classSet, this.props.className)}
       >

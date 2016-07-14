@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Footer = React.createClass({
@@ -31,10 +32,11 @@ var Footer = React.createClass({
   render: function() {
     var classSet = this.getClassSet();
     var MobileTag = this.props.mobileLink ? 'a' : 'span';
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <footer
-        {...this.props}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
         className={classNames(this.props.className, classSet)}
       >

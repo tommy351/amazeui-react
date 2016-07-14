@@ -27,13 +27,12 @@ var Navbar = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
-    var props = omit(this.props, 'data');
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <div
-        {...props}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
-        cf
         className={classNames(this.props.className, classSet)}
       >
         <ul className={this.prefixClass('nav')}>

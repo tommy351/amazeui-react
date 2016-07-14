@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var CollapseMixin = require('./mixins/CollapseMixin');
 
@@ -14,6 +15,7 @@ var Panel = React.createClass({
     header: React.PropTypes.node,
     footer: React.PropTypes.node,
     id: React.PropTypes.string,
+    classPrefix: React.PropTypes.string,
     amStyle: React.PropTypes.string,
     onSelect: React.PropTypes.func,
     eventKey: React.PropTypes.any
@@ -169,10 +171,11 @@ var Panel = React.createClass({
   render: function() {
     var classes = this.getClassSet();
     var collapsible = this.props.collapsible;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         id={collapsible ? null : this.props.id}
         className={classNames(classes, this.props.className)}
       >

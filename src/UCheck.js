@@ -6,6 +6,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var Input = require('./Input');
 var Icon = require('./Icon');
@@ -31,6 +32,7 @@ var UCheck = React.createClass({
 
   render: function() {
     var classSet = {};
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.setClassNamespace(this.props.type)] = !this.props.inline;
     classSet[this.setClassNamespace(this.props.type + '-inline')] =
@@ -43,7 +45,7 @@ var UCheck = React.createClass({
     return (
       <label className={classNames(this.props.className, classSet)}>
         <Input
-          {...this.props}
+          {...restProps}
           ref="field"
           className={this.setClassNamespace('ucheck-checkbox')}
           standalone

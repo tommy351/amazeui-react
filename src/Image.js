@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var constants = require('./constants');
 
@@ -23,6 +24,7 @@ var Image = React.createClass({
 
   render: function() {
     var classSet = {};
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[constants.CLASSES.radius] = this.props.radius;
     classSet[constants.CLASSES.round] = this.props.round;
@@ -32,7 +34,7 @@ var Image = React.createClass({
 
     return (
       <img
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, classSet)}
       />
     );

@@ -2,13 +2,16 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Icon = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     amStyle: React.PropTypes.string,
+    amSize: React.PropTypes.string,
     fw: React.PropTypes.bool,
     spin: React.PropTypes.bool,
     button: React.PropTypes.bool,
@@ -31,6 +34,7 @@ var Icon = React.createClass({
     var Component = props.href ? 'a' : props.component;
     var prefixClass = this.prefixClass;
     var setClassNamespace = this.setClassNamespace;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // am-icon-[iconName]
     classes[prefixClass(props.icon)] = true;
@@ -50,7 +54,7 @@ var Icon = React.createClass({
 
     return (
       <Component
-        {...props}
+        {...restProps}
         className={classNames(classes, this.props.className)}
       >
         {this.props.children}
