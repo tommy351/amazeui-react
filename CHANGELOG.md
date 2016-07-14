@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.2.0 (2016/07/14 17:26 +08:00)
+
+- [c306c8f](https://github.com/amazeui/amazeui-react/commit/c306c8fdbf155862e0ca2eebb69ba68542bcd9c3) #121 改进 Selected 组件默认过滤函数 (@jdneo) 
+- [9f5d038](https://github.com/amazeui/amazeui-react/commit/9f5d038e9326bdc7d08aca346a363ffa77be823c) 处理 React 15.2.0 未知属性警告 (@zhang-z)
+
+
 ### v1.1.2 (2016/07/04 17:24 +08:00)
 
 - [43bed8b](https://github.com/amazeui/amazeui-react/commit/43bed8b4e6e859510a4cfea53ba3a27102cb73d4) #119 修复 DateTimeInput 输入日期无法解析时报错问题
