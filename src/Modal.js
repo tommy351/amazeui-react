@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var DimmerMixin = require('./mixins/DimmerMixin');
 var Events = require('./utils/Events');
@@ -233,6 +234,7 @@ var Modal = React.createClass({
       width: props.modalWidth,
       height: props.modalHeight,
     };
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.prefixClass('active')] = this.state.transitioning;
 
@@ -242,7 +244,7 @@ var Modal = React.createClass({
 
     var modal = (
       <div
-        {...props}
+        {...restProps}
         style={style}
         ref="modal"
         title={null}

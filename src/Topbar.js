@@ -3,6 +3,7 @@
 var React = require('react');
 var classNames = require('classnames');
 var assign = require('object-assign');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var createChainedFunction = require('./utils/createChainedFunction');
 var Icon = require('./Icon');
@@ -12,6 +13,7 @@ var Topbar = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     component: React.PropTypes.node,
     brand: React.PropTypes.node,
     brandLink: React.PropTypes.string,
@@ -133,6 +135,7 @@ var Topbar = React.createClass({
   render: function() {
     var classes = this.getClassSet();
     var Component = this.props.component;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // set classes
     classes[this.prefixClass('inverse')] = this.props.inverse;
@@ -141,7 +144,7 @@ var Topbar = React.createClass({
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classNames(classes, this.props.className)}
       >
         <div

@@ -87,13 +87,14 @@ var Header = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // am-header-fixed: fixed header
     classSet[this.prefixClass('fixed')] = this.props.fixed;
 
     return (
       <header
-        {...omit(this.props, ['data', 'title'])}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
         className={classNames(this.props.className, classSet)}
       >

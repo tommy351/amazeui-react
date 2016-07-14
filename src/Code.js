@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Code = React.createClass({
@@ -27,6 +28,7 @@ var Code = React.createClass({
     var langClassName = this.props.language &&
       ('language-' + this.props.language);
     var children = this.props.children;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     if (this.props.escape) {
       children = this.escape(children);
@@ -38,7 +40,7 @@ var Code = React.createClass({
 
     return (
       <pre
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, langClassName)}
       >
         {children}

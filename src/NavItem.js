@@ -10,6 +10,7 @@ var NavItem = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     active: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     header: React.PropTypes.bool,
@@ -31,6 +32,7 @@ var NavItem = React.createClass({
     var classes = this.getClassSet();
     var props = this.props;
     var Component = props.component;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // del am-nav
     classes[this.setClassNamespace(props.classPrefix)] = false;
@@ -45,7 +47,7 @@ var NavItem = React.createClass({
 
     return (
       <Component
-        {...props}
+        {...restProps}
         className={classNames(classes, props.className)}
       >
         {this.props.children}
@@ -57,6 +59,7 @@ var NavItem = React.createClass({
     var Component = this.props.component;
     var linkComponent = this.props.linkComponent || 'a';
     var style = {};
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     this.props.disabled && (style.pointerEvents = 'none');
 
@@ -69,7 +72,7 @@ var NavItem = React.createClass({
 
     return (
       <Component
-        {...omit(this.props, ['href', 'target', 'title', 'disabled'])}
+        {...restProps}
         className={classNames(classes, this.props.className)}
       >
         {

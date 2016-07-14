@@ -11,6 +11,7 @@ var Tabs = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     theme: React.PropTypes.oneOf(['default', 'd2']),
     onSelect: React.PropTypes.func,
     animation: React.PropTypes.oneOf(['slide', 'fade']),
@@ -166,11 +167,11 @@ var Tabs = React.createClass({
 
   renderWrapper: function(children) {
     var classSet = this.getClassSet();
-    var props = omit(this.props, 'data');
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <div
-        {...props}
+        {...restProps}
         data-am-widget={this.props.theme ? this.props.classPrefix : null}
         className={classNames(classSet, this.props.className)}
       >
@@ -181,15 +182,19 @@ var Tabs = React.createClass({
 
   renderNavWrapper: function(children) {
     var TabsNav = this.props.theme ? 'ul' : Nav;
+    var props = {
+      key: "tabsNav",
+      tabs: true,
+      className: classNames(this.prefixClass('nav'), this.setClassNamespace('cf')),
+      justify: this.props.justify
+    };
+    if (TabsNav === 'ul') {
+      delete props.tabs;
+      delete props.justify;
+    }
 
     return (
-      <TabsNav
-        key="tabsNav"
-        tabs
-        className={classNames(this.prefixClass('nav'),
-          this.setClassNamespace('cf'))}
-        justify={this.props.justify}
-      >
+      <TabsNav {...props}>
         {children}
       </TabsNav>
     );

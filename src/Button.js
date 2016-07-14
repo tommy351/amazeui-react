@@ -17,7 +17,10 @@ var Button = React.createClass({
     round: React.PropTypes.bool,
     component: React.PropTypes.node,
     href: React.PropTypes.string,
-    target: React.PropTypes.string
+    target: React.PropTypes.string,
+    type: React.PropTypes.string,
+    amSize: React.PropTypes.string,
+    amStyle: React.PropTypes.string
   },
 
   getDefaultProps: function() {
@@ -31,11 +34,11 @@ var Button = React.createClass({
   renderAnchor: function(classSet) {
     var Component = this.props.component || 'a';
     var href = this.props.href || '#';
-    var props = omit(this.props, 'type');
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <Component
-        {...props}
+        {...restProps}
         href={href}
         className={classNames(this.props.className, classSet)}
         role="button"
@@ -47,10 +50,11 @@ var Button = React.createClass({
 
   renderButton: function(classSet) {
     var Component = this.props.component || 'button';
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, classSet)}
       >
         {this.props.children}

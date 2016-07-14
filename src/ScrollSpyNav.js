@@ -4,6 +4,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var cloneElement = React.cloneElement;
 var assign = require('object-assign');
+var omit = require('object.omit');
 var classNames = require('classnames');
 var SmoothScrollMixin = require('./mixins/SmoothScrollMixin');
 var isInViewport = require('./utils/isInViewport');
@@ -128,7 +129,7 @@ var ScrollSpyNav = React.createClass({
       child,
       assign(
         {},
-        this.props,
+        omit(this.props, Object.keys(this.constructor.propTypes)),
         child.props,
         {
           onClick: createChainedFunction(this.handleClick, child.props.onClick),

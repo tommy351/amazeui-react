@@ -10,7 +10,8 @@ var ClassNameMixin = require('./mixins/ClassNameMixin');
 var Pagination = React.createClass({
   mixins: [ClassNameMixin],
 
-  PropTypes: {
+  propTypes: {
+    classPrefix: React.PropTypes.string,
     component: React.PropTypes.node.isRequired,
     centered: React.PropTypes.bool,
     right: React.PropTypes.bool,
@@ -91,6 +92,7 @@ var Pagination = React.createClass({
     var Component = props.component;
     var classSet = this.getClassSet();
     var notSelect = props.theme !== 'select';
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // .am-pagination-right
     classSet[this.prefixClass('right')] = props.right;
@@ -100,7 +102,7 @@ var Pagination = React.createClass({
 
     return props.data ? (
       <Component
-        {...props}
+        {...restProps}
         className={classNames(classSet, props.className)}
       >
         {notSelect && this.renderItem('first')}
@@ -111,7 +113,7 @@ var Pagination = React.createClass({
       </Component>
     ) : (
       <Component
-        {...props}
+        {...restProps}
         className={classNames(classSet, props.className)}
       >
         {this.props.children}
@@ -124,6 +126,7 @@ Pagination.Item = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     active: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
     prev: React.PropTypes.bool,
@@ -147,6 +150,7 @@ Pagination.Item = React.createClass({
     var props = this.props;
     var linkComponent = this.props.linkComponent ||
           (this.props.href ? 'a' : null);
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // .am-pagination-prev
     classSet[this.prefixClass('prev')] = props.prev;
@@ -156,7 +160,7 @@ Pagination.Item = React.createClass({
 
     return (
       <Component
-        {...omit(this.props, ['href', 'title', 'target'])}
+        {...restProps}
         className={classNames(classSet, this.props.className)}
       >
         {linkComponent ?

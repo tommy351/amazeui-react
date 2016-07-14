@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Article = React.createClass({
@@ -22,10 +23,11 @@ var Article = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <article
-        {...this.props}
+        {...restProps}
         className={classNames(classSet, this.props.className)}
       >
         <header className={this.prefixClass('hd')}>
@@ -69,6 +71,7 @@ Article.Child = React.createClass({
 
   render: function() {
     var role = this.props.role;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
     var Component;
     var classes = classNames(
       this.props.className,
@@ -89,12 +92,12 @@ Article.Child = React.createClass({
 
     return role === 'divider' ? (
       <hr
-        {...this.props}
+        {...restProps}
         className={classes}
       />
     ) : (
       <Component
-        {...this.props}
+        {...restProps}
         className={classes}
       >
         {this.props.children}

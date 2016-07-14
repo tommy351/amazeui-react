@@ -69,11 +69,11 @@ var Gallery = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
-    var props = omit(this.props, ['classPrefix', 'data', 'theme']);
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <AvgGrid
-        {...props}
+        {...restProps}
         sm={this.props.sm || 2}
         md={this.props.md || 3}
         lg={this.props.lg || 4}

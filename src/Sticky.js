@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var assign = require('object-assign');
+var omit = require('object.omit');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var Events = require('./utils/Events');
@@ -176,11 +177,12 @@ var Sticky = React.createClass({
     var child = React.Children.only(this.props.children);
     var animation = this.props.animation && this.state.sticked ?
       this.setClassNamespace('animation-' + this.props.animation) : null;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // transfer child's props to cloned element
     return (
       <div
-        {...this.props}
+        {...restProps}
         style={this.state.holderStyle}
         className={classNames(this.props.className,
         this.prefixClass('placeholder'))}

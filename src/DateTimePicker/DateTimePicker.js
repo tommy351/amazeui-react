@@ -3,6 +3,7 @@
 var React = require('react');
 var classNames = require('classnames');
 var fecha = require('fecha');
+var omit = require('object.omit');
 var ClassNameMixin = require('../mixins/ClassNameMixin');
 var Icon = require('../Icon');
 var DatePicker = require('./DatePicker');
@@ -12,6 +13,7 @@ var DateTimePicker = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     showTimePicker: React.PropTypes.bool,
     showDatePicker: React.PropTypes.bool,
     caretDisplayed: React.PropTypes.bool,
@@ -180,13 +182,14 @@ var DateTimePicker = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     this.props.amStyle &&
     (classSet[this.prefixClass(this.props.amStyle)] = true);
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         className={classNames(classSet, this.props.className)}
       >
         {this.renderCaret()}

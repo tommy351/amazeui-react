@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var ButtonGroup = React.createClass({
@@ -21,13 +22,14 @@ var ButtonGroup = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.prefixClass('stacked')] = this.props.stacked;
     classSet[this.prefixClass('justify')] = this.props.justify;
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, classSet)}
       >
         {this.props.children}

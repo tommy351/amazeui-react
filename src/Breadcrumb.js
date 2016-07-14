@@ -3,12 +3,14 @@
 var React = require('react');
 var classNames = require('classnames');
 var assign = require('object-assign');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Breadcrumb = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     slash: React.PropTypes.bool,
     component: React.PropTypes.node.isRequired
   },
@@ -23,12 +25,13 @@ var Breadcrumb = React.createClass({
   render: function() {
     var classes = this.getClassSet();
     var Component = this.props.component;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classes[this.prefixClass('slash')] = this.props.slash;
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classNames(classes, this.props.className)}
       >
         {this.props.children}
@@ -59,10 +62,11 @@ Breadcrumb.Item = React.createClass({
   renderAnchor: function(classes) {
     var Component = this.props.component;
     var linkComponent = this.props.linkComponent || 'a';
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classes}
       >
         {
@@ -83,6 +87,7 @@ Breadcrumb.Item = React.createClass({
   render: function() {
     var classes = classNames(this.props.className);
     var Component = this.props.component;
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     if (this.props.href || this.props.linkComponent) {
       return this.renderAnchor(classes);
@@ -90,7 +95,7 @@ Breadcrumb.Item = React.createClass({
 
     return (
       <Component
-        {...this.props}
+        {...restProps}
         className={classes}
       >
         {this.props.children}

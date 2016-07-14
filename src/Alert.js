@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Alert = React.createClass({
@@ -34,6 +35,7 @@ var Alert = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
     var isCloseable = !!this.props.onClose;
 
     if (this.props.amStyle) {
@@ -44,7 +46,7 @@ var Alert = React.createClass({
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         className={classNames(this.props.className, classSet)}
       >
         {isCloseable ? this.renderCloseBtn() : null}

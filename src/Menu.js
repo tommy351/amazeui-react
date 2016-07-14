@@ -177,13 +177,13 @@ var Menu = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
-    var props = omit(this.props, 'data');
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
     var hideTopLevel = !this.state.expanded ?
       this.setClassNamespace('collapse') : null;
 
     return (
       <nav
-        {...props}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
         className={classNames(this.props.className, classSet)}
       >

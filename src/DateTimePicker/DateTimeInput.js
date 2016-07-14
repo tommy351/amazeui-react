@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var fecha = require('fecha');
+var omit = require('object.omit');
 var Events = require('../utils/Events');
 var isNodeInTree = require('../utils/isNodeInTree');
 var Input = require('../Input');
@@ -12,7 +13,18 @@ var DateTimeInput = React.createClass({
   propTypes: {
     format: React.PropTypes.string,
     dateTime: React.PropTypes.string,
-    onSelect: React.PropTypes.func
+    date: React.PropTypes.string,
+    onSelect: React.PropTypes.func,
+    showTimePicker: React.PropTypes.bool,
+    showDatePicker: React.PropTypes.bool,
+    amStyle: React.PropTypes.oneOf(['success', 'danger', 'warning']),
+    viewMode: React.PropTypes.string,
+    minViewMode: React.PropTypes.string,
+    daysOfWeekDisabled: React.PropTypes.array,
+    locale: React.PropTypes.string,
+    weekStart: React.PropTypes.number,
+    minDate: React.PropTypes.string,
+    maxDate: React.PropTypes.string
   },
 
   getDefaultProps: function() {
@@ -118,10 +130,12 @@ var DateTimeInput = React.createClass({
   },
 
   render: function() {
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+
     return (
       <div>
         <Input
-          {...this.props}
+          {...restProps}
           type="text"
           value={this.state.value}
           onClick={this.handleClick}

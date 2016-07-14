@@ -26,11 +26,11 @@ var Titlebar = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
-    var props = omit(this.props, ['classPrefix', 'nav', 'theme']);
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <div
-        {...props}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
         className={classNames(this.props.className, classSet)}
       >

@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Form = React.createClass({
@@ -21,13 +22,14 @@ var Form = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.prefixClass('horizontal')] = this.props.horizontal;
     classSet[this.prefixClass('inline')] = this.props.inline;
 
     return (
       <form
-        {...this.props}
+        {...restProps}
         className={classNames(classSet, this.props.className)}
       >
         {this.props.children}

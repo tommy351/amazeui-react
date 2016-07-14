@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Popover = React.createClass({
@@ -29,13 +30,14 @@ var Popover = React.createClass({
       top: this.props.positionTop,
       display: 'block'
     };
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.setClassNamespace('active')] = true;
     classSet[this.prefixClass(this.props.placement)] = true;
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         style={style}
         className={classNames(classSet, this.props.className)}
       >

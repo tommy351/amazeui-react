@@ -2,6 +2,7 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Divider = React.createClass({
@@ -21,10 +22,11 @@ var Divider = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <hr
-        {...this.props}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
         className={classNames(this.props.className, classSet)}
       />

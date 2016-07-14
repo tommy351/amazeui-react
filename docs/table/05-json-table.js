@@ -19,8 +19,11 @@ var EventRow = React.createClass({
 
 var EventsTable = React.createClass({
   render: function() {
+    var restProps = Object.assign({}, this.props);
+    delete restProps.events;
+
     return (
-      <Table {...this.props}>
+      <Table {...restProps}>
         <thead>
           <tr>
             <th>名称</th>

@@ -2,12 +2,14 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var Progress = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     now: React.PropTypes.number,
     label: React.PropTypes.string,
     active: React.PropTypes.bool,
@@ -57,6 +59,7 @@ var Progress = React.createClass({
 
   render: function() {
     var classes = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // set class
     classes[this.prefixClass('striped')] = this.props.striped;
@@ -69,7 +72,7 @@ var Progress = React.createClass({
       if (!this.props.isChild) {
         return (
           <div
-            {...this.props}
+            {...restProps}
             className={classNames(classes, this.props.className)}
           >
             {this.renderProgressBar()}
@@ -83,7 +86,7 @@ var Progress = React.createClass({
     } else {
       return (
         <div
-          {...this.props}
+          {...restProps}
           className={classNames(classes, this.props.className)}
         >
           {React.Children.map(this.props.children, this.renderChildBar)}

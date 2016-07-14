@@ -2,12 +2,14 @@
 
 var React = require('react');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
 var PanelGroup = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     amStyle: React.PropTypes.string,
     activeKey: React.PropTypes.any,
     defaultActiveKey: React.PropTypes.any,
@@ -71,10 +73,11 @@ var PanelGroup = React.createClass({
 
   render: function() {
     var classes = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         className={classNames(classes, this.props.className)}
       >
         {React.Children.map(this.props.children, this.renderPanel)}

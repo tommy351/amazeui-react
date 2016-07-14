@@ -3,6 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
+var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var SmoothScrollMixin = require('./mixins/SmoothScrollMixin');
 var Events = require('./utils/Events');
@@ -76,13 +77,14 @@ var GoTop = React.createClass({
 
   render: function() {
     var classSet = this.getClassSet();
+    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[this.prefixClass(this.props.theme)] = true;
     classSet[this.setClassNamespace('active')] = !this.isAutoHide();
 
     return (
       <div
-        {...this.props}
+        {...restProps}
         data-am-widget={this.props.classPrefix}
         className={classNames(classSet, this.props.className)}
       >
