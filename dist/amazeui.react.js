@@ -1,4 +1,4 @@
-/*! Amaze UI React v1.1.2 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-07-04T17:22:36+0800 */
+/*! Amaze UI React v1.2.0 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-07-14T17:18:19+0800 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
@@ -64,16 +64,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = {
-	  VERSION: '1.1.2',
+	  VERSION: '1.2.0',
 
 	  // layout
 	  Grid: __webpack_require__(2),
-	  Col: __webpack_require__(6),
-	  Container: __webpack_require__(7),
-	  AvgGrid: __webpack_require__(8),
+	  Col: __webpack_require__(10),
+	  Container: __webpack_require__(11),
+	  AvgGrid: __webpack_require__(12),
 
 	  // elements
-	  Button: __webpack_require__(9),
+	  Button: __webpack_require__(13),
 	  ButtonToolbar: __webpack_require__(14),
 	  ButtonCheck: __webpack_require__(15),
 	  ButtonGroup: __webpack_require__(17),
@@ -159,7 +159,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Grid = React.createClass({
 	  displayName: 'Grid',
@@ -184,6 +185,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = this.props.component;
 	    var classSet = this.getClassSet();
 	    var props = this.props;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // .am-g-fixed
 	    classSet[this.prefixClass('fixed')] = props.fixed;
@@ -193,7 +195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -261,10 +263,122 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/*!
+	 * object.omit <https://github.com/jonschlinkert/object.omit>
+	 *
+	 * Copyright (c) 2014-2015, Jon Schlinkert.
+	 * Licensed under the MIT License.
+	 */
+
+	'use strict';
+
+	var isObject = __webpack_require__(5);
+	var forOwn = __webpack_require__(6);
+
+	module.exports = function omit(obj, keys) {
+	  if (!isObject(obj)) return {};
+
+	  var keys = [].concat.apply([], [].slice.call(arguments, 1));
+	  var last = keys[keys.length - 1];
+	  var res = {}, fn;
+
+	  if (typeof last === 'function') {
+	    fn = keys.pop();
+	  }
+
+	  var isFunction = typeof fn === 'function';
+	  if (!keys.length && !isFunction) {
+	    return obj;
+	  }
+
+	  forOwn(obj, function (value, key) {
+	    if (keys.indexOf(key) === -1) {
+
+	      if (!isFunction) {
+	        res[key] = value;
+	      } else if (fn(value, key, obj)) {
+	        res[key] = value;
+	      }
+	    }
+	  });
+	  return res;
+	};
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	/*!
+	 * is-extendable <https://github.com/jonschlinkert/is-extendable>
+	 *
+	 * Copyright (c) 2015, Jon Schlinkert.
+	 * Licensed under the MIT License.
+	 */
+
+	'use strict';
+
+	module.exports = function isExtendable(val) {
+	  return typeof val !== 'undefined' && val !== null
+	    && (typeof val === 'object' || typeof val === 'function');
+	};
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*!
+	 * for-own <https://github.com/jonschlinkert/for-own>
+	 *
+	 * Copyright (c) 2014-2016, Jon Schlinkert.
+	 * Licensed under the MIT License.
+	 */
+
+	'use strict';
+
+	var forIn = __webpack_require__(7);
+	var hasOwn = Object.prototype.hasOwnProperty;
+
+	module.exports = function forOwn(o, fn, thisArg) {
+	  forIn(o, function(val, key) {
+	    if (hasOwn.call(o, key)) {
+	      return fn.call(thisArg, o[key], key, o);
+	    }
+	  });
+	};
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	/*!
+	 * for-in <https://github.com/jonschlinkert/for-in>
+	 *
+	 * Copyright (c) 2014-2016, Jon Schlinkert.
+	 * Licensed under the MIT License.
+	 */
+
+	'use strict';
+
+	module.exports = function forIn(o, fn, thisArg) {
+	  for (var key in o) {
+	    if (fn.call(thisArg, o[key], key, o) === false) {
+	      break;
+	    }
+	  }
+	};
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var constants = __webpack_require__(5);
+	var constants = __webpack_require__(9);
 	var nsPrefix = constants.NAMESPACE ? constants.NAMESPACE + '-' : '';
 
 	module.exports = {
@@ -330,7 +444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 5 */
+/* 9 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -369,7 +483,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 6 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -378,7 +492,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Col = React.createClass({
 	  displayName: 'Col',
@@ -415,6 +530,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var classSet = {};
 	    var props = this.props;
 	    var prefixClass = this.prefixClass;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    ['sm', 'md', 'lg'].forEach(function (size) {
 	      var prop = size;
@@ -427,16 +543,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (props[prop] >= 0) {
 	        classSet[prefixClass(size + '-offset-') + props[prop]] = true;
 	      }
+	      restProps = omit(restProps, prop);
 
 	      prop = size + 'Push';
 	      if (props[prop] >= 0) {
 	        classSet[prefixClass(size + '-push-') + props[prop]] = true;
 	      }
+	      restProps = omit(restProps, prop);
 
 	      prop = size + 'Pull';
 	      if (props[prop] >= 0) {
 	        classSet[prefixClass(size + '-pull-') + props[prop]] = true;
 	      }
+	      restProps = omit(restProps, prop);
 
 	      // `xxResetOrder` prop
 	      // - smResetOrder
@@ -445,6 +564,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (props[size + 'ResetOrder']) {
 	        classSet[prefixClass(size + '-reset-order')] = true;
 	      }
+	      restProps = omit(restProps, size + 'ResetOrder');
 
 	      // `xxCentered` prop
 	      // - smCentered
@@ -453,6 +573,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (props[size + 'Centered']) {
 	        classSet[prefixClass(size + '-centered')] = true;
 	      }
+	      restProps = omit(restProps, size + 'Centered');
 
 	      // `xxUnCentered` prop
 	      // - smUnCentered
@@ -461,6 +582,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (props[size + 'UnCentered']) {
 	        classSet[prefixClass(size + '-uncentered')] = true;
 	      }
+	      restProps = omit(restProps, size + 'UnCentered');
 	    });
 
 	    // `end` prop - end column
@@ -468,7 +590,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -479,7 +601,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Col;
 
 /***/ },
-/* 7 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -488,7 +610,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Container = React.createClass({
 	  displayName: 'Container',
@@ -510,10 +633,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var Component = this.props.component;
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -524,7 +648,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Container;
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -533,7 +657,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var AvgGrid = React.createClass({
 	  displayName: 'AvgGrid',
@@ -560,6 +685,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var classSet = {};
 	    var prefixClass = this.prefixClass;
 	    var props = this.props;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    ['sm', 'md', 'lg'].forEach(function (size) {
 	      if (props[size]) {
@@ -569,7 +695,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -580,7 +706,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = AvgGrid;
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -589,8 +715,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var omit = __webpack_require__(10);
+	var ClassNameMixin = __webpack_require__(8);
+	var omit = __webpack_require__(4);
 
 	var Button = React.createClass({
 	  displayName: 'Button',
@@ -606,7 +732,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    round: React.PropTypes.bool,
 	    component: React.PropTypes.node,
 	    href: React.PropTypes.string,
-	    target: React.PropTypes.string
+	    target: React.PropTypes.string,
+	    type: React.PropTypes.string,
+	    amSize: React.PropTypes.string,
+	    amStyle: React.PropTypes.string
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -620,11 +749,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  renderAnchor: function renderAnchor(classSet) {
 	    var Component = this.props.component || 'a';
 	    var href = this.props.href || '#';
-	    var props = omit(this.props, 'type');
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        href: href,
 	        className: classNames(this.props.className, classSet),
 	        role: 'button'
@@ -635,10 +764,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  renderButton: function renderButton(classSet) {
 	    var Component = this.props.component || 'button';
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -659,118 +789,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Button;
 
 /***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * object.omit <https://github.com/jonschlinkert/object.omit>
-	 *
-	 * Copyright (c) 2014-2015, Jon Schlinkert.
-	 * Licensed under the MIT License.
-	 */
-
-	'use strict';
-
-	var isObject = __webpack_require__(11);
-	var forOwn = __webpack_require__(12);
-
-	module.exports = function omit(obj, keys) {
-	  if (!isObject(obj)) return {};
-
-	  var keys = [].concat.apply([], [].slice.call(arguments, 1));
-	  var last = keys[keys.length - 1];
-	  var res = {}, fn;
-
-	  if (typeof last === 'function') {
-	    fn = keys.pop();
-	  }
-
-	  var isFunction = typeof fn === 'function';
-	  if (!keys.length && !isFunction) {
-	    return obj;
-	  }
-
-	  forOwn(obj, function (value, key) {
-	    if (keys.indexOf(key) === -1) {
-
-	      if (!isFunction) {
-	        res[key] = value;
-	      } else if (fn(value, key, obj)) {
-	        res[key] = value;
-	      }
-	    }
-	  });
-	  return res;
-	};
-
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	/*!
-	 * is-extendable <https://github.com/jonschlinkert/is-extendable>
-	 *
-	 * Copyright (c) 2015, Jon Schlinkert.
-	 * Licensed under the MIT License.
-	 */
-
-	'use strict';
-
-	module.exports = function isExtendable(val) {
-	  return typeof val !== 'undefined' && val !== null
-	    && (typeof val === 'object' || typeof val === 'function');
-	};
-
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*!
-	 * for-own <https://github.com/jonschlinkert/for-own>
-	 *
-	 * Copyright (c) 2014-2016, Jon Schlinkert.
-	 * Licensed under the MIT License.
-	 */
-
-	'use strict';
-
-	var forIn = __webpack_require__(13);
-	var hasOwn = Object.prototype.hasOwnProperty;
-
-	module.exports = function forOwn(o, fn, thisArg) {
-	  forIn(o, function(val, key) {
-	    if (hasOwn.call(o, key)) {
-	      return fn.call(thisArg, o[key], key, o);
-	    }
-	  });
-	};
-
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-	/*!
-	 * for-in <https://github.com/jonschlinkert/for-in>
-	 *
-	 * Copyright (c) 2014-2016, Jon Schlinkert.
-	 * Licensed under the MIT License.
-	 */
-
-	'use strict';
-
-	module.exports = function forIn(o, fn, thisArg) {
-	  for (var key in o) {
-	    if (fn.call(thisArg, o[key], key, o) === false) {
-	      break;
-	    }
-	  }
-	};
-
-
-/***/ },
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -780,7 +798,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var ButtonToolbar = React.createClass({
 	  displayName: 'ButtonToolbar',
@@ -799,10 +818,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -821,10 +841,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var React = __webpack_require__(1);
+	var omit = __webpack_require__(4);
 	var CSSCore = __webpack_require__(16);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var ButtonGroup = __webpack_require__(17);
-	var constants = __webpack_require__(5);
+	var constants = __webpack_require__(9);
 
 	var ButtonCheck = React.createClass({
 	  displayName: 'ButtonCheck',
@@ -871,9 +892,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  render: function render() {
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+
 	    return React.createElement(
 	      ButtonGroup,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        onClick: this.handleClick,
 	        className: this.setClassNamespace('btn-group-check')
 	      }),
@@ -983,7 +1006,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var ButtonGroup = React.createClass({
 	  displayName: 'ButtonGroup',
@@ -1004,13 +1028,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.prefixClass('stacked')] = this.props.stacked;
 	    classSet[this.prefixClass('justify')] = this.props.justify;
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -1030,7 +1055,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Form = React.createClass({
 	  displayName: 'Form',
@@ -1051,13 +1077,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.prefixClass('horizontal')] = this.props.horizontal;
 	    classSet[this.prefixClass('inline')] = this.props.inline;
 
 	    return React.createElement(
 	      'form',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, this.props.className)
 	      }),
 	      this.props.children
@@ -1075,7 +1102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var FormGroup = React.createClass({
 	  displayName: 'FormGroup',
@@ -1118,8 +1145,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var Button = __webpack_require__(9);
+	var ClassNameMixin = __webpack_require__(8);
+	var Button = __webpack_require__(13);
 	var Input = __webpack_require__(21);
 
 	var FormFile = React.createClass({
@@ -1162,11 +1189,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var FormGroup = __webpack_require__(19);
-	var Button = __webpack_require__(9);
+	var Button = __webpack_require__(13);
 	var Icon = __webpack_require__(23);
-	var constants = __webpack_require__(5);
+	var constants = __webpack_require__(9);
 
 	var Input = React.createClass({
 	  displayName: 'Input',
@@ -1247,6 +1275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var input = null;
 	    var fieldClassName = this.isCheckboxOrRadio() || this.isFile() ? '' : this.setClassNamespace('form-field');
 	    var classSet = {};
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[constants.CLASSES.round] = this.props.round;
 	    classSet[constants.CLASSES.radius] = this.props.radius;
@@ -1261,7 +1290,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      case 'select':
 	        input = React.createElement(
 	          'select',
-	          _extends({}, this.props, {
+	          _extends({}, restProps, {
 	            className: classes,
 	            ref: 'field',
 	            key: 'field'
@@ -1270,7 +1299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        );
 	        break;
 	      case 'textarea':
-	        input = React.createElement('textarea', _extends({}, this.props, {
+	        input = React.createElement('textarea', _extends({}, restProps, {
 	          className: classes,
 	          ref: 'field',
 	          key: 'field'
@@ -1278,14 +1307,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        break;
 	      case 'submit':
 	      case 'reset':
-	        input = React.createElement(Button, _extends({}, this.props, {
+	        input = React.createElement(Button, _extends({}, restProps, {
 	          component: 'input',
 	          ref: 'field',
 	          key: 'field'
 	        }));
 	        break;
 	      default:
-	        input = React.createElement('input', _extends({}, this.props, {
+	        input = React.createElement('input', _extends({}, restProps, {
 	          className: classes,
 	          ref: 'field',
 	          key: 'field'
@@ -1464,7 +1493,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Icon = React.createClass({
 	  displayName: 'Icon',
@@ -1472,7 +1502,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    amStyle: React.PropTypes.string,
+	    amSize: React.PropTypes.string,
 	    fw: React.PropTypes.bool,
 	    spin: React.PropTypes.bool,
 	    button: React.PropTypes.bool,
@@ -1495,6 +1527,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = props.href ? 'a' : props.component;
 	    var prefixClass = this.prefixClass;
 	    var setClassNamespace = this.setClassNamespace;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // am-icon-[iconName]
 	    classes[prefixClass(props.icon)] = true;
@@ -1513,7 +1546,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      this.props.children
@@ -1537,10 +1570,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Input = __webpack_require__(21);
 	var Icon = __webpack_require__(23);
-	var constants = __webpack_require__(5);
+	var constants = __webpack_require__(9);
 
 	var UCheck = React.createClass({
 	  displayName: 'UCheck',
@@ -1563,6 +1597,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = {};
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.setClassNamespace(this.props.type)] = !this.props.inline;
 	    classSet[this.setClassNamespace(this.props.type + '-inline')] = this.props.inline;
@@ -1574,7 +1609,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return React.createElement(
 	      'label',
 	      { className: classNames(this.props.className, classSet) },
-	      React.createElement(Input, _extends({}, this.props, {
+	      React.createElement(Input, _extends({}, restProps, {
 	        ref: 'field',
 	        className: this.setClassNamespace('ucheck-checkbox'),
 	        standalone: true
@@ -1602,8 +1637,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var constants = __webpack_require__(5);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
+	var constants = __webpack_require__(9);
 
 	var Image = React.createClass({
 	  displayName: 'Image',
@@ -1625,6 +1661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = {};
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[constants.CLASSES.radius] = this.props.radius;
 	    classSet[constants.CLASSES.round] = this.props.round;
@@ -1632,7 +1669,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    classSet[this.setClassNamespace('img-responsive')] = this.props.responsive;
 	    classSet[this.setClassNamespace('img-thumbnail')] = this.props.thumbnail;
 
-	    return React.createElement('img', _extends({}, this.props, {
+	    return React.createElement('img', _extends({}, restProps, {
 	      className: classNames(this.props.className, classSet)
 	    }));
 	  }
@@ -1672,8 +1709,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var omit = __webpack_require__(10);
+	var ClassNameMixin = __webpack_require__(8);
+	var omit = __webpack_require__(4);
 
 	var Thumbnail = React.createClass({
 	  displayName: 'Thumbnail',
@@ -1706,7 +1743,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var classes = classNames(this.getClassSet(), this.props.className);
 
 	    if (this.props.standalone) {
-	      return this.renderImg(classes, this.props);
+	      return this.renderImg(classes, Object.keys(this.constructor.propTypes));
 	    }
 
 	    var Component = this.props.href ? 'a' : this.props.component;
@@ -1716,12 +1753,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      width: this.props.width,
 	      height: this.props.height
 	    };
-	    var props = omit(this.props, ['alt', 'src', 'width', 'height']);
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes), Object.keys(imgProps));
 	    var caption = this.props.caption;
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classes
 	      }),
 	      this.renderImg(null, imgProps),
@@ -1754,10 +1791,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var Component = this.props.component;
 	    var classes = classNames(this.props.className, this.setClassNamespace('thumbnail-caption'));
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classes
 	      }),
 	      this.props.children
@@ -1777,9 +1815,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var AvgGrid = __webpack_require__(8);
-	var omit = __webpack_require__(10);
+	var ClassNameMixin = __webpack_require__(8);
+	var AvgGrid = __webpack_require__(12);
+	var omit = __webpack_require__(4);
 
 	var Thumbnails = React.createClass({
 	  displayName: 'Thumbnails',
@@ -1798,11 +1836,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classes = classNames(this.getClassSet(), this.props.className);
-	    var props = omit(this.props, 'classPrefix');
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      AvgGrid,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classes
 	      }),
 	      React.Children.map(this.props.children, function (child, i) {
@@ -1828,7 +1866,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Table = React.createClass({
 	  displayName: 'Table',
@@ -1854,6 +1893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classSet = this.getClassSet();
 	    var responsive = this.props.responsive;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.prefixClass('bordered')] = this.props.bordered;
 	    classSet[this.prefixClass('compact')] = this.props.compact;
@@ -1866,7 +1906,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var table = React.createElement(
 	      'table',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      this.props.children
@@ -1892,7 +1932,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Nav = React.createClass({
 	  displayName: 'Nav',
@@ -1900,9 +1941,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    justify: React.PropTypes.bool,
 	    pills: React.PropTypes.bool,
 	    tabs: React.PropTypes.bool,
+	    topbar: React.PropTypes.bool,
 	    component: React.PropTypes.node.isRequired
 	  },
 
@@ -1916,6 +1959,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = this.getClassSet();
 	    var Component = this.props.component;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // set classes
 	    classes[this.prefixClass('pills')] = this.props.pills || this.props.topbar;
@@ -1927,7 +1971,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      this.props.children
@@ -1948,8 +1992,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
 	var assign = __webpack_require__(31);
-	var omit = __webpack_require__(10);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var NavItem = React.createClass({
 	  displayName: 'NavItem',
@@ -1957,6 +2001,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    active: React.PropTypes.bool,
 	    disabled: React.PropTypes.bool,
 	    header: React.PropTypes.bool,
@@ -1978,6 +2023,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var classes = this.getClassSet();
 	    var props = this.props;
 	    var Component = props.component;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // del am-nav
 	    classes[this.setClassNamespace(props.classPrefix)] = false;
@@ -1992,7 +2038,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, props.className)
 	      }),
 	      this.props.children
@@ -2003,6 +2049,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = this.props.component;
 	    var linkComponent = this.props.linkComponent || 'a';
 	    var style = {};
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    this.props.disabled && (style.pointerEvents = 'none');
 
@@ -2015,7 +2062,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, omit(this.props, ['href', 'target', 'title', 'disabled']), {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      React.createElement(linkComponent, assign(linkProps, this.props.linkProps), this.props.children)
@@ -2127,7 +2174,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
 	var assign = __webpack_require__(31);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Breadcrumb = React.createClass({
 	  displayName: 'Breadcrumb',
@@ -2135,6 +2183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    slash: React.PropTypes.bool,
 	    component: React.PropTypes.node.isRequired
 	  },
@@ -2149,12 +2198,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = this.getClassSet();
 	    var Component = this.props.component;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classes[this.prefixClass('slash')] = this.props.slash;
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      this.props.children
@@ -2187,10 +2237,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  renderAnchor: function renderAnchor(classes) {
 	    var Component = this.props.component;
 	    var linkComponent = this.props.linkComponent || 'a';
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classes
 	      }),
 	      React.createElement(linkComponent, assign({
@@ -2204,6 +2255,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = classNames(this.props.className);
 	    var Component = this.props.component;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    if (this.props.href || this.props.linkComponent) {
 	      return this.renderAnchor(classes);
@@ -2211,7 +2263,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classes
 	      }),
 	      this.props.children
@@ -2233,15 +2285,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
 	var assign = __webpack_require__(31);
-	var omit = __webpack_require__(10);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Pagination = React.createClass({
 	  displayName: 'Pagination',
 
 	  mixins: [ClassNameMixin],
 
-	  PropTypes: {
+	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    component: React.PropTypes.node.isRequired,
 	    centered: React.PropTypes.bool,
 	    right: React.PropTypes.bool,
@@ -2324,6 +2377,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = props.component;
 	    var classSet = this.getClassSet();
 	    var notSelect = props.theme !== 'select';
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // .am-pagination-right
 	    classSet[this.prefixClass('right')] = props.right;
@@ -2333,7 +2387,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return props.data ? React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, props.className)
 	      }),
 	      notSelect && this.renderItem('first'),
@@ -2343,7 +2397,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      notSelect && this.renderItem('last')
 	    ) : React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, props.className)
 	      }),
 	      this.props.children
@@ -2357,6 +2411,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    active: React.PropTypes.bool,
 	    disabled: React.PropTypes.bool,
 	    prev: React.PropTypes.bool,
@@ -2379,6 +2434,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var classSet = this.getClassSet(true);
 	    var props = this.props;
 	    var linkComponent = this.props.linkComponent || (this.props.href ? 'a' : null);
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // .am-pagination-prev
 	    classSet[this.prefixClass('prev')] = props.prev;
@@ -2388,7 +2444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, omit(this.props, ['href', 'title', 'target']), {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, this.props.className)
 	      }),
 	      linkComponent ? React.createElement(linkComponent, assign({
@@ -2414,10 +2470,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
 	var assign = __webpack_require__(31);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var createChainedFunction = __webpack_require__(35);
 	var Icon = __webpack_require__(23);
-	var Button = __webpack_require__(9);
+	var Button = __webpack_require__(13);
 
 	var Topbar = React.createClass({
 	  displayName: 'Topbar',
@@ -2425,6 +2482,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    component: React.PropTypes.node,
 	    brand: React.PropTypes.node,
 	    brandLink: React.PropTypes.string,
@@ -2535,6 +2593,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = this.getClassSet();
 	    var Component = this.props.component;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // set classes
 	    classes[this.prefixClass('inverse')] = this.props.inverse;
@@ -2543,7 +2602,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      React.createElement(
@@ -2616,8 +2675,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var omit = __webpack_require__(10);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Nav = __webpack_require__(29);
 	var NavItem = __webpack_require__(30);
 
@@ -2627,6 +2686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    theme: React.PropTypes.oneOf(['default', 'd2']),
 	    onSelect: React.PropTypes.func,
 	    animation: React.PropTypes.oneOf(['slide', 'fade']),
@@ -2780,11 +2840,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  renderWrapper: function renderWrapper(children) {
 	    var classSet = this.getClassSet();
-	    var props = omit(this.props, 'data');
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.theme ? this.props.classPrefix : null,
 	        className: classNames(classSet, this.props.className)
 	      }),
@@ -2794,15 +2854,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  renderNavWrapper: function renderNavWrapper(children) {
 	    var TabsNav = this.props.theme ? 'ul' : Nav;
+	    var props = {
+	      key: "tabsNav",
+	      tabs: true,
+	      className: classNames(this.prefixClass('nav'), this.setClassNamespace('cf')),
+	      justify: this.props.justify
+	    };
+	    if (TabsNav === 'ul') {
+	      delete props.tabs;
+	      delete props.justify;
+	    }
 
 	    return React.createElement(
 	      TabsNav,
-	      {
-	        key: 'tabsNav',
-	        tabs: true,
-	        className: classNames(this.prefixClass('nav'), this.setClassNamespace('cf')),
-	        justify: this.props.justify
-	      },
+	      props,
 	      children
 	    );
 	  },
@@ -2870,7 +2935,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var CollapseMixin = __webpack_require__(38);
 	var createChainedFunction = __webpack_require__(35);
 
@@ -3298,7 +3363,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Article = React.createClass({
 	  displayName: 'Article',
@@ -3320,10 +3386,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'article',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, this.props.className)
 	      }),
 	      React.createElement(
@@ -3371,6 +3438,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var role = this.props.role;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 	    var Component;
 	    var classes = classNames(this.props.className, this.setClassNamespace('article-' + role));
 
@@ -3386,11 +3454,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        Component = 'div';
 	    }
 
-	    return role === 'divider' ? React.createElement('hr', _extends({}, this.props, {
+	    return role === 'divider' ? React.createElement('hr', _extends({}, restProps, {
 	      className: classes
 	    })) : React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classes
 	      }),
 	      this.props.children
@@ -3410,7 +3478,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Badge = React.createClass({
 	  displayName: 'Badge',
@@ -3421,7 +3490,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    component: React.PropTypes.node,
 	    href: React.PropTypes.string,
 	    round: React.PropTypes.bool,
-	    radius: React.PropTypes.bool
+	    radius: React.PropTypes.bool,
+	    amStyle: React.PropTypes.string,
+	    classPrefix: React.PropTypes.string
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -3434,10 +3505,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  renderAnchor: function renderAnchor(classSet) {
 	    var Component = this.props.component || 'a';
 	    var href = this.props.href || '#';
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        href: href,
 	        className: classNames(classSet, this.props.className),
 	        role: 'badge'
@@ -3450,6 +3522,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var classSet = this.getClassSet();
 	    var Component = this.props.component;
 	    var renderAnchor = this.props.href;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    if (renderAnchor) {
 	      return this.renderAnchor(classSet);
@@ -3457,7 +3530,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, this.props.className)
 	      }),
 	      this.props.children
@@ -3477,7 +3550,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Icon = __webpack_require__(23);
 
 	var Close = React.createClass({
@@ -3490,7 +3564,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    component: React.PropTypes.node,
 	    spin: React.PropTypes.bool,
 	    alt: React.PropTypes.bool,
-	    icon: React.PropTypes.bool
+	    icon: React.PropTypes.bool,
+	    type: React.PropTypes.string
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -3504,6 +3579,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = this.props.component || 'button';
 	    var classSet = this.getClassSet();
 	    var props = this.props;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // transfer type
 	    if (Component !== 'button') {
@@ -3516,7 +3592,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, this.props.className),
 	        role: 'close'
 	      }),
@@ -3537,7 +3613,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var List = React.createClass({
 	  displayName: 'List',
@@ -3545,6 +3622,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
+	    border: React.PropTypes.bool,
 	    bordered: React.PropTypes.bool,
 	    striped: React.PropTypes.bool,
 	    static: React.PropTypes.bool,
@@ -3563,6 +3642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = this.props.component;
 	    var props = this.props;
 	    var prefixClass = this.prefixClass;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // am-list-border
 	    classes[prefixClass('border')] = props.border || props.bordered;
@@ -3575,7 +3655,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, props.className)
 	      }),
 	      props.children
@@ -3596,7 +3676,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
 	var assign = __webpack_require__(31);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var ListItem = React.createClass({
 	  displayName: 'ListItem',
@@ -3620,6 +3701,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = {};
 	    var Component = this.props.component;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // set .am-text-truncate
 	    classes['am-text-truncate'] = this.props.truncate;
@@ -3631,7 +3713,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      this.props.children
@@ -3643,10 +3725,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = props.component;
 	    var truncate = props.truncate ? 'am-text-truncate' : '';
 	    var linkComponent = this.props.linkComponent || 'a';
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      React.createElement(linkComponent, assign({
@@ -3672,7 +3755,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var CollapseMixin = __webpack_require__(38);
 
 	var Panel = React.createClass({
@@ -3685,6 +3769,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    header: React.PropTypes.node,
 	    footer: React.PropTypes.node,
 	    id: React.PropTypes.string,
+	    classPrefix: React.PropTypes.string,
 	    amStyle: React.PropTypes.string,
 	    onSelect: React.PropTypes.func,
 	    eventKey: React.PropTypes.any
@@ -3839,10 +3924,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = this.getClassSet();
 	    var collapsible = this.props.collapsible;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        id: collapsible ? null : this.props.id,
 	        className: classNames(classes, this.props.className)
 	      }),
@@ -3865,7 +3951,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var PanelGroup = React.createClass({
 	  displayName: 'PanelGroup',
@@ -3873,6 +3960,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    amStyle: React.PropTypes.string,
 	    activeKey: React.PropTypes.any,
 	    defaultActiveKey: React.PropTypes.any,
@@ -3935,10 +4023,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classes = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classes, this.props.className)
 	      }),
 	      React.Children.map(this.props.children, this.renderPanel)
@@ -3958,7 +4047,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Progress = React.createClass({
 	  displayName: 'Progress',
@@ -3966,6 +4056,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    now: React.PropTypes.number,
 	    label: React.PropTypes.string,
 	    active: React.PropTypes.bool,
@@ -4015,6 +4106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classes = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // set class
 	    classes[this.prefixClass('striped')] = this.props.striped;
@@ -4027,7 +4119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!this.props.isChild) {
 	        return React.createElement(
 	          'div',
-	          _extends({}, this.props, {
+	          _extends({}, restProps, {
 	            className: classNames(classes, this.props.className)
 	          }),
 	          this.renderProgressBar()
@@ -4038,7 +4130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    } else {
 	      return React.createElement(
 	        'div',
-	        _extends({}, this.props, {
+	        _extends({}, restProps, {
 	          className: classNames(classes, this.props.className)
 	        }),
 	        React.Children.map(this.props.children, this.renderChildBar)
@@ -4062,7 +4154,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Alert = React.createClass({
 	  displayName: 'Alert',
@@ -4095,6 +4188,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 	    var isCloseable = !!this.props.onClose;
 
 	    if (this.props.amStyle) {
@@ -4105,7 +4199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      isCloseable ? this.renderCloseBtn() : null,
@@ -4138,6 +4232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var fecha = __webpack_require__(52);
+	var omit = __webpack_require__(4);
 	var Events = __webpack_require__(53);
 	var isNodeInTree = __webpack_require__(54);
 	var Input = __webpack_require__(21);
@@ -4149,7 +4244,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  propTypes: {
 	    format: React.PropTypes.string,
 	    dateTime: React.PropTypes.string,
-	    onSelect: React.PropTypes.func
+	    date: React.PropTypes.string,
+	    onSelect: React.PropTypes.func,
+	    showTimePicker: React.PropTypes.bool,
+	    showDatePicker: React.PropTypes.bool,
+	    amStyle: React.PropTypes.oneOf(['success', 'danger', 'warning']),
+	    viewMode: React.PropTypes.string,
+	    minViewMode: React.PropTypes.string,
+	    daysOfWeekDisabled: React.PropTypes.array,
+	    locale: React.PropTypes.string,
+	    weekStart: React.PropTypes.number,
+	    minDate: React.PropTypes.string,
+	    maxDate: React.PropTypes.string
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -4253,10 +4359,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  render: function render() {
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Input, _extends({}, this.props, {
+	      React.createElement(Input, _extends({}, restProps, {
 	        type: 'text',
 	        value: this.state.value,
 	        onClick: this.handleClick,
@@ -4696,7 +4804,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
 	var fecha = __webpack_require__(52);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Icon = __webpack_require__(23);
 	var DatePicker = __webpack_require__(56);
 	var TimePicker = __webpack_require__(58);
@@ -4707,6 +4816,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    showTimePicker: React.PropTypes.bool,
 	    showDatePicker: React.PropTypes.bool,
 	    caretDisplayed: React.PropTypes.bool,
@@ -4871,12 +4981,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    this.props.amStyle && (classSet[this.prefixClass(this.props.amStyle)] = true);
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, this.props.className)
 	      }),
 	      this.renderCaret(),
@@ -4907,7 +5018,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
 	var fecha = __webpack_require__(52);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var dateUtils = __webpack_require__(57);
 
 	var DatePicker = React.createClass({
@@ -5676,7 +5787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var TimePicker = React.createClass({
 	  displayName: 'TimePicker',
@@ -6093,9 +6204,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
 	var assign = __webpack_require__(31);
-	var ClassNameMixin = __webpack_require__(4);
-	var constants = __webpack_require__(5);
-	var Button = __webpack_require__(9);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
+	var constants = __webpack_require__(9);
+	var Button = __webpack_require__(13);
 	var Icon = __webpack_require__(23);
 	var Events = __webpack_require__(53);
 	var isNodeInTree = __webpack_require__(54);
@@ -6237,7 +6349,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return React.createElement(
 	      Component,
 	      {
-	        btnStyle: null,
 	        className: classNames(this.props.className, classSet)
 	      },
 	      React.createElement(
@@ -6282,11 +6393,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    header: React.PropTypes.bool,
 	    divider: React.PropTypes.bool,
 	    linkComponent: React.PropTypes.any,
-	    linkProps: React.PropTypes.object
+	    linkProps: React.PropTypes.object,
+	    active: React.PropTypes.bool
 	  },
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 	    var children = null;
 
 	    classSet[this.setClassNamespace('dropdown-header')] = this.props.header;
@@ -6310,7 +6423,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      'li',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        title: null,
 	        href: null,
 	        className: classNames(this.props.className, classSet)
@@ -6339,7 +6452,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var DimmerMixin = __webpack_require__(61);
 	var Events = __webpack_require__(53);
 	var Close = __webpack_require__(43);
@@ -6571,6 +6685,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      width: props.modalWidth,
 	      height: props.modalHeight
 	    };
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.prefixClass('active')] = this.state.transitioning;
 
@@ -6580,7 +6695,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var modal = React.createElement(
 	      'div',
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        style: style,
 	        ref: 'modal',
 	        title: null,
@@ -7040,7 +7155,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Popover = React.createClass({
 	  displayName: 'Popover',
@@ -7069,13 +7185,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      top: this.props.positionTop,
 	      display: 'block'
 	    };
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.setClassNamespace('active')] = true;
 	    classSet[this.prefixClass(this.props.placement)] = true;
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        style: style,
 	        className: classNames(classSet, this.props.className)
 	      }),
@@ -7326,7 +7443,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	function clamp(n, min, max) {
 	  if (n < min) {
@@ -7498,7 +7615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var cloneElement = React.cloneElement;
 	var assign = __webpack_require__(31);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var isInViewport = __webpack_require__(70);
 	var Events = __webpack_require__(53);
 	var TransitionEvents = __webpack_require__(39);
@@ -7731,6 +7848,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var ReactDOM = __webpack_require__(22);
 	var cloneElement = React.cloneElement;
 	var assign = __webpack_require__(31);
+	var omit = __webpack_require__(4);
 	var classNames = __webpack_require__(3);
 	var SmoothScrollMixin = __webpack_require__(74);
 	var isInViewport = __webpack_require__(70);
@@ -7741,7 +7859,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var domUtils = __webpack_require__(63);
 	var createChainedFunction = __webpack_require__(35);
 	var canUseDOM = __webpack_require__(40);
-	var constants = __webpack_require__(5);
+	var constants = __webpack_require__(9);
 
 	var ScrollSpyNav = React.createClass({
 	  displayName: 'ScrollSpyNav',
@@ -7850,7 +7968,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var child = React.Children.only(this.props.children);
 
 	    // transfer child's props to cloned element
-	    return cloneElement(child, assign({}, this.props, child.props, {
+	    return cloneElement(child, assign({}, omit(this.props, Object.keys(this.constructor.propTypes)), child.props, {
 	      onClick: createChainedFunction(this.handleClick, child.props.onClick),
 	      className: classNames(this.props.className, child.props.className)
 	    }));
@@ -7979,7 +8097,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Dropdown = __webpack_require__(59);
 	var Icon = __webpack_require__(23);
 	var Input = __webpack_require__(21);
@@ -8017,7 +8135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: '',
 	      delimiter: ',',
 	      optionFilter: function optionFilter(filterText, option) {
-	        return option.label.toLowerCase().indexOf(filterText) > -1;
+	        return option.label.toLowerCase().indexOf(filterText.toLowerCase()) > -1;
 	      }
 	    };
 	  },
@@ -8235,7 +8353,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var TransitionEvents = __webpack_require__(39);
 
 	//React.initializeTouchEvents(true);
@@ -8246,6 +8365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    theme: React.PropTypes.oneOf(['default', 'a1', 'a2', 'a3', 'a4', 'a5', 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3']),
 	    directionNav: React.PropTypes.bool, // prev/next icon
 	    controlNav: React.PropTypes.bool,
@@ -8510,13 +8630,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      position: 'relative',
 	      width: '100%'
 	    };
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // React version slider style
 	    classSet[this.prefixClass('slide')] = true;
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        className: classNames(classSet, this.props.className),
 	        onMouseOver: this.handleMouseOver,
 	        onMouseOut: this.handleMouseOut
@@ -8635,8 +8756,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var assign = __webpack_require__(31);
+	var omit = __webpack_require__(4);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Events = __webpack_require__(53);
 	var debounce = __webpack_require__(72);
 	var domUtils = __webpack_require__(63);
@@ -8799,11 +8921,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var stickyClass = this.getClassSet();
 	    var child = React.Children.only(this.props.children);
 	    var animation = this.props.animation && this.state.sticked ? this.setClassNamespace('animation-' + this.props.animation) : null;
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // transfer child's props to cloned element
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        style: this.state.holderStyle,
 	        className: classNames(this.props.className, this.prefixClass('placeholder'))
 	      }),
@@ -8829,7 +8952,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var CollapseMixin = __webpack_require__(38);
 
 	var Accordion = React.createClass({
@@ -8838,6 +8962,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    theme: React.PropTypes.oneOf(['default', 'basic', 'gapped']),
 	    data: React.PropTypes.array,
 	    activeKey: React.PropTypes.any,
@@ -8871,12 +8996,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.prefixClass(this.props.theme)] = true;
 
 	    return React.createElement(
 	      'section',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(classSet, this.props.className)
 	      }),
@@ -8965,7 +9091,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Divider = React.createClass({
 	  displayName: 'Divider',
@@ -8986,8 +9113,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
-	    return React.createElement('hr', _extends({}, this.props, {
+	    return React.createElement('hr', _extends({}, restProps, {
 	      'data-am-widget': this.props.classPrefix,
 	      className: classNames(this.props.className, classSet)
 	    }));
@@ -9006,7 +9134,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 
 	var Footer = React.createClass({
 	  displayName: 'Footer',
@@ -9037,10 +9166,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classSet = this.getClassSet();
 	    var MobileTag = this.props.mobileLink ? 'a' : 'span';
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'footer',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(this.props.className, classSet)
 	      }),
@@ -9100,9 +9230,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var AvgGrid = __webpack_require__(8);
-	var omit = __webpack_require__(10);
+	var ClassNameMixin = __webpack_require__(8);
+	var AvgGrid = __webpack_require__(12);
+	var omit = __webpack_require__(4);
 
 	var Gallery = React.createClass({
 	  displayName: 'Gallery',
@@ -9167,11 +9297,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
-	    var props = omit(this.props, ['classPrefix', 'data', 'theme']);
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      AvgGrid,
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        sm: this.props.sm || 2,
 	        md: this.props.md || 3,
 	        lg: this.props.lg || 4,
@@ -9202,7 +9332,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var SmoothScrollMixin = __webpack_require__(74);
 	var Events = __webpack_require__(53);
 	var debounce = __webpack_require__(72);
@@ -9273,13 +9404,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[this.prefixClass(this.props.theme)] = true;
 	    classSet[this.setClassNamespace('active')] = !this.isAutoHide();
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(classSet, this.props.className)
 	      }),
@@ -9313,9 +9445,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Icon = __webpack_require__(23);
-	var omit = __webpack_require__(10);
+	var omit = __webpack_require__(4);
 
 	var Header = React.createClass({
 	  displayName: 'Header',
@@ -9394,13 +9526,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // am-header-fixed: fixed header
 	    classSet[this.prefixClass('fixed')] = this.props.fixed;
 
 	    return React.createElement(
 	      'header',
-	      _extends({}, omit(this.props, ['data', 'title']), {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(this.props.className, classSet)
 	      }),
@@ -9423,9 +9556,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var Button = __webpack_require__(9);
-	var Col = __webpack_require__(6);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
+	var Button = __webpack_require__(13);
+	var Col = __webpack_require__(10);
 
 	var ListNews = React.createClass({
 	  displayName: 'ListNews',
@@ -9629,10 +9763,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(this.props.className, classSet)
 	      }),
@@ -9655,10 +9790,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var omit = __webpack_require__(10);
-	var ClassNameMixin = __webpack_require__(4);
+	var omit = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Icon = __webpack_require__(23);
-	var AvgGrid = __webpack_require__(8);
+	var AvgGrid = __webpack_require__(12);
 
 	var Menu = React.createClass({
 	  displayName: 'Menu',
@@ -9820,12 +9955,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
-	    var props = omit(this.props, 'data');
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 	    var hideTopLevel = !this.state.expanded ? this.setClassNamespace('collapse') : null;
 
 	    return React.createElement(
 	      'nav',
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(this.props.className, classSet)
 	      }),
@@ -9854,9 +9989,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
+	var ClassNameMixin = __webpack_require__(8);
 	var Icon = __webpack_require__(23);
-	var omit = __webpack_require__(10);
+	var omit = __webpack_require__(4);
 
 	var Navbar = React.createClass({
 	  displayName: 'Navbar',
@@ -9881,13 +10016,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
-	    var props = omit(this.props, 'data');
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
-	        cf: true,
 	        className: classNames(this.props.className, classSet)
 	      }),
 	      React.createElement(
@@ -9937,9 +10071,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var classNames = __webpack_require__(3);
-	var ClassNameMixin = __webpack_require__(4);
-	var AvgGrid = __webpack_require__(8);
-	var omit = __webpack_require__(10);
+	var ClassNameMixin = __webpack_require__(8);
+	var AvgGrid = __webpack_require__(12);
+	var omit = __webpack_require__(4);
 
 	var Titlebar = React.createClass({
 	  displayName: 'Titlebar',
@@ -9963,11 +10097,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = this.getClassSet();
-	    var props = omit(this.props, ['classPrefix', 'nav', 'theme']);
+	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, props, {
+	      _extends({}, restProps, {
 	        'data-am-widget': this.props.classPrefix,
 	        className: classNames(this.props.className, classSet)
 	      }),
@@ -10004,7 +10138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	module.exports = {
-	  ClassNameMixin: __webpack_require__(4),
+	  ClassNameMixin: __webpack_require__(8),
 	  CollapseMixin: __webpack_require__(38),
 	  DimmerMixin: __webpack_require__(61),
 	  OverlayMixin: __webpack_require__(65),
