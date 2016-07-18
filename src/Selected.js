@@ -57,9 +57,11 @@ var Selected = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    this.setState({
-      value: nextProps.value
-    });
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        value: nextProps.value
+      });
+    }
   },
 
   setDropdownWidth: function() {
