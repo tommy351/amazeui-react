@@ -1,4 +1,4 @@
-/*! Amaze UI React v1.2.0 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-07-14T17:18:19+0800 */
+/*! Amaze UI React v1.2.1 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-07-19T11:16:03+0800 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = {
-	  VERSION: '1.2.0',
+	  VERSION: '1.2.1',
 
 	  // layout
 	  Grid: __webpack_require__(2),
@@ -746,15 +746,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 
+	  removeUnknownProps: function removeUnknownProps() {
+	    return omit(this.props, ['classPrefix', 'active', 'block', 'radius', 'round', 'component', 'amSize', 'amStyle']);
+	  },
+
+
 	  renderAnchor: function renderAnchor(classSet) {
 	    var Component = this.props.component || 'a';
 	    var href = this.props.href || '#';
-	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+	    var restProps = this.removeUnknownProps();
 
 	    return React.createElement(
 	      Component,
 	      _extends({}, restProps, {
 	        href: href,
+	        target: this.props.target,
 	        className: classNames(this.props.className, classSet),
 	        role: 'button'
 	      }),
@@ -764,7 +770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  renderButton: function renderButton(classSet) {
 	    var Component = this.props.component || 'button';
-	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+	    var restProps = this.removeUnknownProps();
 
 	    return React.createElement(
 	      Component,
@@ -1275,7 +1281,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var input = null;
 	    var fieldClassName = this.isCheckboxOrRadio() || this.isFile() ? '' : this.setClassNamespace('form-field');
 	    var classSet = {};
-	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    classSet[constants.CLASSES.round] = this.props.round;
 	    classSet[constants.CLASSES.radius] = this.props.radius;
@@ -1285,12 +1290,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var classes = classNames(this.props.className, fieldClassName, classSet);
+	    var props = omit(this.props, ['radius', 'round', 'amSize', 'amStyle', 'validation', 'label', 'help', 'addonBefore', 'addonAfter', 'btnBefore', 'btnAfter', 'groupClassName', 'wrapperClassName', 'labelClassName', 'helpClassName', 'icon', 'standalone', 'inline', 'hasFeedback']);
 
 	    switch (this.props.type) {
 	      case 'select':
 	        input = React.createElement(
 	          'select',
-	          _extends({}, restProps, {
+	          _extends({}, props, {
 	            className: classes,
 	            ref: 'field',
 	            key: 'field'
@@ -1299,7 +1305,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        );
 	        break;
 	      case 'textarea':
-	        input = React.createElement('textarea', _extends({}, restProps, {
+	        input = React.createElement('textarea', _extends({}, props, {
 	          className: classes,
 	          ref: 'field',
 	          key: 'field'
@@ -1307,14 +1313,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        break;
 	      case 'submit':
 	      case 'reset':
-	        input = React.createElement(Button, _extends({}, restProps, {
+	        input = React.createElement(Button, _extends({}, props, {
 	          component: 'input',
 	          ref: 'field',
 	          key: 'field'
 	        }));
 	        break;
 	      default:
-	        input = React.createElement('input', _extends({}, restProps, {
+	        input = React.createElement('input', _extends({}, props, {
 	          className: classes,
 	          ref: 'field',
 	          key: 'field'
@@ -1495,6 +1501,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var classNames = __webpack_require__(3);
 	var omit = __webpack_require__(4);
 	var ClassNameMixin = __webpack_require__(8);
+	var PropTypes = React.PropTypes;
 
 	var Icon = React.createClass({
 	  displayName: 'Icon',
@@ -1502,16 +1509,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
-	    classPrefix: React.PropTypes.string,
-	    amStyle: React.PropTypes.string,
-	    amSize: React.PropTypes.string,
-	    fw: React.PropTypes.bool,
-	    spin: React.PropTypes.bool,
-	    button: React.PropTypes.bool,
-	    size: React.PropTypes.string,
-	    href: React.PropTypes.string,
-	    component: React.PropTypes.node.isRequired,
-	    icon: React.PropTypes.string.isRequired
+	    classPrefix: PropTypes.string,
+	    component: PropTypes.node.isRequired,
+	    amStyle: PropTypes.string,
+	    amSize: PropTypes.string,
+	    fw: PropTypes.bool,
+	    spin: PropTypes.bool,
+	    button: PropTypes.bool,
+	    size: PropTypes.string,
+	    href: PropTypes.string,
+	    icon: PropTypes.string.isRequired
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -1547,6 +1554,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return React.createElement(
 	      Component,
 	      _extends({}, restProps, {
+	        href: this.props.href,
 	        className: classNames(classes, this.props.className)
 	      }),
 	      this.props.children
@@ -1640,6 +1648,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var omit = __webpack_require__(4);
 	var ClassNameMixin = __webpack_require__(8);
 	var constants = __webpack_require__(9);
+	var PropTypes = React.PropTypes;
 
 	var Image = React.createClass({
 	  displayName: 'Image',
@@ -1647,16 +1656,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
-	    src: React.PropTypes.string.isRequired,
-	    circle: React.PropTypes.bool,
-	    radius: React.PropTypes.bool,
-	    round: React.PropTypes.bool,
-	    responsive: React.PropTypes.bool,
-	    thumbnail: React.PropTypes.bool,
-	    placeholder: React.PropTypes.string,
-	    threshold: React.PropTypes.number,
-	    callback: React.PropTypes.func,
-	    asBgImage: React.PropTypes.bool
+	    src: PropTypes.string.isRequired,
+	    circle: PropTypes.bool,
+	    radius: PropTypes.bool,
+	    round: PropTypes.bool,
+	    responsive: PropTypes.bool,
+	    thumbnail: PropTypes.bool,
+	    placeholder: PropTypes.string,
+	    threshold: PropTypes.number,
+	    callback: PropTypes.func,
+	    asBgImage: PropTypes.bool
 	  },
 
 	  render: function render() {
@@ -1669,7 +1678,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    classSet[this.setClassNamespace('img-responsive')] = this.props.responsive;
 	    classSet[this.setClassNamespace('img-thumbnail')] = this.props.thumbnail;
 
-	    return React.createElement('img', _extends({}, restProps, {
+	    return React.createElement('img', _extends({
+	      src: this.props.src
+	    }, restProps, {
 	      className: classNames(this.props.className, classSet)
 	    }));
 	  }
@@ -2055,7 +2066,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var linkProps = {
 	      href: this.props.href,
-	      title: this.props.tilte,
+	      title: this.props.title,
 	      target: this.props.target,
 	      style: style
 	    };
@@ -2184,8 +2195,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  propTypes: {
 	    classPrefix: React.PropTypes.string,
-	    slash: React.PropTypes.bool,
-	    component: React.PropTypes.node.isRequired
+	    component: React.PropTypes.node.isRequired,
+	    slash: React.PropTypes.bool
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -3487,12 +3498,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    classPrefix: React.PropTypes.string,
 	    component: React.PropTypes.node,
 	    href: React.PropTypes.string,
 	    round: React.PropTypes.bool,
 	    radius: React.PropTypes.bool,
-	    amStyle: React.PropTypes.string,
-	    classPrefix: React.PropTypes.string
+	    amStyle: React.PropTypes.string
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -3623,11 +3634,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  propTypes: {
 	    classPrefix: React.PropTypes.string,
+	    component: React.PropTypes.node.isRequired,
 	    border: React.PropTypes.bool,
 	    bordered: React.PropTypes.bool,
 	    striped: React.PropTypes.bool,
-	    static: React.PropTypes.bool,
-	    component: React.PropTypes.node.isRequired
+	    static: React.PropTypes.bool
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -8153,9 +8164,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	    this.setState({
-	      value: nextProps.value
-	    });
+	    if (this.props.value !== nextProps.value) {
+	      this.setState({
+	        value: nextProps.value
+	      });
+	    }
 	  },
 
 	  setDropdownWidth: function setDropdownWidth() {

@@ -11,7 +11,7 @@
 - `showTimePicker`: `bool` 默认为 `true`，是否显示时间控件
 - `showDatePicker`: `bool` 默认为 `true`，是否显示日期控件
 - `caretDisplayed`: `bool` 默认为 `true`，是否显示小箭头(选择器上方箭头)
-- `format`: `string` 日期格式设置，默认值：`YYYY-MM-DD HH:mm`
+- `format`: `string` 日期格式设置，默认值：`YYYY-MM-DD HH:mm`，可用关键词参见 [fecha 文档](https://github.com/taylorhakes/fecha#formatting-tokens)
 - `amStyle`: `string` 主题默认为蓝色，支持 `success`、`warning`、`danger`
 - `viewMode`: `string` 显示视图模式 `days`、`months`、`years` 默认值：`days`
 - `minViewMode`: `string` 限制视图模式 `days`、`months`、`years` 默认值：`days`
