@@ -5,15 +5,13 @@ import {
   Route,
   IndexRoute,
   hashHistory,
+  browserHistory,
 } from 'react-router';
 import {
-  createHistory,
   useBasename,
 } from 'history';
 
-const history = useBasename(createHistory)({
-  basename: '/react'
-});
+const history = useBasename(() => browserHistory)({basename: `/react`});
 
 // style
 import './docs.less';
@@ -51,7 +49,7 @@ import PageComponentsIndex from './_pages/PageComponentsIndex';
 import PageComponentsDoc from './_pages/PageComponentsDoc';
 
 const routes = (
-  <Router history={production ? history : hashHistory}>
+  <Router history={production? history : hashHistory}>
     <Route path="/" component={App}>
       <Route path="getting-started" component={PageGettingStarted} />
       <Route path="components" component={PageComponents}>

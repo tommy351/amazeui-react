@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.UICDN %>css/amazeui.min.css"/>
   <!--<script src="<%= htmlWebpackPlugin.options.assets %>app.js"></script>-->
   <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-  <script src="<%= htmlWebpackPlugin.options.assets %><%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+  <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
   <% } %>
   <% if (htmlWebpackPlugin.options.stat) { %>
   <script id="stat">

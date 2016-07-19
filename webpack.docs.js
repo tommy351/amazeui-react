@@ -38,7 +38,7 @@ const basePlugins = [
     title: 'Amaze UI React',
     template: 'docs/index.html',
     inject: false,
-    UICDN: isProduction ? 'http://cdn.amazeui.org/amazeui/2.6.2/' : '',
+    UICDN: isProduction ? 'http://cdn.amazeui.org/amazeui/2.7.1/' : '',
     assets: isProduction ? 'http://s.amazeui.org/assets/react' : '',
     stat: isProduction,
     minify: isProduction ? {
@@ -70,7 +70,7 @@ export default {
     path: path.join(__dirname, 'www'),
     filename: `app.[hash:7]${isProduction ? '.min' : ''}.js`,
     chunkFilename: '[id].chunk.js',
-    publicPath: '/'
+    publicPath: ''
   },
 
   module: {
