@@ -1,5 +1,11 @@
 ## Change Log
 
+### v1.2.1 (2016/07/19 11:17 +08:00)
+
+- [56195c2](https://github.com/amazeui/amazeui-react/commit/56195c2484fe39ad8695deb2315b8e7a4fea41a3) #123 修复误移删除的 DOM 属性
+- [b0a47f0](https://github.com/amazeui/amazeui-react/commit/b0a47f09b001b499a77855d13c34dd66deab44e2) 改进 Selected 接收属性时的渲染触发逻辑
+
+
 ### v1.2.0 (2016/07/14 17:26 +08:00)
 
 - [c306c8f](https://github.com/amazeui/amazeui-react/commit/c306c8fdbf155862e0ca2eebb69ba68542bcd9c3) #121 改进 Selected 组件默认过滤函数 (@jdneo) 
