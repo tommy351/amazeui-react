@@ -10,11 +10,11 @@ var List = React.createClass({
 
   propTypes: {
     classPrefix: React.PropTypes.string,
+    component: React.PropTypes.node.isRequired,
     border: React.PropTypes.bool,
     bordered: React.PropTypes.bool,
     striped: React.PropTypes.bool,
-    static: React.PropTypes.bool,
-    component: React.PropTypes.node.isRequired
+    static: React.PropTypes.bool
   },
 
   getDefaultProps: function() {

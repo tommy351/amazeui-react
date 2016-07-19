@@ -5,21 +5,22 @@ var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var constants = require('./constants');
+var PropTypes = React.PropTypes;
 
 var Image = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    src: React.PropTypes.string.isRequired,
-    circle: React.PropTypes.bool,
-    radius: React.PropTypes.bool,
-    round: React.PropTypes.bool,
-    responsive: React.PropTypes.bool,
-    thumbnail: React.PropTypes.bool,
-    placeholder: React.PropTypes.string,
-    threshold: React.PropTypes.number,
-    callback: React.PropTypes.func,
-    asBgImage: React.PropTypes.bool
+    src: PropTypes.string.isRequired,
+    circle: PropTypes.bool,
+    radius: PropTypes.bool,
+    round: PropTypes.bool,
+    responsive: PropTypes.bool,
+    thumbnail: PropTypes.bool,
+    placeholder: PropTypes.string,
+    threshold: PropTypes.number,
+    callback: PropTypes.func,
+    asBgImage: PropTypes.bool
   },
 
   render: function() {
@@ -34,6 +35,7 @@ var Image = React.createClass({
 
     return (
       <img
+        src={this.props.src}
         {...restProps}
         className={classNames(this.props.className, classSet)}
       />

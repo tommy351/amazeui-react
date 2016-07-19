@@ -4,7 +4,7 @@ var formInstance = (
     {'\u00a0'}
     <Input placeholder="密码" />
     {'\u00a0'}
-    <Input type="submit" amStyle="primary" value="登录" standalone/>
+    <Input type="submit" amStyle="primary" defaultValue="登录" standalone/>
   </Form>
 );
 

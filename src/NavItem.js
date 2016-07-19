@@ -65,7 +65,7 @@ var NavItem = React.createClass({
 
     var linkProps = {
       href: this.props.href,
-      title: this.props.tilte,
+      title: this.props.title,
       target: this.props.target,
       style: style
     };

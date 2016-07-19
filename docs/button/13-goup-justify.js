@@ -1,8 +1,8 @@
 var buttonsInstance = (
   <ButtonGroup justify>
-    <Button>左手</Button>
-    <Button>猪手</Button>
-    <Button>右手</Button>
+    <Button href="javascript: void(0);">左手</Button>
+    <Button href="javascript: void(0);">猪手</Button>
+    <Button href="javascript: void(0);">右手</Button>
   </ButtonGroup>
 );
 

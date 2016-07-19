@@ -93,7 +93,6 @@ var Input = React.createClass({
     var fieldClassName = this.isCheckboxOrRadio() || this.isFile() ? '' :
       this.setClassNamespace('form-field');
     var classSet = {};
-    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     classSet[constants.CLASSES.round] = this.props.round;
     classSet[constants.CLASSES.radius] = this.props.radius;
@@ -103,12 +102,33 @@ var Input = React.createClass({
     }
 
     var classes = classNames(this.props.className, fieldClassName, classSet);
+    var props = omit(this.props, [
+      'radius',
+      'round',
+      'amSize',
+      'amStyle',
+      'validation',
+      'label',
+      'help',
+      'addonBefore',
+      'addonAfter',
+      'btnBefore',
+      'btnAfter',
+      'groupClassName',
+      'wrapperClassName',
+      'labelClassName',
+      'helpClassName',
+      'icon',
+      'standalone',
+      'inline',
+      'hasFeedback'
+    ]);
 
     switch (this.props.type) {
       case 'select':
         input = (
           <select
-            {...restProps}
+            {...props}
             className={classes}
             ref="field"
             key="field"
@@ -120,7 +140,7 @@ var Input = React.createClass({
       case 'textarea':
         input = (
           <textarea
-            {...restProps}
+            {...props}
             className={classes}
             ref="field"
             key="field"
@@ -131,7 +151,7 @@ var Input = React.createClass({
       case 'reset':
         input = (
           <Button
-            {...restProps}
+            {...props}
             component="input"
             ref="field"
             key="field"
@@ -141,7 +161,7 @@ var Input = React.createClass({
       default:
         input = (
           <input
-            {...restProps}
+            {...props}
             className={classes}
             ref="field"
             key="field"

@@ -31,15 +31,29 @@ var Button = React.createClass({
     };
   },
 
+  removeUnknownProps() {
+    return omit(this.props, [
+      'classPrefix',
+      'active',
+      'block',
+      'radius',
+      'round',
+      'component',
+      'amSize',
+      'amStyle'
+    ]);
+  },
+
   renderAnchor: function(classSet) {
     var Component = this.props.component || 'a';
     var href = this.props.href || '#';
-    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+    var restProps = this.removeUnknownProps();
 
     return (
       <Component
         {...restProps}
         href={href}
+        target={this.props.target}
         className={classNames(this.props.className, classSet)}
         role="button"
       >
@@ -50,7 +64,7 @@ var Button = React.createClass({
 
   renderButton: function(classSet) {
     var Component = this.props.component || 'button';
-    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+    var restProps = this.removeUnknownProps();
 
     return (
       <Component

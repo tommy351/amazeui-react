@@ -11,8 +11,8 @@ var Breadcrumb = React.createClass({
 
   propTypes: {
     classPrefix: React.PropTypes.string,
-    slash: React.PropTypes.bool,
-    component: React.PropTypes.node.isRequired
+    component: React.PropTypes.node.isRequired,
+    slash: React.PropTypes.bool
   },
 
   getDefaultProps: function() {

@@ -9,12 +9,12 @@ var Badge = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    classPrefix: React.PropTypes.string,
     component: React.PropTypes.node,
     href: React.PropTypes.string,
     round: React.PropTypes.bool,
     radius: React.PropTypes.bool,
-    amStyle: React.PropTypes.string,
-    classPrefix: React.PropTypes.string
+    amStyle: React.PropTypes.string
   },
 
   getDefaultProps: function () {

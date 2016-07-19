@@ -4,21 +4,22 @@ var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
+var PropTypes = React.PropTypes;
 
 var Icon = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    amStyle: React.PropTypes.string,
-    amSize: React.PropTypes.string,
-    fw: React.PropTypes.bool,
-    spin: React.PropTypes.bool,
-    button: React.PropTypes.bool,
-    size: React.PropTypes.string,
-    href: React.PropTypes.string,
-    component: React.PropTypes.node.isRequired,
-    icon: React.PropTypes.string.isRequired
+    classPrefix: PropTypes.string,
+    component: PropTypes.node.isRequired,
+    amStyle: PropTypes.string,
+    amSize: PropTypes.string,
+    fw: PropTypes.bool,
+    spin: PropTypes.bool,
+    button: PropTypes.bool,
+    size: PropTypes.string,
+    href: PropTypes.string,
+    icon: PropTypes.string.isRequired
   },
 
   getDefaultProps: function() {
@@ -55,6 +56,7 @@ var Icon = React.createClass({
     return (
       <Component
         {...restProps}
+        href={this.props.href}
         className={classNames(classes, this.props.className)}
       >
         {this.props.children}

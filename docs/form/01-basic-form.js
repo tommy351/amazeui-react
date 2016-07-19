@@ -3,7 +3,7 @@ var formInstance = (
     <Input type="text" label="用户名" id="doc-ipt-1" placeholder="输入用户名" />
     <Input type="password" label="密码" id="doc-ipt-2" placeholder="输入密码" />
     <Input type="file" label="尊容" id="doc-ipt-3" help="选择一个文件" />
-    <Input type="checkbox" label="选我选我选我" checked readOnly />
+    <Input type="checkbox" label="选我选我选我" defaultChecked readOnly />
     <Input type="radio" name="doc-radio-1" label="单选框 - 选项 1" />
     <Input type="radio" name="doc-radio-1" label="单选框 - 选项 2" />
 

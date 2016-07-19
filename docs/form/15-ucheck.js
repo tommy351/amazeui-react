@@ -5,14 +5,14 @@ var uCheckExample = (
         <UCheck type="checkbox" label="未选中" />
         <UCheck type="checkbox" label="选中" defaultChecked />
         <UCheck type="checkbox" label="禁用/未选中" disabled />
-        <UCheck type="checkbox" label="禁用/选中" disabled checked />
+        <UCheck type="checkbox" label="禁用/选中" disabled defaultChecked />
       </Col>
 
       <Col sm={6}>
         <UCheck type="radio" name="uc-rc-3" label="未选中" />
         <UCheck type="radio" name="uc-rc-3" label="选中" defaultChecked />
         <UCheck type="radio" label="禁用/未选中" disabled />
-        <UCheck type="radio" label="禁用/选中" disabled checked />
+        <UCheck type="radio" label="禁用/选中" disabled defaultChecked />
       </Col>
     </Grid>
 
