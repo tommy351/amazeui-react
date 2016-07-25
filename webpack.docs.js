@@ -67,10 +67,10 @@ export default {
   entry: isProduction ? entry : devEntry,
 
   output: {
-    path: path.join(__dirname, 'www'),
+    path: path.join(__dirname, isProduction ? 'www/react' : 'www'),
     filename: `app.[hash:7]${isProduction ? '.min' : ''}.js`,
     chunkFilename: '[id].chunk.js',
-    publicPath: ''
+    publicPath: isProduction ? '/react/' : '/'
   },
 
   module: {

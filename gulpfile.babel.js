@@ -9,10 +9,10 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import gulp from 'gulp';
 import loadPlugins from 'gulp-load-plugins';
-
 import buildConfig from './webpack.build';
 import docsConfig from './webpack.docs';
 
+const prod = process.env.NODE_ENV === 'production';
 const $ = loadPlugins();
 const paths = {
   src: {
@@ -24,7 +24,7 @@ const paths = {
     build: 'src/AMUIReact.js'
   },
   dist: {
-    docs: './www',
+    docs: prod ? './www/react' : './www',
     build: './dist',
     lib: './lib'
   }
