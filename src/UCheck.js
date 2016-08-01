@@ -32,7 +32,7 @@ var UCheck = React.createClass({
 
   render: function() {
     var classSet = {};
-    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+    var restProps = omit(this.props, ['inline', 'amStyle', 'hasFeedback']);
 
     classSet[this.setClassNamespace(this.props.type)] = !this.props.inline;
     classSet[this.setClassNamespace(this.props.type + '-inline')] =
