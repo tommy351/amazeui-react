@@ -27,7 +27,17 @@ var Nav = React.createClass({
   render: function() {
     var classes = this.getClassSet();
     var Component = this.props.component;
-    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+    var restProps = omit(this.props, [
+      'classPrefix',
+      'justify',
+      'pills',
+      'tabs',
+      'topbar',
+      'component',
+      'active',
+      'activeKey',
+      'activeHref'
+    ]);
 
     // set classes
     classes[this.prefixClass('pills')] = this.props.pills || this.props.topbar;

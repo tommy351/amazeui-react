@@ -111,7 +111,6 @@ var CollapsibleNav = React.createClass({
 
     return (
       <div
-        eventKey={this.props.eventKey}
         className={classNames(classSet, this.props.className)}
       >
         {React.Children.map(this.props.children, collapsible ?
