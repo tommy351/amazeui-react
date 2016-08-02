@@ -35,9 +35,11 @@ var Thumbnail = React.createClass({
 
   render: function() {
     var classes = classNames(this.getClassSet(), this.props.className);
+    var restProps = omit(this.props,
+      ['classPrefix', 'standalone', 'caption', 'component']);
 
     if (this.props.standalone) {
-      return this.renderImg(classes, Object.keys(this.constructor.propTypes));
+      return this.renderImg(classes, restProps);
     }
 
     var Component = this.props.href ? 'a' : this.props.component;
@@ -47,12 +49,12 @@ var Thumbnail = React.createClass({
       width: this.props.width,
       height: this.props.height
     };
-    var restProps = omit(this.props, Object.keys(this.constructor.propTypes), Object.keys(imgProps));
+    var props = omit(restProps, ['alt', 'src', 'width', 'height']);
     var caption = this.props.caption;
 
     return (
       <Component
-        {...restProps}
+        {...props}
         className={classes}
       >
         {this.renderImg(null, imgProps)}
@@ -88,7 +90,7 @@ Thumbnail.Caption = React.createClass({
       this.props.className,
       this.setClassNamespace('thumbnail-caption')
     );
-    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+    var restProps = omit(this.props, ['component']);
 
     return (
       <Component

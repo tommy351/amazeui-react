@@ -1,4 +1,4 @@
-/*! Amaze UI React v1.2.1 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-07-19T11:16:03+0800 */
+/*! Amaze UI React v1.2.1 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-07-29T09:10:53+0800 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
@@ -6690,8 +6690,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var style = {
 	      display: 'block'
 	    };
-	    // marginLeft: props.marginLeft,
-	    // marginTop: props.marginTop
 	    var dialogDimension = {
 	      width: props.modalWidth,
 	      height: props.modalHeight
