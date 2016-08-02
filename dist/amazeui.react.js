@@ -1,4 +1,4 @@
-/*! Amaze UI React v1.2.1 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-07-29T09:10:53+0800 */
+/*! Amaze UI React v1.2.2 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-08-02T11:34:37+0800 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = {
-	  VERSION: '1.2.1',
+	  VERSION: '1.2.2',
 
 	  // layout
 	  Grid: __webpack_require__(2),
@@ -1605,7 +1605,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classSet = {};
-	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+	    var restProps = omit(this.props, ['inline', 'amStyle', 'hasFeedback']);
 
 	    classSet[this.setClassNamespace(this.props.type)] = !this.props.inline;
 	    classSet[this.setClassNamespace(this.props.type + '-inline')] = this.props.inline;
@@ -1752,9 +1752,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  render: function render() {
 	    var classes = classNames(this.getClassSet(), this.props.className);
+	    var restProps = omit(this.props, ['classPrefix', 'standalone', 'caption', 'component']);
 
 	    if (this.props.standalone) {
-	      return this.renderImg(classes, Object.keys(this.constructor.propTypes));
+	      return this.renderImg(classes, restProps);
 	    }
 
 	    var Component = this.props.href ? 'a' : this.props.component;
@@ -1764,12 +1765,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      width: this.props.width,
 	      height: this.props.height
 	    };
-	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes), Object.keys(imgProps));
+	    var props = omit(restProps, ['alt', 'src', 'width', 'height']);
 	    var caption = this.props.caption;
 
 	    return React.createElement(
 	      Component,
-	      _extends({}, restProps, {
+	      _extends({}, props, {
 	        className: classes
 	      }),
 	      this.renderImg(null, imgProps),
@@ -1802,7 +1803,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var Component = this.props.component;
 	    var classes = classNames(this.props.className, this.setClassNamespace('thumbnail-caption'));
-	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+	    var restProps = omit(this.props, ['component']);
 
 	    return React.createElement(
 	      Component,
@@ -1970,7 +1971,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = this.getClassSet();
 	    var Component = this.props.component;
-	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+	    var restProps = omit(this.props, ['classPrefix', 'justify', 'pills', 'tabs', 'topbar', 'component', 'active', 'activeKey', 'activeHref']);
 
 	    // set classes
 	    classes[this.prefixClass('pills')] = this.props.pills || this.props.topbar;
@@ -2444,7 +2445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var Component = this.props.component;
 	    var classSet = this.getClassSet(true);
 	    var props = this.props;
-	    var linkComponent = this.props.linkComponent || (this.props.href ? 'a' : null);
+	    var linkComponent = this.props.linkComponent || (this.props.href || this.props.active ? 'a' : null);
 	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
 	    // .am-pagination-prev
@@ -2459,7 +2460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        className: classNames(classSet, this.props.className)
 	      }),
 	      linkComponent ? React.createElement(linkComponent, assign({
-	        href: this.props.href,
+	        href: this.props.href || this.props.active && 'javascript: void(0)',
 	        title: this.props.title,
 	        target: this.props.target,
 	        ref: 'anchor'
@@ -3043,7 +3044,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return React.createElement(
 	      'div',
 	      {
-	        eventKey: this.props.eventKey,
 	        className: classNames(classSet, this.props.className)
 	      },
 	      React.Children.map(this.props.children, collapsible ? this.renderCollapsibleNavChildren : this.renderChildren)
@@ -3794,7 +3794,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleClick: function handleClick(e) {
-	    e.selected = true;
+	    var selected = true;
 
 	    if (this.props.onSelect) {
 	      this.props.onSelect(e, this.props.eventKey);
@@ -3802,7 +3802,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      e.preventDefault();
 	    }
 
-	    if (e.selected) {
+	    if (selected) {
 	      this.handleToggle();
 	    }
 	  },
@@ -4542,6 +4542,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    D: [twoDigits, function (d, v) {
 	      d.day = v;
 	    }],
+	    Do: [new RegExp(twoDigits.source + word.source), function (d, v) {
+	      d.day = parseInt(v, 10);
+	    }],
 	    M: [twoDigits, function (d, v) {
 	      d.month = v - 1;
 	    }],
@@ -4593,7 +4596,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	  parseFlags.dd = parseFlags.d;
 	  parseFlags.dddd = parseFlags.ddd;
-	  parseFlags.Do = parseFlags.DD = parseFlags.D;
+	  parseFlags.DD = parseFlags.D;
 	  parseFlags.mm = parseFlags.m;
 	  parseFlags.hh = parseFlags.H = parseFlags.HH = parseFlags.h;
 	  parseFlags.MM = parseFlags.M;
@@ -6483,7 +6486,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    cancelText: React.PropTypes.string,
 	    closeIcon: React.PropTypes.bool,
 	    closeViaDimmer: React.PropTypes.bool,
-	    onRequestClose: React.PropTypes.func
+	    onRequestClose: React.PropTypes.func,
+	    marginTop: React.PropTypes.string,
+	    marginLeft: React.PropTypes.string,
+	    modalWidth: React.PropTypes.string,
+	    modalHeight: React.PropTypes.string,
+	    onConfirm: React.PropTypes.func,
+	    onCancel: React.PropTypes.func
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7178,7 +7187,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    positionLeft: React.PropTypes.number,
 	    positionTop: React.PropTypes.number,
 	    amSize: React.PropTypes.oneOf(['sm', 'lg']),
-	    amStyle: React.PropTypes.string
+	    amStyle: React.PropTypes.string,
+	    onRequestHide: React.PropTypes.func
 	  },
 
 	  getDefaultProps: function getDefaultProps() {
@@ -7725,9 +7735,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // transfer child's props to cloned element
 	    return cloneElement(child, assign({}, child.props, {
 	      className: classNames(child.props.className, animation),
-	      'data-am-scrollspy': 'animation', // style helper
-	      delay: this.props.delay,
-	      componentWillMount: this._removeEventLister
+	      'data-am-scrollspy': 'animation' // style helper
 	    }));
 	  }
 	});
