@@ -14,7 +14,8 @@ var Popover = React.createClass({
     positionLeft: React.PropTypes.number,
     positionTop: React.PropTypes.number,
     amSize: React.PropTypes.oneOf(['sm', 'lg']),
-    amStyle: React.PropTypes.string
+    amStyle: React.PropTypes.string,
+    onRequestHide: React.PropTypes.func
   },
 
   getDefaultProps: function() {
