@@ -22,7 +22,13 @@ var Modal = React.createClass({
     cancelText: React.PropTypes.string,
     closeIcon: React.PropTypes.bool,
     closeViaDimmer: React.PropTypes.bool,
-    onRequestClose: React.PropTypes.func
+    onRequestClose: React.PropTypes.func,
+    marginTop: React.PropTypes.string,
+    marginLeft: React.PropTypes.string,
+    modalWidth: React.PropTypes.string,
+    modalHeight: React.PropTypes.string,
+    onConfirm: React.PropTypes.func,
+    onCancel: React.PropTypes.func
   },
 
   getDefaultProps: function() {
