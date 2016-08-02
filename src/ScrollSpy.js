@@ -106,9 +106,7 @@ var ScrollSpy = React.createClass({
     // transfer child's props to cloned element
     return cloneElement(child, assign({}, child.props, {
       className: classNames(child.props.className, animation),
-      'data-am-scrollspy': 'animation', // style helper
-      delay: this.props.delay,
-      componentWillMount: this._removeEventLister
+      'data-am-scrollspy': 'animation' // style helper
     }));
   }
 });
