@@ -1,5 +1,18 @@
 ## Change Log
 
+
+### v1.2.2 (2016/08/02 11:36 +08:00)
+
+- [5becef2](https://github.com/amazeui/amazeui-react/commit/5becef2e2425220613de3dc29292ef6f6ec3bf9b) 处理 Popover 未知属性警告
+- [9adef9d](https://github.com/amazeui/amazeui-react/commit/9adef9d2a4bfe6fbad99b1ede18fae7a8b8685be) 修复 Thumbnail 属性处理错误
+- [bdd059b](https://github.com/amazeui/amazeui-react/commit/bdd059ba9538ecdb64ccec65cb7373a036f92294) 修复 Panel 事件池警告
+- [0b0f0bd](https://github.com/amazeui/amazeui-react/commit/0b0f0bd5bf80a32ba13c26a18f02cc2c1b5e41e2) 修复 Pagination `active` 子项目渲染
+- [b694090](https://github.com/amazeui/amazeui-react/commit/b694090f269dfe5377cd2a46405dcbf5bfe0191a) 修复 Modal 未知属性警告
+- [795d6ed](https://github.com/amazeui/amazeui-react/commit/795d6ed312df5a117559316a2eb62a143b66b108) 修复 ScrollSpy 未知属性警告
+- [1f2633f](https://github.com/amazeui/amazeui-react/commit/1f2633ffa15f9c7e621ce1177d80283c836474d4) #124 修复 Nav & CollapsibleNav 未知属性警告
+- [b5ad82a](https://github.com/amazeui/amazeui-react/commit/b5ad82aa7a208d2ee59e4dece5b7aae7da78618b) #127 修复 UCheck 不可选中问题
+- [db63f34](https://github.com/amazeui/amazeui-react/commit/db63f343291ccef10532adbabf9f8b61ddfbf739) #125 修复文档 JS 引用路径
+
 ### v1.2.1 (2016/07/19 11:17 +08:00)
 
 - [56195c2](https://github.com/amazeui/amazeui-react/commit/56195c2484fe39ad8695deb2315b8e7a4fea41a3) #123 修复误移删除的 DOM 属性
