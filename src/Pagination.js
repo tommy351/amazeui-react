@@ -149,7 +149,7 @@ Pagination.Item = React.createClass({
     var classSet = this.getClassSet(true);
     var props = this.props;
     var linkComponent = this.props.linkComponent ||
-          (this.props.href ? 'a' : null);
+          (this.props.href || this.props.active ? 'a' : null);
     var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     // .am-pagination-prev
@@ -167,7 +167,7 @@ Pagination.Item = React.createClass({
           React.createElement(
             linkComponent,
             assign({
-              href: this.props.href,
+              href: this.props.href || (this.props.active && 'javascript: void(0)'),
               title: this.props.title,
               target: this.props.target,
               ref: 'anchor'
