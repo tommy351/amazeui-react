@@ -29,7 +29,7 @@ var Panel = React.createClass({
   },
 
   handleClick: function(e) {
-    e.selected = true;
+    var selected = true;
 
     if (this.props.onSelect) {
       this.props.onSelect(e, this.props.eventKey);
@@ -37,7 +37,7 @@ var Panel = React.createClass({
       e.preventDefault();
     }
 
-    if (e.selected) {
+    if (selected) {
       this.handleToggle();
     }
   },
