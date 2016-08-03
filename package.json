@@ -9,6 +9,7 @@
     "start": "gulp",
     "build": "cross-env NODE_ENV=production gulp build",
     "docs": "rm -rf www && cross-env NODE_ENV=production gulp build:docs && browser-sync start -s www",
+    "docs:preview": "browser-sync start -s www",
     "examples": "node ./examples/server.js",
     "changelog": "github-changes -o amazeui -r amazeui-react -a"
   },
