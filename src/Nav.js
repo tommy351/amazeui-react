@@ -36,7 +36,8 @@ var Nav = React.createClass({
       'component',
       'active',
       'activeKey',
-      'activeHref'
+      'activeHref',
+      'navItem'
     ]);
 
     // set classes
