@@ -21,11 +21,17 @@ var Form = React.createClass({
   },
 
   render: function() {
-    var classSet = this.getClassSet();
+    var inline = this.props.inline;
     var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+    var classSet = {};
 
-    classSet[this.prefixClass('horizontal')] = this.props.horizontal;
-    classSet[this.prefixClass('inline')] = this.props.inline;
+    // remove .am-form className if `inline` prop set
+    if (inline) {
+      classSet[this.prefixClass('inline')] = true;
+    } else {
+      classSet = this.getClassSet();
+      classSet[this.prefixClass('horizontal')] = this.props.horizontal;
+    }
 
     return (
       <form
