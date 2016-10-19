@@ -303,6 +303,8 @@ var DaysPicker = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
+    format: React.PropTypes.string.isRequired,
+
     subtractMonth: React.PropTypes.func.isRequired,
     addMonth: React.PropTypes.func.isRequired,
 
@@ -358,8 +360,8 @@ var DaysPicker = React.createClass({
     nextMonth.setDate(nextMonth.getDate() + 42);
     nextMonth = nextMonth.valueOf();
 
-    var minDate = this.props.minDate && fecha.parse(this.props.minDate);
-    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate);
+    var minDate = this.props.minDate && fecha.parse(this.props.minDate, this.props.format);
+    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate, this.props.format);
 
     while (prevMonth.valueOf() < nextMonth) {
       classes[this.prefixClass('day')] = true;
@@ -510,8 +512,8 @@ var MonthsPicker = React.createClass({
     var year = this.props.selectedDate.getFullYear();
     var i = 0;
     var months = [];
-    var minDate = this.props.minDate && fecha.parse(this.props.minDate);
-    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate);
+    var minDate = this.props.minDate && fecha.parse(this.props.minDate, this.props.format);
+    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate, this.props.format);
     var prevMonth = new Date(year, month);
 
     // TODO: minDate maxDate months
