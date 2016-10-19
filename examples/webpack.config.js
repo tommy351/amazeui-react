@@ -13,9 +13,14 @@ var entryBase = [
   'webpack-hot-middleware/client?reload=true'
 ];
 var entries = fs.readdirSync(__dirname).reduce(function(entries, dir) {
-  if (fs.statSync(path.join(__dirname, dir))
-      .isDirectory() && dir !== 'node_modules')
-    entries[dir] = entryBase.concat(path.join(__dirname, dir, 'app.js'));
+  if (fs.statSync(path.join(__dirname, dir)).isDirectory() &&
+    dir !== 'node_modules') {
+    var entryPath = path.join(__dirname, dir, 'app.js');
+
+    if (fs.existsSync(entryPath)) {
+      entries[dir] = entryBase.concat(entryPath);
+    }
+  }
 
   return entries;
 }, {});
