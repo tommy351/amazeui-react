@@ -1,4 +1,4 @@
-/*! Amaze UI React v1.2.2 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-08-02T11:34:37+0800 */
+/*! Amaze UI React v1.2.3 | by Amaze UI Team | (c) 2016 AllMobilize, Inc. | Licensed under MIT | 2016-10-19T23:22:15+0800 */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
@@ -64,7 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = {
-	  VERSION: '1.2.2',
+	  VERSION: '1.2.3',
 
 	  // layout
 	  Grid: __webpack_require__(2),
@@ -1082,11 +1082,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  render: function render() {
-	    var classSet = this.getClassSet();
+	    var inline = this.props.inline;
 	    var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
+	    var classSet = {};
 
-	    classSet[this.prefixClass('horizontal')] = this.props.horizontal;
-	    classSet[this.prefixClass('inline')] = this.props.inline;
+	    // remove .am-form className if `inline` prop set
+	    if (inline) {
+	      classSet[this.prefixClass('inline')] = true;
+	    } else {
+	      classSet = this.getClassSet();
+	      classSet[this.prefixClass('horizontal')] = this.props.horizontal;
+	    }
 
 	    return React.createElement(
 	      'form',
@@ -1971,7 +1977,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  render: function render() {
 	    var classes = this.getClassSet();
 	    var Component = this.props.component;
-	    var restProps = omit(this.props, ['classPrefix', 'justify', 'pills', 'tabs', 'topbar', 'component', 'active', 'activeKey', 'activeHref']);
+	    var restProps = omit(this.props, ['classPrefix', 'justify', 'pills', 'tabs', 'topbar', 'component', 'active', 'activeKey', 'activeHref', 'navItem']);
 
 	    // set classes
 	    classes[this.prefixClass('pills')] = this.props.pills || this.props.topbar;
@@ -2586,7 +2592,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      React.createElement(
 	        'span',
 	        { className: this.setClassNamespace('sr-only') },
-	        '导航切换'
+	        '\u5BFC\u822A\u5207\u6362'
 	      ),
 	      React.createElement(Icon, { icon: 'bars' })
 	    );
@@ -3607,7 +3613,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        className: classNames(classSet, this.props.className),
 	        role: 'close'
 	      }),
-	      this.props.icon ? React.createElement(Icon, { icon: 'times' }) : '×'
+	      this.props.icon ? React.createElement(Icon, { icon: 'times' }) : '\xD7'
 	    );
 	  }
 	});
@@ -4193,7 +4199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        className: this.setClassNamespace('close'),
 	        onClick: this.props.onClose
 	      },
-	      '×'
+	      '\xD7'
 	    );
 	  },
 
@@ -4409,6 +4415,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var threeDigits = /\d{3}/;
 	  var fourDigits = /\d{4}/;
 	  var word = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i;
+	  var literal = /\[([^]*?)\]/gm;
 	  var noop = function () {
 	  };
 
@@ -4635,8 +4642,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    mask = fecha.masks[mask] || mask || fecha.masks['default'];
 
-	    return mask.replace(token, function ($0) {
+	    var literals = [];
+
+	    // Make literals inactive by replacing them with ??
+	    mask = mask.replace(literal, function($0, $1) {
+	      literals.push($1);
+	      return '??';
+	    });
+	    // Apply formatting rules
+	    mask = mask.replace(token, function ($0) {
 	      return $0 in formatFlags ? formatFlags[$0](dateObj, i18n) : $0.slice(1, $0.length - 1);
+	    });
+	    // Inline literal values back into the formatted value
+	    return mask.replace(/\?\?/g, function() {
+	      return literals.shift();
 	    });
 	  };
 
@@ -5330,6 +5349,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  mixins: [ClassNameMixin],
 
 	  propTypes: {
+	    format: React.PropTypes.string.isRequired,
+
 	    subtractMonth: React.PropTypes.func.isRequired,
 	    addMonth: React.PropTypes.func.isRequired,
 
@@ -5385,8 +5406,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    nextMonth.setDate(nextMonth.getDate() + 42);
 	    nextMonth = nextMonth.valueOf();
 
-	    var minDate = this.props.minDate && fecha.parse(this.props.minDate);
-	    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate);
+	    var minDate = this.props.minDate && fecha.parse(this.props.minDate, this.props.format);
+	    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate, this.props.format);
 
 	    while (prevMonth.valueOf() < nextMonth) {
 	      classes[this.prefixClass('day')] = true;
@@ -5557,8 +5578,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var year = this.props.selectedDate.getFullYear();
 	    var i = 0;
 	    var months = [];
-	    var minDate = this.props.minDate && fecha.parse(this.props.minDate);
-	    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate);
+	    var minDate = this.props.minDate && fecha.parse(this.props.minDate, this.props.format);
+	    var maxDate = this.props.maxDate && fecha.parse(this.props.maxDate, this.props.format);
 	    var prevMonth = new Date(year, month);
 
 	    // TODO: minDate maxDate months
@@ -8770,7 +8791,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(22);
@@ -9600,7 +9621,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return {
 	      classPrefix: 'list-news',
 	      theme: 'default',
-	      moreText: '更多 »'
+	      moreText: '\u66F4\u591A \xBB'
 	    };
 	  },
 
