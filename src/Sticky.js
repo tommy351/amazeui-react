@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var assign = require('object-assign');
@@ -15,16 +17,16 @@ var Sticky = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    media: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number
+    classPrefix: PropTypes.string,
+    media: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
     ]),
-    top: React.PropTypes.number,
-    animation: React.PropTypes.string,
-    bottom: React.PropTypes.oneOfType([
-      React.PropTypes.number,
-      React.PropTypes.func
+    top: PropTypes.number,
+    animation: PropTypes.string,
+    bottom: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.func
     ])
   },
 

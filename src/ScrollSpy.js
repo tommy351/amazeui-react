@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var cloneElement = React.cloneElement;
@@ -18,11 +20,11 @@ var ScrollSpy = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    animation: React.PropTypes.string,
-    delay: React.PropTypes.number,
-    repeat: React.PropTypes.bool,
+    animation: PropTypes.string,
+    delay: PropTypes.number,
+    repeat: PropTypes.bool,
     // container which has scrollbar
-    container: React.PropTypes.any
+    container: PropTypes.any
   },
 
   getDefaultProps: function() {

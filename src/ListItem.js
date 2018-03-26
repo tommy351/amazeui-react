@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var assign = require('object-assign');
@@ -10,11 +12,11 @@ var ListItem = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    href: React.PropTypes.string,
-    truncate: React.PropTypes.bool,
-    component: React.PropTypes.any.isRequired,
-    linkComponent: React.PropTypes.any,
-    linkProps: React.PropTypes.object
+    href: PropTypes.string,
+    truncate: PropTypes.bool,
+    component: PropTypes.any.isRequired,
+    linkComponent: PropTypes.any,
+    linkProps: PropTypes.object
   },
 
   getDefaultProps: function() {

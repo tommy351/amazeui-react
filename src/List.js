@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,12 +11,12 @@ var List = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    component: React.PropTypes.node.isRequired,
-    border: React.PropTypes.bool,
-    bordered: React.PropTypes.bool,
-    striped: React.PropTypes.bool,
-    static: React.PropTypes.bool
+    classPrefix: PropTypes.string,
+    component: PropTypes.node.isRequired,
+    border: PropTypes.bool,
+    bordered: PropTypes.bool,
+    striped: PropTypes.bool,
+    static: PropTypes.bool
   },
 
   getDefaultProps: function() {

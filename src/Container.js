@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,8 +11,8 @@ var Container = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string.isRequired,
-    component: React.PropTypes.node.isRequired
+    classPrefix: PropTypes.string.isRequired,
+    component: PropTypes.node.isRequired
   },
 
   getDefaultProps: function() {

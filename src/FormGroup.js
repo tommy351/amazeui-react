@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
@@ -8,9 +10,9 @@ var FormGroup = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    validation: React.PropTypes.string,
-    amSize: React.PropTypes.oneOf(['sm', 'lg']),
-    hasFeedback: React.PropTypes.bool
+    validation: PropTypes.string,
+    amSize: PropTypes.oneOf(['sm', 'lg']),
+    hasFeedback: PropTypes.bool
   },
 
   render: function() {

@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var fecha = require('fecha');
@@ -11,20 +13,20 @@ var DateTimePicker = require('./DateTimePicker');
 
 var DateTimeInput = React.createClass({
   propTypes: {
-    format: React.PropTypes.string,
-    dateTime: React.PropTypes.string,
-    date: React.PropTypes.string,
-    onSelect: React.PropTypes.func,
-    showTimePicker: React.PropTypes.bool,
-    showDatePicker: React.PropTypes.bool,
-    amStyle: React.PropTypes.oneOf(['success', 'danger', 'warning']),
-    viewMode: React.PropTypes.string,
-    minViewMode: React.PropTypes.string,
-    daysOfWeekDisabled: React.PropTypes.array,
-    locale: React.PropTypes.string,
-    weekStart: React.PropTypes.number,
-    minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string
+    format: PropTypes.string,
+    dateTime: PropTypes.string,
+    date: PropTypes.string,
+    onSelect: PropTypes.func,
+    showTimePicker: PropTypes.bool,
+    showDatePicker: PropTypes.bool,
+    amStyle: PropTypes.oneOf(['success', 'danger', 'warning']),
+    viewMode: PropTypes.string,
+    minViewMode: PropTypes.string,
+    daysOfWeekDisabled: PropTypes.array,
+    locale: PropTypes.string,
+    weekStart: PropTypes.number,
+    minDate: PropTypes.string,
+    maxDate: PropTypes.string
   },
 
   getDefaultProps: function() {

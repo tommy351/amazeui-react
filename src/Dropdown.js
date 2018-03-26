@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
@@ -18,19 +20,19 @@ var Dropdown = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    title: React.PropTypes.node.isRequired,
-    dropup: React.PropTypes.bool,
-    navItem: React.PropTypes.bool,
-    btnStyle: React.PropTypes.string,
-    btnSize: React.PropTypes.string,
-    btnInlineStyle: React.PropTypes.object,
-    contentInlineStyle: React.PropTypes.object,
-    contentComponent: React.PropTypes.node,
-    toggleClassName: React.PropTypes.string,
-    caretClassName: React.PropTypes.string,
-    contentClassName: React.PropTypes.string,
-    onOpen: React.PropTypes.func, // open callback
-    onClose: React.PropTypes.func // close callback
+    title: PropTypes.node.isRequired,
+    dropup: PropTypes.bool,
+    navItem: PropTypes.bool,
+    btnStyle: PropTypes.string,
+    btnSize: PropTypes.string,
+    btnInlineStyle: PropTypes.object,
+    contentInlineStyle: PropTypes.object,
+    contentComponent: PropTypes.node,
+    toggleClassName: PropTypes.string,
+    caretClassName: PropTypes.string,
+    contentClassName: PropTypes.string,
+    onOpen: PropTypes.func, // open callback
+    onClose: PropTypes.func // close callback
   },
 
   getDefaultProps: function() {
@@ -190,15 +192,15 @@ Dropdown.Item = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    closeOnClick: React.PropTypes.bool,
-    href: React.PropTypes.string,
-    target: React.PropTypes.string,
-    title: React.PropTypes.string,
-    header: React.PropTypes.bool,
-    divider: React.PropTypes.bool,
-    linkComponent: React.PropTypes.any,
-    linkProps: React.PropTypes.object,
-    active: React.PropTypes.bool
+    closeOnClick: PropTypes.bool,
+    href: PropTypes.string,
+    target: PropTypes.string,
+    title: PropTypes.string,
+    header: PropTypes.bool,
+    divider: PropTypes.bool,
+    linkComponent: PropTypes.any,
+    linkProps: PropTypes.object,
+    active: PropTypes.bool
   },
 
   render: function() {

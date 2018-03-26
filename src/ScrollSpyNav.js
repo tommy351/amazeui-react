@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var cloneElement = React.cloneElement;
@@ -21,9 +23,9 @@ var ScrollSpyNav = React.createClass({
   mixins: [SmoothScrollMixin],
 
   propTypes: {
-    activeClass: React.PropTypes.string,
-    offsetTop: React.PropTypes.number,
-    container: React.PropTypes.any
+    activeClass: PropTypes.string,
+    offsetTop: PropTypes.number,
+    container: PropTypes.any
   },
 
   getDefaultProps: function() {

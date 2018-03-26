@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
@@ -11,13 +13,13 @@ var Pagination = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    component: React.PropTypes.node.isRequired,
-    centered: React.PropTypes.bool,
-    right: React.PropTypes.bool,
-    theme: React.PropTypes.oneOf(['default', 'select']),
-    data: React.PropTypes.object,
-    onSelect: React.PropTypes.func
+    classPrefix: PropTypes.string,
+    component: PropTypes.node.isRequired,
+    centered: PropTypes.bool,
+    right: PropTypes.bool,
+    theme: PropTypes.oneOf(['default', 'select']),
+    data: PropTypes.object,
+    onSelect: PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -126,15 +128,15 @@ Pagination.Item = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    active: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    prev: React.PropTypes.bool,
-    next: React.PropTypes.bool,
-    href: React.PropTypes.string,
-    component: React.PropTypes.any,
-    linkComponent: React.PropTypes.any,
-    linkProps: React.PropTypes.object
+    classPrefix: PropTypes.string,
+    active: PropTypes.bool,
+    disabled: PropTypes.bool,
+    prev: PropTypes.bool,
+    next: PropTypes.bool,
+    href: PropTypes.string,
+    component: PropTypes.any,
+    linkComponent: PropTypes.any,
+    linkProps: PropTypes.object
   },
 
   getDefaultProps: function() {

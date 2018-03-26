@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,11 +11,11 @@ var AvgGrid = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string.isRequired,
-    component: React.PropTypes.node,
-    sm: React.PropTypes.number,
-    md: React.PropTypes.number,
-    lg: React.PropTypes.number
+    classPrefix: PropTypes.string.isRequired,
+    component: PropTypes.node,
+    sm: PropTypes.number,
+    md: PropTypes.number,
+    lg: PropTypes.number
   },
 
   getDefaultProps: function() {

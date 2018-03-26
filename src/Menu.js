@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -11,15 +13,15 @@ var Menu = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    theme: React.PropTypes.oneOf(['default', 'dropdown1', 'dropdown2',
+    classPrefix: PropTypes.string,
+    theme: PropTypes.oneOf(['default', 'dropdown1', 'dropdown2',
       'slide1', 'stack']),
-    data: React.PropTypes.array,
-    onSelect: React.PropTypes.func,
-    toggleTitle: React.PropTypes.string,
-    toggleCustomIcon: React.PropTypes.string,
-    toggleIcon: React.PropTypes.string,
-    cols: React.PropTypes.number
+    data: PropTypes.array,
+    onSelect: PropTypes.func,
+    toggleTitle: PropTypes.string,
+    toggleCustomIcon: PropTypes.string,
+    toggleIcon: PropTypes.string,
+    cols: PropTypes.number
   },
 
   getDefaultProps: function() {

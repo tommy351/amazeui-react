@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,15 +11,15 @@ var Footer = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    theme: React.PropTypes.oneOf(['default']),
-    classPrefix: React.PropTypes.string,
-    mobileTitle: React.PropTypes.string,
-    mobileLink: React.PropTypes.string,
-    desktopTitle: React.PropTypes.string,
-    desktopLink: React.PropTypes.string,
-    onRequestMobile: React.PropTypes.func,
-    onRequestDesktop: React.PropTypes.func,
-    data: React.PropTypes.array
+    theme: PropTypes.oneOf(['default']),
+    classPrefix: PropTypes.string,
+    mobileTitle: PropTypes.string,
+    mobileLink: PropTypes.string,
+    desktopTitle: PropTypes.string,
+    desktopLink: PropTypes.string,
+    onRequestMobile: PropTypes.func,
+    onRequestDesktop: PropTypes.func,
+    data: PropTypes.array
   },
 
   getDefaultProps: function() {

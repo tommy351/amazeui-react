@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
@@ -13,26 +15,26 @@ var Slider = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    theme: React.PropTypes.oneOf(['default', 'a1', 'a2', 'a3', 'a4', 'a5',
+    classPrefix: PropTypes.string,
+    theme: PropTypes.oneOf(['default', 'a1', 'a2', 'a3', 'a4', 'a5',
       'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3']),
-    directionNav: React.PropTypes.bool,   // prev/next icon
-    controlNav: React.PropTypes.bool,
+    directionNav: PropTypes.bool,   // prev/next icon
+    controlNav: PropTypes.bool,
 
-    animation: React.PropTypes.string,    // not working
-    slide: React.PropTypes.bool,
-    autoPlay: React.PropTypes.bool,
-    slideSpeed: React.PropTypes.number,   // interval
-    loop: React.PropTypes.bool,           // loop slide
+    animation: PropTypes.string,    // not working
+    slide: PropTypes.bool,
+    autoPlay: PropTypes.bool,
+    slideSpeed: PropTypes.number,   // interval
+    loop: PropTypes.bool,           // loop slide
 
-    pauseOnHover: React.PropTypes.bool,
-    touch: React.PropTypes.bool,          // TODO: add touch support
+    pauseOnHover: PropTypes.bool,
+    touch: PropTypes.bool,          // TODO: add touch support
 
-    onSelect: React.PropTypes.func,
-    onSlideEnd: React.PropTypes.func,
-    activeIndex: React.PropTypes.number,
-    defaultActiveIndex: React.PropTypes.number,
-    direction: React.PropTypes.oneOf(['prev', 'next'])
+    onSelect: PropTypes.func,
+    onSlideEnd: PropTypes.func,
+    activeIndex: PropTypes.number,
+    defaultActiveIndex: PropTypes.number,
+    direction: PropTypes.oneOf(['prev', 'next'])
   },
 
   getDefaultProps: function() {
@@ -317,14 +319,14 @@ var Slider = React.createClass({
 
 Slider.Item = React.createClass({
   propTypes: {
-    direction: React.PropTypes.oneOf(['prev', 'next']),
-    onAnimateOutEnd: React.PropTypes.func,
-    active: React.PropTypes.bool,
-    animateIn: React.PropTypes.bool,
-    animateOut: React.PropTypes.bool,
-    caption: React.PropTypes.node,
-    index: React.PropTypes.number,
-    thumbnail: React.PropTypes.string
+    direction: PropTypes.oneOf(['prev', 'next']),
+    onAnimateOutEnd: PropTypes.func,
+    active: PropTypes.bool,
+    animateIn: PropTypes.bool,
+    animateOut: PropTypes.bool,
+    caption: PropTypes.node,
+    index: PropTypes.number,
+    thumbnail: PropTypes.string
   },
 
   getInitialState: function() {

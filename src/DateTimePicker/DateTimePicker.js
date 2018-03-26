@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var fecha = require('fecha');
@@ -13,22 +15,22 @@ var DateTimePicker = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    showTimePicker: React.PropTypes.bool,
-    showDatePicker: React.PropTypes.bool,
-    caretDisplayed: React.PropTypes.bool,
-    amStyle: React.PropTypes.oneOf(['success', 'danger', 'warning']),
-    viewMode: React.PropTypes.string,
-    minViewMode: React.PropTypes.string,
-    onSelect: React.PropTypes.func.isRequired,
-    onClose: React.PropTypes.func,
-    daysOfWeekDisabled: React.PropTypes.array,
-    format: React.PropTypes.string,
-    dateTime: React.PropTypes.string,
-    locale: React.PropTypes.string,
-    weekStart: React.PropTypes.number,
-    minDate: React.PropTypes.string,
-    maxDate: React.PropTypes.string
+    classPrefix: PropTypes.string,
+    showTimePicker: PropTypes.bool,
+    showDatePicker: PropTypes.bool,
+    caretDisplayed: PropTypes.bool,
+    amStyle: PropTypes.oneOf(['success', 'danger', 'warning']),
+    viewMode: PropTypes.string,
+    minViewMode: PropTypes.string,
+    onSelect: PropTypes.func.isRequired,
+    onClose: PropTypes.func,
+    daysOfWeekDisabled: PropTypes.array,
+    format: PropTypes.string,
+    dateTime: PropTypes.string,
+    locale: PropTypes.string,
+    weekStart: PropTypes.number,
+    minDate: PropTypes.string,
+    maxDate: PropTypes.string
   },
 
   getDefaultProps: function() {

@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
@@ -11,14 +13,14 @@ var Panel = React.createClass({
   mixins: [ClassNameMixin, CollapseMixin],
 
   propTypes: {
-    collapsible: React.PropTypes.bool,
-    header: React.PropTypes.node,
-    footer: React.PropTypes.node,
-    id: React.PropTypes.string,
-    classPrefix: React.PropTypes.string,
-    amStyle: React.PropTypes.string,
-    onSelect: React.PropTypes.func,
-    eventKey: React.PropTypes.any
+    collapsible: PropTypes.bool,
+    header: PropTypes.node,
+    footer: PropTypes.node,
+    id: PropTypes.string,
+    classPrefix: PropTypes.string,
+    amStyle: PropTypes.string,
+    onSelect: PropTypes.func,
+    eventKey: PropTypes.any
   },
 
   getDefaultProps: function() {

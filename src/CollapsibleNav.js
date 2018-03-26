@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 /*
 * https://github.com/react-bootstrap/react-bootstrap/blob/master/src/CollapsibleNav.js
 * */
@@ -15,12 +17,12 @@ var CollapsibleNav = React.createClass({
   mixins: [ClassNameMixin, CollapseMixin],
 
   propTypes: {
-    collapsible: React.PropTypes.bool,
-    onSelect: React.PropTypes.func,
-    activeHref: React.PropTypes.string,
-    activeKey: React.PropTypes.any,
-    expanded: React.PropTypes.bool,
-    eventKey: React.PropTypes.any
+    collapsible: PropTypes.bool,
+    onSelect: PropTypes.func,
+    activeHref: PropTypes.string,
+    activeKey: PropTypes.any,
+    expanded: PropTypes.bool,
+    eventKey: PropTypes.any
   },
 
   handleToggle: function() {

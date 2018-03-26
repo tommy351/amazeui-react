@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 /**
  * React version of NProgress
  * https://github.com/rstacruz/nprogress/
@@ -29,13 +31,13 @@ var NProgress = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    minimum: React.PropTypes.number,
-    easing: React.PropTypes.string,
-    speed: React.PropTypes.number,
-    spinner: React.PropTypes.bool,
-    trickle: React.PropTypes.bool,
-    trickleRate: React.PropTypes.number,
-    trickleSpeed: React.PropTypes.number
+    minimum: PropTypes.number,
+    easing: PropTypes.string,
+    speed: PropTypes.number,
+    spinner: PropTypes.bool,
+    trickle: PropTypes.bool,
+    trickleRate: PropTypes.number,
+    trickleSpeed: PropTypes.number
   },
 
   getInitialState: function() {

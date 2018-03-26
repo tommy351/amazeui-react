@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,10 +11,10 @@ var Alert = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string.isRequired,
-    amStyle: React.PropTypes.oneOf(['secondary', 'success', 'warning',
+    classPrefix: PropTypes.string.isRequired,
+    amStyle: PropTypes.oneOf(['secondary', 'success', 'warning',
       'danger']),
-    onClose: React.PropTypes.func
+    onClose: PropTypes.func
   },
 
   getDefaultProps: function() {

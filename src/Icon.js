@@ -1,10 +1,10 @@
 'use strict';
 
+var PropTypes = require('prop-types');
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
-var PropTypes = React.PropTypes;
 
 var Icon = React.createClass({
   mixins: [ClassNameMixin],

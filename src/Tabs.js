@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -11,13 +13,13 @@ var Tabs = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    theme: React.PropTypes.oneOf(['default', 'd2']),
-    onSelect: React.PropTypes.func,
-    animation: React.PropTypes.oneOf(['slide', 'fade']),
-    defaultActiveKey: React.PropTypes.any,
-    justify: React.PropTypes.bool,
-    data: React.PropTypes.array
+    classPrefix: PropTypes.string,
+    theme: PropTypes.oneOf(['default', 'd2']),
+    onSelect: PropTypes.func,
+    animation: PropTypes.oneOf(['slide', 'fade']),
+    defaultActiveKey: PropTypes.any,
+    justify: PropTypes.bool,
+    data: PropTypes.array
   },
 
   getDefaultProps: function() {
@@ -226,10 +228,10 @@ Tabs.Item = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    title: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    eventKey: React.PropTypes.any,
-    active: React.PropTypes.bool
+    title: PropTypes.string,
+    disabled: PropTypes.bool,
+    eventKey: PropTypes.any,
+    active: PropTypes.bool
   },
 
   render: function() {

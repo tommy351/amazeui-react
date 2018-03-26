@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var ClassNameMixin = require('../mixins/ClassNameMixin');
@@ -8,9 +10,9 @@ var TimePicker = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    onSelect: React.PropTypes.func.isRequired,
-    date: React.PropTypes.object,
-    format: React.PropTypes.string
+    onSelect: PropTypes.func.isRequired,
+    date: PropTypes.object,
+    format: PropTypes.string
   },
 
   getDefaultProps: function() {
@@ -210,8 +212,8 @@ var HoursPicker = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    setSelectedHour: React.PropTypes.func.isRequired,
-    selectedDate: React.PropTypes.object.isRequired
+    setSelectedHour: PropTypes.func.isRequired,
+    selectedDate: PropTypes.object.isRequired
   },
 
   getDefaultProps: function() {
@@ -268,8 +270,8 @@ var MinutesPicker = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    setSelectedMinute: React.PropTypes.func.isRequired,
-    selectedDate: React.PropTypes.object.isRequired
+    setSelectedMinute: PropTypes.func.isRequired,
+    selectedDate: PropTypes.object.isRequired
   },
 
   getDefaultProps: function() {

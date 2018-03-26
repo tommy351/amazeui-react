@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,12 +11,12 @@ var PanelGroup = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    amStyle: React.PropTypes.string,
-    activeKey: React.PropTypes.any,
-    defaultActiveKey: React.PropTypes.any,
-    onSelect: React.PropTypes.func,
-    accordion: React.PropTypes.bool
+    classPrefix: PropTypes.string,
+    amStyle: PropTypes.string,
+    activeKey: PropTypes.any,
+    defaultActiveKey: PropTypes.any,
+    onSelect: PropTypes.func,
+    accordion: PropTypes.bool
   },
 
   getDefaultProps: function() {

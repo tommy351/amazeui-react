@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
@@ -16,12 +18,12 @@ var GoTop = React.createClass({
   mixins: [ClassNameMixin, SmoothScrollMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string.isRequired,
-    theme: React.PropTypes.oneOf(['default', 'fixed']),
-    title: React.PropTypes.string,
-    src: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    autoHide: React.PropTypes.bool
+    classPrefix: PropTypes.string.isRequired,
+    theme: PropTypes.oneOf(['default', 'fixed']),
+    title: PropTypes.string,
+    src: PropTypes.string,
+    icon: PropTypes.string,
+    autoHide: PropTypes.bool
   },
 
   getDefaultProps: function() {

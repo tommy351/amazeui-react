@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,8 +11,8 @@ var Divider = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    theme: React.PropTypes.oneOf(['default', 'dotted', 'dashed']),
-    classPrefix: React.PropTypes.string
+    theme: PropTypes.oneOf(['default', 'dotted', 'dashed']),
+    classPrefix: PropTypes.string
   },
 
   getDefaultProps: function() {

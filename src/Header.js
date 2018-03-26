@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
@@ -10,13 +12,13 @@ var Header = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    theme: React.PropTypes.oneOf(['default']),
-    data: React.PropTypes.object,
-    fixed: React.PropTypes.bool,
-    title: React.PropTypes.node,
-    link: React.PropTypes.string,
-    onSelect: React.PropTypes.func
+    classPrefix: PropTypes.string,
+    theme: PropTypes.oneOf(['default']),
+    data: PropTypes.object,
+    fixed: PropTypes.bool,
+    title: PropTypes.node,
+    link: PropTypes.string,
+    onSelect: PropTypes.func
   },
 
   getDefaultProps: function() {

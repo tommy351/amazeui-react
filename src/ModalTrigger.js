@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var cloneElement = React.cloneElement;
 var OverlayMixin = require('./mixins/OverlayMixin');
@@ -10,12 +12,12 @@ var ModalTrigger = React.createClass({
   mixins: [OverlayMixin, DimmerMixin],
 
   propTypes: {
-    modal: React.PropTypes.node.isRequired,
-    onConfirm: React.PropTypes.func,
-    onCancel: React.PropTypes.func,
-    title: React.PropTypes.string,
-    show: React.PropTypes.bool,
-    onClose: React.PropTypes.func
+    modal: PropTypes.node.isRequired,
+    onConfirm: PropTypes.func,
+    onCancel: PropTypes.func,
+    title: PropTypes.string,
+    show: PropTypes.bool,
+    onClose: PropTypes.func
   },
 
   getInitialState: function() {

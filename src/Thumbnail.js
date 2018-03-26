@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
@@ -9,10 +11,10 @@ var Thumbnail = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    standalone: React.PropTypes.bool,
-    caption: React.PropTypes.node,
-    component: React.PropTypes.node
+    classPrefix: PropTypes.string,
+    standalone: PropTypes.bool,
+    caption: PropTypes.node,
+    component: PropTypes.node
   },
 
   getDefaultProps: function() {
@@ -75,7 +77,7 @@ Thumbnail.Caption = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    component: React.PropTypes.node
+    component: PropTypes.node
   },
 
   getDefaultProps: function() {

@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
@@ -11,11 +13,11 @@ var Accordion = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    theme: React.PropTypes.oneOf(['default', 'basic', 'gapped']),
-    data: React.PropTypes.array,
-    activeKey: React.PropTypes.any,
-    defaultActiveKey: React.PropTypes.any
+    classPrefix: PropTypes.string,
+    theme: PropTypes.oneOf(['default', 'basic', 'gapped']),
+    data: PropTypes.array,
+    activeKey: PropTypes.any,
+    defaultActiveKey: PropTypes.any
   },
 
   getDefaultProps: function() {
@@ -77,8 +79,8 @@ Accordion.Item = React.createClass({
   mixins: [ClassNameMixin, CollapseMixin],
 
   propTypes: {
-    title: React.PropTypes.node,
-    expanded: React.PropTypes.bool
+    title: PropTypes.node,
+    expanded: PropTypes.bool
   },
 
   handleToggle: function() {

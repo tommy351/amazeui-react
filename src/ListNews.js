@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -11,14 +13,14 @@ var ListNews = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string,
-    theme: React.PropTypes.oneOf(['default']),
-    data: React.PropTypes.object,
-    header: React.PropTypes.node,
-    footer: React.PropTypes.node,
-    morePosition: React.PropTypes.oneOf(['top', 'bottom']),
-    moreText: React.PropTypes.string,
-    thumbPosition: React.PropTypes.oneOf(['top', 'left', 'right', 'bottom-left',
+    classPrefix: PropTypes.string,
+    theme: PropTypes.oneOf(['default']),
+    data: PropTypes.object,
+    header: PropTypes.node,
+    footer: PropTypes.node,
+    morePosition: PropTypes.oneOf(['top', 'bottom']),
+    moreText: PropTypes.string,
+    thumbPosition: PropTypes.oneOf(['top', 'left', 'right', 'bottom-left',
       'bottom-right'])
   },
 

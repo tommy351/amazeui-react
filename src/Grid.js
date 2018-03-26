@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -9,10 +11,10 @@ var Grid = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    classPrefix: React.PropTypes.string.isRequired,
-    component: React.PropTypes.node.isRequired,
-    collapse: React.PropTypes.bool,
-    fixed: React.PropTypes.bool
+    classPrefix: PropTypes.string.isRequired,
+    component: PropTypes.node.isRequired,
+    collapse: PropTypes.bool,
+    fixed: PropTypes.bool
   },
 
   getDefaultProps: function() {

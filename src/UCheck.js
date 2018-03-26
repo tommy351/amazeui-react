@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 /**
  * Custom radio/checkbox style
  */
@@ -16,12 +18,12 @@ var UCheck = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    type: React.PropTypes.oneOf(['radio', 'checkbox']),
-    disabled: React.PropTypes.bool,
-    amStyle: React.PropTypes.oneOf(['secondary', 'success', 'warning',
+    type: PropTypes.oneOf(['radio', 'checkbox']),
+    disabled: PropTypes.bool,
+    amStyle: PropTypes.oneOf(['secondary', 'success', 'warning',
       'danger']),
-    inline: React.PropTypes.bool,
-    hasFeedback: React.PropTypes.bool
+    inline: PropTypes.bool,
+    hasFeedback: PropTypes.bool
   },
 
   getDefaultProps: function() {

@@ -1,5 +1,7 @@
 'use strict';
 
+var PropTypes = require('prop-types');
+
 var React = require('react');
 var omit = require('object.omit');
 var CSSCore = require('./utils/CSSCore');
@@ -11,7 +13,7 @@ var ButtonCheck = React.createClass({
   mixins: [ClassNameMixin],
 
   propTypes: {
-    clickHandler: React.PropTypes.func
+    clickHandler: PropTypes.func
   },
 
   getDefaultProps: function() {
