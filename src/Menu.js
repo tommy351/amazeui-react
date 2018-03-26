@@ -3,13 +3,15 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var Icon = require('./Icon');
 var AvgGrid = require('./AvgGrid');
 
-var Menu = React.createClass({
+var Menu = createReactClass({
+  displayName: 'Menu',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -198,7 +200,7 @@ var Menu = React.createClass({
         </AvgGrid>
       </nav>
     );
-  }
+  },
 });
 
 module.exports = Menu;

@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var Table = React.createClass({
+var Table = createReactClass({
+  displayName: 'Table',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -54,7 +56,7 @@ var Table = React.createClass({
         {table}
       </div>
     ) : table;
-  }
+  },
 });
 
 module.exports = Table;

@@ -11,8 +11,8 @@ var isNodeInTree = require('../utils/isNodeInTree');
 var Input = require('../Input');
 var DateTimePicker = require('./DateTimePicker');
 
-var DateTimeInput = React.createClass({
-  propTypes: {
+class DateTimeInput extends React.Component {
+  static propTypes = {
     format: PropTypes.string,
     dateTime: PropTypes.string,
     date: PropTypes.string,
@@ -27,46 +27,42 @@ var DateTimeInput = React.createClass({
     weekStart: PropTypes.number,
     minDate: PropTypes.string,
     maxDate: PropTypes.string
-  },
+  };
 
-  getDefaultProps: function() {
-    return {
-      dateTime: '',
-      format: 'YYYY-MM-DD HH:mm'
-    };
-  },
+  static defaultProps = {
+    dateTime: '',
+    format: 'YYYY-MM-DD HH:mm'
+  };
 
-  getInitialState: function() {
-    return {
-      value: this.props.dateTime || fecha.format(new Date(), this.props.format),
-      showPicker: false
-    };
-  },
+  state = {
+    value: this.props.dateTime || fecha.format(new Date(), this.props.format),
+    showPicker: false
+  };
 
-  handleOuterClick: function(event) {
+  handleOuterClick = (event) => {
     var picker = ReactDOM.findDOMNode(this.refs.DateTimePicker);
 
     if (!isNodeInTree(event.target, picker)) {
       this.handleClose();
     }
-  },
+  };
 
-  bindOuterHandlers: function() {
+  bindOuterHandlers = () => {
     Events.on(document, 'click', this.handleOuterClick);
-  },
+  };
 
-  unbindOuterHandlers: function() {
+  unbindOuterHandlers = () => {
     Events.off(document, 'click', this.handleOuterClick);
-  },
+  };
 
-  handleClose: function() {
+  handleClose = () => {
     this.unbindOuterHandlers();
     return this.setState({
       showPicker: false
     });
-  },
+  };
 
-  handleClick: function() {
+  handleClick = () => {
     this.bindOuterHandlers();
 
     var positionNode = ReactDOM.findDOMNode(this.refs.dateInput);
@@ -90,23 +86,23 @@ var DateTimeInput = React.createClass({
       showPicker: true,
       pickerStyle: styles
     });
-  },
+  };
 
-  handleChange: function(event) {
+  handleChange = (event) => {
     this.setState({
       value: event.target.value
     });
-  },
+  };
 
-  handleSelect: function(date) {
+  handleSelect = (date) => {
     this.setState({
       value: date
     });
 
     this.props.onSelect && this.props.onSelect.call(this, date);
-  },
+  };
 
-  renderPicker: function() {
+  renderPicker = () => {
     if (this.state.showPicker) {
       return (
         <DateTimePicker
@@ -129,9 +125,9 @@ var DateTimeInput = React.createClass({
         />
       );
     }
-  },
+  };
 
-  render: function() {
+  render() {
     var restProps = omit(this.props, Object.keys(this.constructor.propTypes));
 
     return (
@@ -149,7 +145,7 @@ var DateTimeInput = React.createClass({
       </div>
     );
   }
-});
+}
 
 module.exports = DateTimeInput;
 

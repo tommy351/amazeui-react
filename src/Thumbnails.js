@@ -3,12 +3,14 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var AvgGrid = require('./AvgGrid');
 var omit = require('object.omit');
 
-var Thumbnails = React.createClass({
+var Thumbnails = createReactClass({
+  displayName: 'Thumbnails',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -39,7 +41,7 @@ var Thumbnails = React.createClass({
         })}
       </AvgGrid>
     );
-  }
+  },
 });
 
 module.exports = Thumbnails;

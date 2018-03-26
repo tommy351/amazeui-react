@@ -3,12 +3,14 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var Icon = require('./Icon');
 var omit = require('object.omit');
 
-var Header = React.createClass({
+var Header = createReactClass({
+  displayName: 'Header',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -105,7 +107,7 @@ var Header = React.createClass({
         {this.renderNav('right')}
       </header>
     );
-  }
+  },
 });
 
 module.exports = Header;

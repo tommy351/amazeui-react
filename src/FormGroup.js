@@ -3,10 +3,12 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var FormGroup = React.createClass({
+var FormGroup = createReactClass({
+  displayName: 'FormGroup',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -34,7 +36,7 @@ var FormGroup = React.createClass({
         {this.props.children}
       </div>
     );
-  }
+  },
 });
 
 module.exports = FormGroup;

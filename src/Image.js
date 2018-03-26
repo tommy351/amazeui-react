@@ -2,12 +2,14 @@
 
 var PropTypes = require('prop-types');
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var constants = require('./constants');
 
-var Image = React.createClass({
+var Image = createReactClass({
+  displayName: 'Image',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -40,7 +42,7 @@ var Image = React.createClass({
         className={classNames(this.props.className, classSet)}
       />
     );
-  }
+  },
 });
 
 module.exports = Image;

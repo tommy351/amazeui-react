@@ -3,12 +3,14 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var AvgGrid = require('./AvgGrid');
 var omit = require('object.omit');
 
-var Gallery = React.createClass({
+var Gallery = createReactClass({
+  displayName: 'Gallery',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -91,7 +93,7 @@ var Gallery = React.createClass({
         }.bind(this))}
       </AvgGrid>
     );
-  }
+  },
 });
 
 module.exports = Gallery;

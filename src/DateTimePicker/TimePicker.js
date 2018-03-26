@@ -3,10 +3,12 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var ClassNameMixin = require('../mixins/ClassNameMixin');
 
-var TimePicker = React.createClass({
+var TimePicker = createReactClass({
+  displayName: 'TimePicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -205,10 +207,11 @@ var TimePicker = React.createClass({
         {this.renderMinutes()}
       </div>
     );
-  }
+  },
 });
 
-var HoursPicker = React.createClass({
+var HoursPicker = createReactClass({
+  displayName: 'HoursPicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -263,10 +266,11 @@ var HoursPicker = React.createClass({
         body={this.renderHour()}
       />
     );
-  }
+  },
 });
 
-var MinutesPicker = React.createClass({
+var MinutesPicker = createReactClass({
+  displayName: 'MinutesPicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -324,10 +328,11 @@ var MinutesPicker = React.createClass({
         body={this.renderMinute()}
       />
     );
-  }
+  },
 });
 
-var SubPicker = React.createClass({
+var SubPicker = createReactClass({
+  displayName: 'SubPicker',
   mixins: [ClassNameMixin],
 
   getDefaultProps: function() {
@@ -373,7 +378,7 @@ var SubPicker = React.createClass({
         </table>
       </div>
     );
-  }
+  },
 });
 
 module.exports = TimePicker;

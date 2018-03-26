@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var Divider = React.createClass({
+var Divider = createReactClass({
+  displayName: 'Divider',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -33,7 +35,7 @@ var Divider = React.createClass({
         className={classNames(this.props.className, classSet)}
       />
     );
-  }
+  },
 });
 
 module.exports = Divider;

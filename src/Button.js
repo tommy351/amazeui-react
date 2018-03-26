@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var omit = require('object.omit');
 
-var Button = React.createClass({
+var Button = createReactClass({
+  displayName: 'Button',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -87,7 +89,7 @@ var Button = React.createClass({
     classSet[this.prefixClass('block')] = this.props.block;
 
     return this[renderType](classSet);
-  }
+  },
 });
 
 module.exports = Button;

@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var cloneElement = React.cloneElement;
 var OverlayMixin = require('./mixins/OverlayMixin');
@@ -17,7 +18,8 @@ function isOneOf(one, of) {
   return one === of;
 }
 
-var PopoverTrigger = React.createClass({
+var PopoverTrigger = createReactClass({
+  displayName: 'PopoverTrigger',
   mixins: [OverlayMixin],
 
   propTypes: {
@@ -229,7 +231,7 @@ var PopoverTrigger = React.createClass({
     }
 
     return cloneElement(child, props);
-  }
+  },
 });
 
 module.exports = PopoverTrigger;

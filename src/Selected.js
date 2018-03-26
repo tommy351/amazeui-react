@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
@@ -10,7 +11,8 @@ var Dropdown = require('./Dropdown');
 var Icon = require('./Icon');
 var Input = require('./Input');
 
-var Selected = React.createClass({
+var Selected = createReactClass({
+  displayName: 'Selected',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -242,7 +244,7 @@ var Selected = React.createClass({
         />
       </Dropdown>
     );
-  }
+  },
 });
 
 module.exports = Selected;

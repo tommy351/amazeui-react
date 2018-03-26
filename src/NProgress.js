@@ -8,6 +8,7 @@ var PropTypes = require('prop-types');
  */
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
@@ -27,7 +28,8 @@ function toBarPercentage(n) {
   return (-1 + n) * 100;
 }
 
-var NProgress = React.createClass({
+var NProgress = createReactClass({
+  displayName: 'NProgress',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -161,7 +163,7 @@ var NProgress = React.createClass({
         {spinner}
       </div>
     ) : null;
-  }
+  },
 });
 
 module.exports = NProgress;

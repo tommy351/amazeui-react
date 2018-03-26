@@ -7,6 +7,7 @@ var PropTypes = require('prop-types');
  */
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
@@ -14,7 +15,8 @@ var Input = require('./Input');
 var Icon = require('./Icon');
 var constants = require('./constants');
 
-var UCheck = React.createClass({
+var UCheck = createReactClass({
+  displayName: 'UCheck',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -61,7 +63,7 @@ var UCheck = React.createClass({
         {this.props.label}
       </label>
     );
-  }
+  },
 });
 
 module.exports = UCheck;

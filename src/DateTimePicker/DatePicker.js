@@ -3,12 +3,14 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var fecha = require('fecha');
 var ClassNameMixin = require('../mixins/ClassNameMixin');
 var dateUtils = require('../utils/dateUtils');
 
-var DatePicker = React.createClass({
+var DatePicker = createReactClass({
+  displayName: 'DatePicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -298,10 +300,11 @@ var DatePicker = React.createClass({
         {this.renderYears()}
       </div>
     );
-  }
+  },
 });
 
-var DaysPicker = React.createClass({
+var DaysPicker = createReactClass({
+  displayName: 'DaysPicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -484,10 +487,11 @@ var DaysPicker = React.createClass({
         </table>
       </div>
     );
-  }
+  },
 });
 
-var MonthsPicker = React.createClass({
+var MonthsPicker = createReactClass({
+  displayName: 'MonthsPicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -561,10 +565,11 @@ var MonthsPicker = React.createClass({
         showText={this.props.viewDate.getFullYear()}
         body={this.renderMonths()} />
     );
-  }
+  },
 });
 
-var YearsPicker = React.createClass({
+var YearsPicker = createReactClass({
+  displayName: 'YearsPicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -631,10 +636,11 @@ var YearsPicker = React.createClass({
         showText={showYear}
         body={this.renderYears()} />
     );
-  }
+  },
 });
 
-var SubPicker = React.createClass({
+var SubPicker = createReactClass({
+  displayName: 'SubPicker',
   mixins: [ClassNameMixin],
 
   getDefaultProps: function() {
@@ -679,7 +685,7 @@ var SubPicker = React.createClass({
         </table>
       </div>
     );
-  }
+  },
 });
 
 module.exports = DatePicker;

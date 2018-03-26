@@ -3,13 +3,15 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var Nav = require('./Nav');
 var NavItem = require('./NavItem');
 
-var Tabs = React.createClass({
+var Tabs = createReactClass({
+  displayName: 'Tabs',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -221,10 +223,10 @@ var Tabs = React.createClass({
       this.renderNavWrapper(children.navs || this.renderNav()),
       this.renderBodyWrapper(children.panels || this.renderTabPanels())
     ]);
-  }
+  },
 });
 
-Tabs.Item = React.createClass({
+Tabs.Item = createReactClass({
   mixins: [ClassNameMixin],
 
   propTypes: {

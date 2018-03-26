@@ -3,13 +3,15 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var CollapseMixin = require('./mixins/CollapseMixin');
 
-var Accordion = React.createClass({
+var Accordion = createReactClass({
+  displayName: 'Accordion',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -72,10 +74,10 @@ var Accordion = React.createClass({
         })}
       </section>
     );
-  }
+  },
 });
 
-Accordion.Item = React.createClass({
+Accordion.Item = createReactClass({
   mixins: [ClassNameMixin, CollapseMixin],
 
   propTypes: {

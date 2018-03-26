@@ -3,12 +3,14 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var assign = require('object-assign');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var Breadcrumb = React.createClass({
+var Breadcrumb = createReactClass({
+  displayName: 'Breadcrumb',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -39,10 +41,10 @@ var Breadcrumb = React.createClass({
         {this.props.children}
       </Component>
     );
-  }
+  },
 });
 
-Breadcrumb.Item = React.createClass({
+Breadcrumb.Item = createReactClass({
   mixins: [ClassNameMixin],
 
   propTypes: {

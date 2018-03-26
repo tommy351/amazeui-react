@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var assign = require('object-assign');
 var omit = require('object.omit');
@@ -11,7 +12,8 @@ var createChainedFunction = require('./utils/createChainedFunction');
 var Icon = require('./Icon');
 var Button = require('./Button');
 
-var Topbar = React.createClass({
+var Topbar = createReactClass({
+  displayName: 'Topbar',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -159,7 +161,7 @@ var Topbar = React.createClass({
         </div>
       </Component>
     );
-  }
+  },
 });
 
 module.exports = Topbar;

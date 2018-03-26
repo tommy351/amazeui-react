@@ -3,13 +3,15 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var assign = require('object-assign');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var Pagination = React.createClass({
+var Pagination = createReactClass({
+  displayName: 'Pagination',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -121,10 +123,10 @@ var Pagination = React.createClass({
         {this.props.children}
       </Component>
     );
-  }
+  },
 });
 
-Pagination.Item = React.createClass({
+Pagination.Item = createReactClass({
   mixins: [ClassNameMixin],
 
   propTypes: {

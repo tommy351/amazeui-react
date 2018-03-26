@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -14,7 +15,8 @@ var dom = require('./utils/domUtils');
 var CSSCore = require('./utils/CSSCore');
 var Icon = require('./Icon');
 
-var GoTop = React.createClass({
+var GoTop = createReactClass({
+  displayName: 'GoTop',
   mixins: [ClassNameMixin, SmoothScrollMixin],
 
   propTypes: {
@@ -104,7 +106,7 @@ var GoTop = React.createClass({
         </a>
       </div>
     );
-  }
+  },
 });
 
 module.exports = GoTop;

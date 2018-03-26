@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var Badge = React.createClass({
+var Badge = createReactClass({
+  displayName: 'Badge',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -61,7 +63,7 @@ var Badge = React.createClass({
         {this.props.children}
       </Component>
     );
-  }
+  },
 });
 
 module.exports = Badge;

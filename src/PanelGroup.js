@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var PanelGroup = React.createClass({
+var PanelGroup = createReactClass({
+  displayName: 'PanelGroup',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -85,7 +87,7 @@ var PanelGroup = React.createClass({
         {React.Children.map(this.props.children, this.renderPanel)}
       </div>
     );
-  }
+  },
 });
 
 module.exports = PanelGroup;

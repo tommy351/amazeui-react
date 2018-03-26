@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var Nav = React.createClass({
+var Nav = createReactClass({
+  displayName: 'Nav',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -58,7 +60,7 @@ var Nav = React.createClass({
         {this.props.children}
       </Component>
     );
-  }
+  },
 });
 
 module.exports = Nav;

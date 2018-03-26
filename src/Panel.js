@@ -3,13 +3,15 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var CollapseMixin = require('./mixins/CollapseMixin');
 
-var Panel = React.createClass({
+var Panel = createReactClass({
+  displayName: 'Panel',
   mixins: [ClassNameMixin, CollapseMixin],
 
   propTypes: {
@@ -186,7 +188,7 @@ var Panel = React.createClass({
         {this.renderFooter()}
       </div>
     );
-  }
+  },
 });
 
 module.exports = Panel;

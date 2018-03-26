@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -11,7 +12,8 @@ var TransitionEvents = require('./utils/TransitionEvents');
 
 //React.initializeTouchEvents(true);
 
-var Slider = React.createClass({
+var Slider = createReactClass({
+  displayName: 'Slider',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -314,10 +316,10 @@ var Slider = React.createClass({
         {this.renderControlNav()}
       </div>
     );
-  }
+  },
 });
 
-Slider.Item = React.createClass({
+Slider.Item = createReactClass({
   propTypes: {
     direction: PropTypes.oneOf(['prev', 'next']),
     onAnimateOutEnd: PropTypes.func,

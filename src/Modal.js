@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -12,7 +13,8 @@ var Events = require('./utils/Events');
 var Close = require('./Close');
 var Icon = require('./Icon');
 
-var Modal = React.createClass({
+var Modal = createReactClass({
+  displayName: 'Modal',
   mixins: [ClassNameMixin, DimmerMixin],
 
   propTypes: {
@@ -277,7 +279,7 @@ var Modal = React.createClass({
     );
 
     return this.renderDimmer(modal);
-  }
+  },
 });
 
 module.exports = Modal;

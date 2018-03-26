@@ -8,6 +8,7 @@ var PropTypes = require('prop-types');
  */
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var omit = require('object.omit');
@@ -17,7 +18,8 @@ var Button = require('./Button');
 var Icon = require('./Icon');
 var constants = require('./constants');
 
-var Input = React.createClass({
+var Input = createReactClass({
+  displayName: 'Input',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -346,7 +348,7 @@ var Input = React.createClass({
         ]}
       </FormGroup>
     );
-  }
+  },
 });
 
 module.exports = Input;

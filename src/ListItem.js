@@ -3,12 +3,14 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var assign = require('object-assign');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var ListItem = React.createClass({
+var ListItem = createReactClass({
+  displayName: 'ListItem',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -74,7 +76,7 @@ var ListItem = React.createClass({
         }
       </Component>
     );
-  }
+  },
 });
 
 module.exports = ListItem;

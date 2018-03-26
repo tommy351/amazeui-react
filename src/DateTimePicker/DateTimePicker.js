@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var fecha = require('fecha');
 var omit = require('object.omit');
@@ -11,7 +12,8 @@ var Icon = require('../Icon');
 var DatePicker = require('./DatePicker');
 var TimePicker = require('./TimePicker');
 
-var DateTimePicker = React.createClass({
+var DateTimePicker = createReactClass({
+  displayName: 'DateTimePicker',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -205,7 +207,7 @@ var DateTimePicker = React.createClass({
         {this.renderToggleDate()}
       </div>
     );
-  }
+  },
 });
 
 module.exports = DateTimePicker;

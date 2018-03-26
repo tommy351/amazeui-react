@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var assign = require('object-assign');
@@ -16,7 +17,8 @@ var isNodeInTree = require('./utils/isNodeInTree');
 var createChainedFunction = require('./utils/createChainedFunction');
 var canUseDOM = require('./utils/canUseDOM');
 
-var Dropdown = React.createClass({
+var Dropdown = createReactClass({
+  displayName: 'Dropdown',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -185,10 +187,10 @@ var Dropdown = React.createClass({
         </ContentComponent>
       </Component>
     );
-  }
+  },
 });
 
-Dropdown.Item = React.createClass({
+Dropdown.Item = createReactClass({
   mixins: [ClassNameMixin],
 
   propTypes: {

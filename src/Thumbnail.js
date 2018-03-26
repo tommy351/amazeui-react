@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var omit = require('object.omit');
 
-var Thumbnail = React.createClass({
+var Thumbnail = createReactClass({
+  displayName: 'Thumbnail',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -70,10 +72,10 @@ var Thumbnail = React.createClass({
         ) : null}
       </Component>
     );
-  }
+  },
 });
 
-Thumbnail.Caption = React.createClass({
+Thumbnail.Caption = createReactClass({
   mixins: [ClassNameMixin],
 
   propTypes: {

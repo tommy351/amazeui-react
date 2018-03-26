@@ -7,13 +7,15 @@ var PropTypes = require('prop-types');
 * */
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 var CollapseMixin = require('./mixins/CollapseMixin');
 var createChainedFunction = require('./utils/createChainedFunction');
 
-var CollapsibleNav = React.createClass({
+var CollapsibleNav = createReactClass({
+  displayName: 'CollapsibleNav',
   mixins: [ClassNameMixin, CollapseMixin],
 
   propTypes: {
@@ -120,7 +122,7 @@ var CollapsibleNav = React.createClass({
           this.renderChildren)}
       </div>
     );
-  }
+  },
 });
 
 module.exports = CollapsibleNav;

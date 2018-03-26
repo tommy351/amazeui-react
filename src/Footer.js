@@ -3,11 +3,13 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var classNames = require('classnames');
 var omit = require('object.omit');
 var ClassNameMixin = require('./mixins/ClassNameMixin');
 
-var Footer = React.createClass({
+var Footer = createReactClass({
+  displayName: 'Footer',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -72,7 +74,7 @@ var Footer = React.createClass({
         </div>
       </footer>
     );
-  }
+  },
 });
 
 module.exports = Footer;

@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types');
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM = require('react-dom');
 var assign = require('object-assign');
 var omit = require('object.omit');
@@ -13,7 +14,8 @@ var debounce = require('./utils/debounce');
 var domUtils = require('./utils/domUtils');
 var canUseDOM = require('./utils/canUseDOM');
 
-var Sticky = React.createClass({
+var Sticky = createReactClass({
+  displayName: 'Sticky',
   mixins: [ClassNameMixin],
 
   propTypes: {
@@ -204,7 +206,7 @@ var Sticky = React.createClass({
         )}
       </div>
     );
-  }
+  },
 });
 
 module.exports = Sticky;
